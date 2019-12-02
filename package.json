@@ -1,32 +1,62 @@
 {
-  "name": "typescript-library-skeleton",
+  "name": "vscode-extension-skeleton",
   "version": "0.0.0-development",
-  "description": "my personal ES2015 library project skeleton",
-  "main": "index.js",
-  "sideEffects": false,
+  "displayName": "Dude, Where's My Module?",
+  "description": "my personal skeleton for a VSCode extension",
+  "engines": {
+    "vscode": "^1.40.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.helloWorld"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
   "scripts": {
     "lint": "eslint $npm_package_config_lint",
     "lint:fix": "eslint $npm_package_config_lint",
     "lint:watch": "esw --watch $npm_package_config_lint",
-    "prettier": "prettier --write .babelrc.js *.json *.md *.ts '{src,test}/**/*.{js,ts}'",
-    "prettier:check": "prettier --list-different .babelrc.js *.json *.md *.ts '{src,test}/**/*.{js,ts}'",
-    "tsc": "tsc --noEmit",
-    "tsc:watch": "npm run tsc -- --watch",
-    "clean": "rimraf es lib $(cd src; ls) *.js *.d.ts",
-    "build": "npm run clean && npm run build:types && npm run build:js",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir es --extensions \".ts\" --source-maps inline && cross-env BABEL_ENV=es5 babel src --out-dir . --extensions \".ts\"",
-    "test": "cross-env NODE_ENV=test BABEL_ENV=es5 mocha $npm_package_config_mocha && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --reporter=text mocha $npm_package_config_mocha",
-    "test:watch": "cross-env NODE_ENV=test BABEL_ENV=test mocha $npm_package_config_mocha --watch --watch-extensions js,ts",
-    "test:debug": "cross-env NODE_ENV=test BABEL_ENV=test mocha --inspect-brk $npm_package_config_mocha",
+    "prettier": "prettier --write .babelrc.js *.json *.md *.ts 'src/**/*.{js,ts}'",
+    "prettier:check": "prettier --list-different .babelrc.js *.json *.md *.ts 'src/**/*.{js,ts}'",
+    "tsc": "tsc -p ./",
+    "tsc:watch": "tsc -watch -p ./",
+    "clean": "rimraf out",
+    "build": "babel src --out-dir out --extensions \".js,.ts\"",
+    "pretest": "BABEL_ENV=coverage npm run build",
+    "test": "node ./out/test/runTest.js; nyc report; nyc report --reporter=lcov",
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov; codecov",
-    "prepublishOnly": "npm run clean && npm run prettier:check && npm run lint && npm test && npm run build",
+    "vscode:prepublish": "npm run clean && npm run prettier:check && npm run lint && npm test && npm run build",
     "open:coverage": "open coverage/lcov-report/index.html",
     "semantic-release": "semantic-release"
   },
+  "release": {
+    "verifyConditions": [
+      "semantic-release-vsce",
+      "@semantic-release/github"
+    ],
+    "prepare": {
+      "path": "semantic-release-vsce",
+      "packageVsix": "your-extension.vsix"
+    },
+    "publish": [
+      "semantic-release-vsce",
+      {
+        "path": "@semantic-release/github",
+        "assets": "your-extension.vsix"
+      }
+    ]
+  },
   "config": {
-    "lint": "--cache --ext .js,.ts src test",
-    "mocha": "test/configure.js 'src/**/*.spec.ts'",
+    "lint": "--cache --ext .js,.ts src",
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
@@ -69,20 +99,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jedwards1211/typescript-library-skeleton.git"
+    "url": "https://github.com/jedwards1211/vscode-extension-skeleton.git"
   },
   "keywords": [
-    "typescript"
+    "vscode",
+    "extension"
   ],
   "author": "Andy Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jedwards1211/typescript-library-skeleton/issues"
+    "url": "https://github.com/jedwards1211/vscode-extension-skeleton/issues"
   },
-  "homepage": "https://github.com/jedwards1211/typescript-library-skeleton#readme",
+  "homepage": "https://github.com/jedwards1211/vscode-extension-skeleton#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
+    "@babel/node": "^7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
@@ -97,8 +129,10 @@
     "@jedwards1211/commitlint-config": "^1.0.0",
     "@jedwards1211/eslint-config": "^2.0.0",
     "@types/chai": "^4.2.0",
+    "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.6",
+    "@types/vscode": "^1.40.0",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "@typescript-eslint/typescript-estree": "^2.6.1",
@@ -111,6 +145,8 @@
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-watch": "^4.0.2",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.6",
     "husky": "^1.1.4",
     "istanbul": "^0.4.5",
     "lint-staged": "^8.0.4",
@@ -120,7 +156,9 @@
     "prettier-eslint": "^8.8.2",
     "rimraf": "^2.6.0",
     "semantic-release": "^15.1.4",
-    "typescript": "^3.7.2"
+    "semantic-release-vsce": "^2.2.8",
+    "typescript": "^3.7.2",
+    "vscode-test": "^1.2.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5"
