@@ -3,6 +3,7 @@
   "version": "0.0.0-development",
   "displayName": "Dude, Where's My Module?",
   "description": "my personal skeleton for a VSCode extension",
+  "publisher": "jedwards1211",
   "engines": {
     "vscode": "^1.40.0"
   },
