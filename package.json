@@ -33,7 +33,7 @@
     "build": "babel src --out-dir out --extensions \".js,.ts\" && tsc --emitDeclarationOnly -p ./",
     "build:watch": "nodemon -e js,ts,json --watch src --watch .babelrc.js --exec \"(babel src --out-dir out --extensions '.js,.ts'; exit 0)\"",
     "pretest": "BABEL_ENV=coverage npm run build",
-    "test": "node ./out/test/runTest.js; nyc report; nyc report --reporter=lcov",
+    "test": "rimraf .nyc_output; node ./out/test/runTest.js; nyc report; nyc report --reporter=lcov",
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov; codecov",
     "vscode:prepublish": "npm run clean && npm run prettier:check && npm run lint && npm test && npm run build",
     "open:coverage": "open coverage/lcov-report/index.html",
