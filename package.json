@@ -1,27 +1,15 @@
 {
-  "name": "vscode-extension-skeleton",
+  "name": "snippets-extension-skeleton",
   "version": "0.0.0-development",
-  "displayName": "Dude, Where's My Module?",
-  "description": "my personal skeleton for a VSCode extension",
-  "publisher": "jedwards1211",
+  "displayName": "Snippets Extension Skeleton",
+  "description": "skeleton for a VSCode extension that provides snippets",
+  "publisher": "vscodeshift",
   "engines": {
     "vscode": "^1.40.0"
   },
   "categories": [
-    "Other"
+    "Snippets"
   ],
-  "activationEvents": [
-    "onCommand:extension.helloWorld"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "scripts": {
     "lint": "eslint $npm_package_config_lint",
     "lint:fix": "eslint $npm_package_config_lint",
@@ -30,12 +18,11 @@
     "prettier:check": "prettier --list-different .babelrc.js *.json *.md *.ts 'src/**/*.{js,ts}'",
     "tsc": "tsc --noEmit",
     "clean": "rimraf out",
-    "build": "babel src --out-dir out --extensions \".js,.ts\" && tsc --emitDeclarationOnly -p ./",
-    "build:watch": "nodemon -e js,ts,json --watch src --watch .babelrc.js --exec \"(babel src --out-dir out --extensions '.js,.ts'; exit 0)\"",
-    "pretest": "BABEL_ENV=coverage npm run build",
+    "build": "babel-node --extensions \".js,.ts\" src/buildSnippets.ts && BABEL_ENV=coverage babel src --out-dir out --extensions \".js,.ts\"",
+    "pretest": "npm run build",
     "test": "rimraf .nyc_output; node ./out/test/runTest.js; nyc report; nyc report --reporter=lcov",
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov; codecov",
-    "vscode:prepublish": "npm run clean && npm run prettier:check && npm run lint && npm test && npm run build",
+    "vscode:prepublish": "npm run clean && npm run prettier:check && npm run lint && npm test",
     "open:coverage": "open coverage/lcov-report/index.html",
     "semantic-release": "semantic-release"
   },
@@ -46,13 +33,13 @@
     ],
     "prepare": {
       "path": "semantic-release-vsce",
-      "packageVsix": "vscode-extension-skeleton.vsix"
+      "packageVsix": "snippets-extension-skeleton.vsix"
     },
     "publish": [
       "semantic-release-vsce",
       {
         "path": "@semantic-release/github",
-        "assets": "vscode-extension-skeleton.vsix"
+        "assets": "snippets-extension-skeleton.vsix"
       }
     ]
   },
@@ -100,38 +87,32 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jedwards1211/vscode-extension-skeleton.git"
+    "url": "https://github.com/vscodeshift/snippets-extension-skeleton.git"
   },
   "keywords": [
     "vscode",
-    "extension"
+    "snippets"
   ],
   "author": "Andy Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jedwards1211/vscode-extension-skeleton/issues"
+    "url": "https://github.com/vscodeshift/snippets-extension-skeleton/issues"
   },
-  "homepage": "https://github.com/jedwards1211/vscode-extension-skeleton#readme",
+  "homepage": "https://github.com/vscodeshift/snippets-extension-skeleton#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
     "@babel/node": "^7.7.4",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-export-default-from": "^7.0.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-typescript": "^7.7.2",
-    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.1.5",
     "@commitlint/cli": "^6.0.2",
     "@commitlint/config-conventional": "^6.0.2",
     "@jedwards1211/commitlint-config": "^1.0.0",
     "@jedwards1211/eslint-config-typescript": "^1.0.0",
     "@types/chai": "^4.2.0",
+    "@types/fs-extra": "^8.0.1",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.6",
@@ -140,7 +121,6 @@
     "babel-plugin-istanbul": "^5.1.0",
     "chai": "^4.2.0",
     "codecov": "^3.1.0",
-    "copy": "^0.3.2",
     "cross-env": "^5.2.0",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
@@ -151,18 +131,15 @@
     "istanbul": "^0.4.5",
     "lint-staged": "^8.0.4",
     "mocha": "^6.2.1",
-    "nodemon": "^2.0.1",
     "nyc": "^13.1.0",
     "prettier": "^1.15.2",
     "prettier-eslint": "^8.8.2",
+    "require-glob": "^3.2.0",
     "rimraf": "^2.6.0",
     "semantic-release": "^15.1.4",
     "semantic-release-vsce": "^2.2.8",
     "typescript": "^3.7.2",
     "vscode-test": "^1.2.3"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.1.5"
   },
   "renovate": {
     "extends": [
@@ -181,5 +158,13 @@
     "major": {
       "automerge": false
     }
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./out/javascript.json"
+      }
+    ]
   }
 }

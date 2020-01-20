@@ -1,6 +1,10 @@
-**
-!out/**/*.js
+*
+*/**
+**/.DS_Store
+!out/*.json
+!node_modules/vscode-nls/**/*
+!node_modules/vscode-debugprotocol/**/*
+!package.json
+!package.nls.json
 !README.md
 !LICENSE.md
-!package.json
-!yarn.lock
