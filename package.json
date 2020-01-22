@@ -1,8 +1,8 @@
 {
-  "name": "snippets-extension-skeleton",
+  "name": "material-ui-snippets",
   "version": "0.0.0-development",
-  "displayName": "Snippets Extension Skeleton",
-  "description": "skeleton for a VSCode extension that provides snippets",
+  "displayName": "Snippets for Material-UI",
+  "description": "snippets for Material-UI",
   "publisher": "vscodeshift",
   "engines": {
     "vscode": "^1.40.0"
@@ -33,13 +33,13 @@
     ],
     "prepare": {
       "path": "semantic-release-vsce",
-      "packageVsix": "snippets-extension-skeleton.vsix"
+      "packageVsix": "material-ui-snippets.vsix"
     },
     "publish": [
       "semantic-release-vsce",
       {
         "path": "@semantic-release/github",
-        "assets": "snippets-extension-skeleton.vsix"
+        "assets": "material-ui-snippets.vsix"
       }
     ]
   },
@@ -87,18 +87,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vscodeshift/snippets-extension-skeleton.git"
+    "url": "https://github.com/vscodeshift/material-ui-snippets.git"
   },
   "keywords": [
     "vscode",
+    "material-ui",
     "snippets"
   ],
   "author": "Andy Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vscodeshift/snippets-extension-skeleton/issues"
+    "url": "https://github.com/vscodeshift/material-ui-snippets/issues"
   },
-  "homepage": "https://github.com/vscodeshift/snippets-extension-skeleton#readme",
+  "homepage": "https://github.com/vscodeshift/material-ui-snippets#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
@@ -162,8 +163,8 @@
   "contributes": {
     "snippets": [
       {
-        "language": "javascript",
-        "path": "./out/javascript.json"
+        "language": "javascriptreact",
+        "path": "./out/javascriptreact.json"
       }
     ]
   }
