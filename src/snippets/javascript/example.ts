@@ -1,3 +1,4 @@
+// optional, defaults to filename without extension
 export const prefix = 'example'
 
 export const description = 'An example snippet'

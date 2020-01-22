@@ -19,6 +19,7 @@ understands and add the `contributes.snippets` entry to `package.json`.
 For [example](./src/snippets/javascript/example.ts):
 
 ```ts
+// optional, defaults to filename without extension
 export const prefix = 'example'
 
 export const description = 'An example snippet'
