@@ -58,4 +58,5 @@ ${oldReadme.substring(endComment.index)}`
   if (newReadme !== oldReadme) {
     fs.writeFileSync(path.join(root, 'README.md'), newReadme, 'utf8')
   }
+  console.log('README.md') // eslint-disable-line no-console
 }
