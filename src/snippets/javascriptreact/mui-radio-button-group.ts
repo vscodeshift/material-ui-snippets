@@ -1,4 +1,3 @@
-export const prefix = 'mui-radio-button-group'
 export const description = 'Material-UI <RadioGroup>'
 export const body = `
 <FormControl component="fieldset">

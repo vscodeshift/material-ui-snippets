@@ -1,5 +1,4 @@
-export const prefix = 'mui-checkbox-label-placement'
-export const description = 'Material-UI <Checkbox> with label placement'
+export const description = 'Material-UI <Checkbox> with labelPlacement'
 export const body = `
 <FormControlLabel
   label="$1"

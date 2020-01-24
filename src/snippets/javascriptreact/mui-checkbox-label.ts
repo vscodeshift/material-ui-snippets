@@ -1,5 +1,4 @@
-export const prefix = 'mui-checkbox-label'
-export const description = 'Material-UI <Checkbox> with label'
+export const description = 'Material-UI <Checkbox> with <FormControlLabel>'
 export const body = `
 <FormControlLabel
   label="$1"

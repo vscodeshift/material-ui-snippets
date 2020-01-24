@@ -1,9 +1,8 @@
-export const prefix = 'mui-button-group'
 export const description = 'Material-UI <ButtonGroup>'
 export const body = `
-<ButtonGroup color="\${1:primary}" aria-label="$2" $3>
-  <Button>$4</Button>
+<ButtonGroup variant="\${1:outlined}" color="\${2:primary}" aria-label="$3" $4>
   <Button>$5</Button>
+  <Button>$6</Button>
   $0
 </ButtonGroup>
 `
