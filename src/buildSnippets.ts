@@ -1,6 +1,7 @@
 import requireGlob from 'require-glob'
 import * as fs from 'fs-extra'
 import * as path from 'path'
+import markdownEscape from 'markdown-escape'
 
 const root = path.resolve(__dirname, '..')
 const out = path.resolve(root, 'out')
@@ -28,7 +29,9 @@ for (const { language, path: file } of snippets) {
       }
     }
     snippet.prefix = json.prefix || key
-    markdown.push(`### \`${snippet.prefix}\`: ${snippet.description}`)
+    markdown.push(
+      `### \`${snippet.prefix}\`: ${markdownEscape(snippet.description)}`
+    )
     snippet.body = snippet.body.replace(/^\n|\n$/gm, '')
     markdown.push('```\n' + snippet.body + '\n```')
     snippet.body = snippet.body.split(/\r\n?|\n/gm)
@@ -55,4 +58,5 @@ ${oldReadme.substring(endComment.index)}`
   if (newReadme !== oldReadme) {
     fs.writeFileSync(path.join(root, 'README.md'), newReadme, 'utf8')
   }
+  console.log('README.md') // eslint-disable-line no-console
 }
