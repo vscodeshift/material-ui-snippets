@@ -17,13 +17,14 @@ for (const { language, path: file } of snippets) {
   const json = defs[language]
   for (const key in json) {
     const snippet = json[key]
-    for (const field of ['prefix', 'description', 'body']) {
+    for (const field of ['description', 'body']) {
       if (!snippet[field] || typeof snippet[field] !== 'string') {
         throw new Error(
           `src/snippets/${language}/${key}.ts: must export a string ${field}`
         )
       }
     }
+    snippet.prefix = json.prefix || key
     snippet.body = snippet.body.replace(/^\n|\n$/gm, '').split(/\r\n?|\n/gm)
   }
   fs.writeJSONSync(path.resolve(root, file), json, { spaces: 2 })
