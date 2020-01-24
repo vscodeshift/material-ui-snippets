@@ -48,3 +48,19 @@ Output:
   }
 }
 ```
+
+# Snippets
+
+<!-- snippets -->
+
+## javascript
+
+### `example`: An example snippet
+
+```
+export default function $1() {
+  $0
+}
+```
+
+<!-- snippetsend -->
