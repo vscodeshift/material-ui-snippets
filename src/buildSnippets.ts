@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import requireGlob from 'require-glob'
 import * as fs from 'fs-extra'
 import * as path from 'path'
@@ -7,7 +9,19 @@ const root = path.resolve(__dirname, '..')
 const out = path.resolve(root, 'out')
 fs.mkdirsSync(out)
 
-const defs = requireGlob.sync('./snippets/*/*.ts')
+const defs = requireGlob.sync('./snippets/*/*.ts', {
+  reducer: (
+    options: Record<string, any>,
+    result: Record<string, any>,
+    file: { path: string; exports: any }
+  ) => {
+    const filename = path.basename(file.path)
+    const language = path.basename(path.dirname(file.path))
+    const forLanguage = result[language] || (result[language] = {})
+    forLanguage[filename.replace(/\.[^.]+$/, '')] = file.exports
+    return result
+  },
+})
 
 const markdown: Array<string> = []
 
