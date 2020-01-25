@@ -14,7 +14,7 @@ snippets for Material-UI
 
 ## javascriptreact
 
-### `muiButtonGroupVertical`: Material-UI vertical &lt;ButtonGroup&gt;
+### `mui-button-group-vertical`: Material-UI vertical &lt;ButtonGroup&gt;
 
 ```
 <ButtonGroup orientation="vertical" variant="${1:outlined}" color="${2:primary}" aria-label="$3" $4>
@@ -24,7 +24,7 @@ snippets for Material-UI
 </ButtonGroup>
 ```
 
-### `muiButtonGroup`: Material-UI &lt;ButtonGroup&gt;
+### `mui-button-group`: Material-UI &lt;ButtonGroup&gt;
 
 ```
 <ButtonGroup variant="${1:outlined}" color="${2:primary}" aria-label="$3" $4>
@@ -34,7 +34,7 @@ snippets for Material-UI
 </ButtonGroup>
 ```
 
-### `muiButtonText`: Material-UI text &lt;Button&gt;
+### `mui-button-text`: Material-UI text &lt;Button&gt;
 
 ```
 <Button color="${1:primary}" $2>
@@ -42,7 +42,7 @@ snippets for Material-UI
 </Button>
 ```
 
-### `muiButtonWithIcon`: Material-UI &lt;Button&gt; with icon and label
+### `mui-button-with-icon`: Material-UI &lt;Button&gt; with icon and label
 
 ```
 <Button
@@ -55,7 +55,7 @@ snippets for Material-UI
 </Button>
 ```
 
-### `muiButton`: Material-UI &lt;Button&gt;
+### `mui-button`: Material-UI &lt;Button&gt;
 
 ```
 <Button variant="${1:contained}" color="${2:primary}" $3>
@@ -63,7 +63,7 @@ snippets for Material-UI
 </Button>
 ```
 
-### `muiCheckboxLabelPlacement`: Material-UI &lt;Checkbox&gt; with labelPlacement
+### `mui-checkbox-label-placement`: Material-UI &lt;Checkbox&gt; with labelPlacement
 
 ```
 <FormControlLabel
@@ -80,7 +80,7 @@ snippets for Material-UI
 />
 ```
 
-### `muiCheckboxLabel`: Material-UI &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
+### `mui-checkbox-label`: Material-UI &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
 
 ```
 <FormControlLabel
@@ -96,7 +96,7 @@ snippets for Material-UI
 />
 ```
 
-### `muiContainer`: Material-UI &lt;Container&gt;
+### `mui-container`: Material-UI &lt;Container&gt;
 
 ```
 <Container maxWidth="${1:sm}">
@@ -104,7 +104,7 @@ snippets for Material-UI
 </Container>
 ```
 
-### `muiFormControlGroup`: Material-UI &lt;FormControl&gt; with &lt;FormGroup&gt;
+### `mui-form-control-group`: Material-UI &lt;FormControl&gt; with &lt;FormGroup&gt;
 
 ```
 <FormControl component=${1:"fieldset"} $2>
@@ -116,7 +116,7 @@ snippets for Material-UI
 </FormControl>
 ```
 
-### `muiFormControl`: Material-UI &lt;FormControl&gt;
+### `mui-form-control`: Material-UI &lt;FormControl&gt;
 
 ```
 <FormControl $1>
@@ -126,7 +126,7 @@ snippets for Material-UI
 </FormControl>
 ```
 
-### `muiGridContainerCenter`: Material-UI &lt;Grid container&gt; with centering
+### `mui-grid-container-center`: Material-UI &lt;Grid container&gt; with centering
 
 ```
 <Grid
@@ -143,7 +143,7 @@ snippets for Material-UI
 </Grid>
 ```
 
-### `muiGridContainerFull`: Material-UI &lt;Grid container&gt; with all props
+### `mui-grid-container-full`: Material-UI &lt;Grid container&gt; with all props
 
 ```
 <Grid
@@ -160,7 +160,7 @@ snippets for Material-UI
 </Grid>
 ```
 
-### `muiGridContainer`: Material-UI &lt;Grid container&gt;
+### `mui-grid-container`: Material-UI &lt;Grid container&gt;
 
 ```
 <Grid container spacing={${1:1}} $2>
@@ -168,7 +168,7 @@ snippets for Material-UI
 </Grid>
 ```
 
-### `muiGridListSubheader`: Material-UI GridList subheader
+### `mui-grid-list-subheader`: Material-UI GridList subheader
 
 ```
 <GridListTile cols={${1:2}} style={{ height: 'auto' }}>
@@ -176,7 +176,7 @@ snippets for Material-UI
 </GridListTile>
 ```
 
-### `muiGridListTilebar`: Material-UI &lt;GridListTileBar&gt;
+### `mui-grid-list-tilebar`: Material-UI &lt;GridListTileBar&gt;
 
 ```
 <GridListTileBar
@@ -190,7 +190,7 @@ snippets for Material-UI
 />
 ```
 
-### `muiRadioGroup`: Material-UI &lt;FormControl&gt; with &lt;RadioGroup&gt;
+### `mui-radio-group`: Material-UI &lt;FormControl&gt; with &lt;RadioGroup&gt;
 
 ```
 <FormControl component=${1:"fieldset"} $2>
@@ -202,25 +202,25 @@ snippets for Material-UI
 </FormControl>
 ```
 
-### `muiRadioLabelPlacement`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
+### `mui-radio-label-placement`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
 
 ```
 <FormControlLabel value="$1" label="$2" labelPlacement="${3:start}" control={<Radio $0 />} />
 ```
 
-### `muiRadioLabel`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt;
+### `mui-radio-label`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt;
 
 ```
 <FormControlLabel value="$1" label="$2" control={<Radio $0 />} />
 ```
 
-### `muiSelectItem`: Material-UI &lt;MenuItem&gt; inside &lt;Select&gt;
+### `mui-select-item`: Material-UI &lt;MenuItem&gt; inside &lt;Select&gt;
 
 ```
 <MenuItem value={$1} $2>$0</MenuItem>
 ```
 
-### `muiSliderContinuous`: Material-UI &lt;Slider&gt; with continuous values
+### `mui-slider-continuous`: Material-UI &lt;Slider&gt; with continuous values
 
 ```
 <Slider
@@ -233,7 +233,7 @@ snippets for Material-UI
 />
 ```
 
-### `muiSliderDiscrete`: Material-UI &lt;Slider&gt; with discrete values
+### `mui-slider-discrete`: Material-UI &lt;Slider&gt; with discrete values
 
 ```
 <Slider
@@ -248,7 +248,7 @@ snippets for Material-UI
 />
 ```
 
-### `muiSwitchLabelPlacement`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement
+### `mui-switch-label-placement`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement
 
 ```
 <FormControlLabel
@@ -265,7 +265,7 @@ snippets for Material-UI
 />
 ```
 
-### `muiSwitchLabel`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt;
+### `mui-switch-label`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt;
 
 ```
 <FormControlLabel
@@ -281,7 +281,7 @@ snippets for Material-UI
 />
 ```
 
-### `muiSwitch`: Material-UI &lt;Switch&gt;
+### `mui-switch`: Material-UI &lt;Switch&gt;
 
 ```
 <Switch
