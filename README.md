@@ -11,6 +11,7 @@ snippets for Material-UI
 # Snippets
 
 <!-- snippets -->
+
 ## javascriptreact
 
 ### `muiButtonGroupVertical`: Material-UI vertical &lt;ButtonGroup&gt;
@@ -189,29 +190,6 @@ snippets for Material-UI
 />
 ```
 
-### `muiRadioButtonGroup`: Material-UI &lt;RadioGroup&gt;
-
-```
-<FormControl component="fieldset">
-  <FormLabel component="legend">$1</FormLabel>
-  <RadioGroup aria-label="$1" name="$2" value={$3} onChange={$4}>
-    <FormControlLabel
-      control={<Radio color="${5:primary}" />}
-      labelPlacement="${6:end}"
-      value="$7"
-      label="$8"
-    />
-    <FormControlLabel
-      control={<Radio color="${5:primary}" />}
-      labelPlacement="${6:end}"
-      value="$9"
-      label="$10"
-    />
-    $0
-  </RadioGroup>
-</FormControl>
-```
-
 ### `muiRadioGroup`: Material-UI &lt;FormControl&gt; with &lt;RadioGroup&gt;
 
 ```
@@ -314,4 +292,5 @@ snippets for Material-UI
   $0
 />
 ```
+
 <!-- snippetsend -->
