@@ -183,7 +183,7 @@ snippets for Material-UI
   title=${1:""}
   subtitle=${2:""}
   actionIcon={
-    <IconButton aria-label=${3:""} $4>
+    <IconButton aria-label="$3" $4>
       $0
     </IconButton>
   }
@@ -195,7 +195,7 @@ snippets for Material-UI
 ```
 <FormControl component=${1:"fieldset"} $2>
   <FormLabel component=${3:"legend"}>$4</FormLabel>
-  <RadioGroup aria-label=${5:""} name=${6:""} value={$7} onChange={$8}>
+  <RadioGroup aria-label="$5" name="$6" value={$7} onChange={$8}>
     $0
   </RadioGroup>
   <FormHelperText>$9</FormHelperText>
@@ -205,13 +205,13 @@ snippets for Material-UI
 ### `muiRadioLabelPlacement`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
 
 ```
-<FormControlLabel value=${1:""} label=${2:""} labelPlacement=${3:"start"} control={<Radio $0 />} />
+<FormControlLabel value="$1" label="$2" labelPlacement="${3:start}" control={<Radio $0 />} />
 ```
 
 ### `muiRadioLabel`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt;
 
 ```
-<FormControlLabel value=${1:""} label=${2:""} control={<Radio $0 />} />
+<FormControlLabel value="$1" label="$2" control={<Radio $0 />} />
 ```
 
 ### `muiSelectItem`: Material-UI &lt;MenuItem&gt; inside &lt;Select&gt;
@@ -226,7 +226,7 @@ snippets for Material-UI
 <Slider
   value={$1}
   onChange={$2}
-  aria-labelledby=${3:""}
+  aria-labelledby="$3"
   min={$4:0}
   max={$5:100}
   $0
@@ -239,7 +239,7 @@ snippets for Material-UI
 <Slider
   value={$1}
   onChange={$2}
-  aria-labelledby="${3}"
+  aria-labelledby="$3"
   step={$4:1}
   marks
   min={$5:0}

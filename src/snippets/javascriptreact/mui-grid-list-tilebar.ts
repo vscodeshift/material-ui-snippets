@@ -5,7 +5,7 @@ export const body = `
   title=\${1:""}
   subtitle=\${2:""}
   actionIcon={
-    <IconButton aria-label=\${3:""} $4>
+    <IconButton aria-label="$3" $4>
       $0
     </IconButton>
   }
