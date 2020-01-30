@@ -11,7 +11,73 @@ Snippets for Material-UI
 # Features
 
 - Works in JSX and TSX
+- Automatically adds missing imports when a snippet is inserted (as long as it succeeds in parsing the entire file)
 - You can configure whether to use controlled or uncontrolled form controls in the extension settings.
+
+# Table of Contents
+
+<!-- toc -->
+
+- [Snippets](#snippets)
+  - [`mui-app-bar-menu`: &lt;AppBar&gt; with menu icon](#mui-app-bar-menu-ltappbargt-with-menu-icon)
+  - [`mui-app-bar`: &lt;AppBar&gt;](#mui-app-bar-ltappbargt)
+  - [`mui-bottom-navigation-action`: &lt;BottomNavigationAction&gt;](#mui-bottom-navigation-action-ltbottomnavigationactiongt)
+  - [`mui-bottom-navigation`: &lt;BottomNavigation&gt;](#mui-bottom-navigation-ltbottomnavigationgt)
+  - [`mui-button-group-vertical`: vertical &lt;ButtonGroup&gt;](#mui-button-group-vertical-vertical-ltbuttongroupgt)
+  - [`mui-button-group`: &lt;ButtonGroup&gt;](#mui-button-group-ltbuttongroupgt)
+  - [`mui-button-text`: text &lt;Button&gt;](#mui-button-text-text-ltbuttongt)
+  - [`mui-button-with-icon`: &lt;Button&gt; with icon and label](#mui-button-with-icon-ltbuttongt-with-icon-and-label)
+  - [`mui-button`: &lt;Button&gt;](#mui-button-ltbuttongt)
+  - [`mui-card-header`: &lt;CardHeader&gt;](#mui-card-header-ltcardheadergt)
+  - [`mui-card-media`: &lt;CardMedia&gt;](#mui-card-media-ltcardmediagt)
+  - [`mui-checkbox-label-placement`: &lt;Checkbox&gt; with labelPlacement](#mui-checkbox-label-placement-ltcheckboxgt-with-labelplacement)
+  - [`mui-checkbox-label`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;](#mui-checkbox-label-ltcheckboxgt-with-ltformcontrollabelgt)
+  - [`mui-container`: &lt;Container&gt;](#mui-container-ltcontainergt)
+  - [`mui-dialog-simple`: &lt;Dialog&gt;](#mui-dialog-simple-ltdialoggt)
+  - [`mui-dialog`: &lt;Dialog&gt;](#mui-dialog-ltdialoggt)
+  - [`mui-drawer-permanent`: permanent &lt;Drawer&gt;](#mui-drawer-permanent-permanent-ltdrawergt)
+  - [`mui-drawer-persistent`: persistent &lt;Drawer&gt;](#mui-drawer-persistent-persistent-ltdrawergt)
+  - [`mui-drawer-temporary`: temporary &lt;Drawer&gt;](#mui-drawer-temporary-temporary-ltdrawergt)
+  - [`mui-end-adornment`: start &lt;InputAdornment&gt;](#mui-end-adornment-start-ltinputadornmentgt)
+  - [`mui-expansion-panel-controlled`: controlled &lt;ExpansionPanel&gt;](#mui-expansion-panel-controlled-controlled-ltexpansionpanelgt)
+  - [`mui-expansion-panel`: &lt;ExpansionPanel&gt;](#mui-expansion-panel-ltexpansionpanelgt)
+  - [`mui-form-control-group`: &lt;FormControl&gt; with &lt;FormGroup&gt;](#mui-form-control-group-ltformcontrolgt-with-ltformgroupgt)
+  - [`mui-form-control`: &lt;FormControl&gt;](#mui-form-control-ltformcontrolgt)
+  - [`mui-grid-container-center`: &lt;Grid container&gt; with centering](#mui-grid-container-center-ltgrid-containergt-with-centering)
+  - [`mui-grid-container-full`: &lt;Grid container&gt; with all props](#mui-grid-container-full-ltgrid-containergt-with-all-props)
+  - [`mui-grid-container`: &lt;Grid container&gt;](#mui-grid-container-ltgrid-containergt)
+  - [`mui-grid-list-subheader`: GridList subheader](#mui-grid-list-subheader-gridlist-subheader)
+  - [`mui-grid-list-tilebar`: &lt;GridListTileBar&gt;](#mui-grid-list-tilebar-ltgridlisttilebargt)
+  - [`mui-icon-button`: &lt;IconButton&gt;](#mui-icon-button-lticonbuttongt)
+  - [`mui-menu-item`: &lt;MenuItem&gt;](#mui-menu-item-ltmenuitemgt)
+  - [`mui-menu-popup-state`: &lt;Menu&gt; for material-ui-popup-state](#mui-menu-popup-state-ltmenugt-for-material-ui-popup-state)
+  - [`mui-menu`: &lt;Menu&gt;](#mui-menu-ltmenugt)
+  - [`mui-radio-group`: &lt;FormControl&gt; with &lt;RadioGroup&gt;](#mui-radio-group-ltformcontrolgt-with-ltradiogroupgt)
+  - [`mui-radio-label-placement`: &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement](#mui-radio-label-placement-ltradiogt-with-ltformcontrollabelgt-with-labelplacement)
+  - [`mui-radio-label`: &lt;Radio&gt; with &lt;FormControlLabel&gt;](#mui-radio-label-ltradiogt-with-ltformcontrollabelgt)
+  - [`mui-select-item`: &lt;MenuItem&gt; inside &lt;Select&gt;](#mui-select-item-ltmenuitemgt-inside-ltselectgt)
+  - [`mui-slider-continuous`: &lt;Slider&gt; with continuous values](#mui-slider-continuous-ltslidergt-with-continuous-values)
+  - [`mui-slider-discrete`: &lt;Slider&gt; with discrete values](#mui-slider-discrete-ltslidergt-with-discrete-values)
+  - [`mui-snackbar-content`: &lt;SnackbarContent&gt;](#mui-snackbar-content-ltsnackbarcontentgt)
+  - [`mui-snackbar`: &lt;Snackbar&gt;](#mui-snackbar-ltsnackbargt)
+  - [`mui-start-adornment`: end &lt;InputAdornment&gt;](#mui-start-adornment-end-ltinputadornmentgt)
+  - [`mui-step-content`: &lt;Step&gt; with &lt;StepContent&gt;](#mui-step-content-ltstepgt-with-ltstepcontentgt)
+  - [`mui-step-optional`: optional &lt;Step&gt;](#mui-step-optional-optional-ltstepgt)
+  - [`mui-step`: &lt;Step&gt;](#mui-step-ltstepgt)
+  - [`mui-stepper`: &lt;Stepper&gt;](#mui-stepper-ltsteppergt)
+  - [`mui-swipeable-views`: &lt;SwipeableViews&gt;](#mui-swipeable-views-ltswipeableviewsgt)
+  - [`mui-switch-label-placement`: &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement](#mui-switch-label-placement-ltswitchgt-with-ltformcontrollabelgt-with-labelplacement)
+  - [`mui-switch-label`: &lt;Switch&gt; with &lt;FormControlLabel&gt;](#mui-switch-label-ltswitchgt-with-ltformcontrollabelgt)
+  - [`mui-switch`: &lt;Switch&gt;](#mui-switch-ltswitchgt)
+  - [`mui-tab-panel`: &lt;TabPanel&gt;](#mui-tab-panel-lttabpanelgt)
+  - [`mui-tabs-scrollable`: scrollable &lt;Tabs&gt;](#mui-tabs-scrollable-scrollable-lttabsgt)
+  - [`mui-tabs`: &lt;Tabs&gt;](#mui-tabs-lttabsgt)
+  - [`mui-text-field-select`: &lt;TextField select&gt;](#mui-text-field-select-lttextfield-selectgt)
+  - [`mui-text-field-variant`: &lt;TextField&gt; with variant](#mui-text-field-variant-lttextfieldgt-with-variant)
+  - [`mui-text-field`: &lt;TextField&gt;](#mui-text-field-lttextfieldgt)
+  - [`mui-tooltip`: &lt;Tooltip&gt;](#mui-tooltip-lttooltipgt)
+
+<!-- tocstop -->
 
 # Snippets
 
