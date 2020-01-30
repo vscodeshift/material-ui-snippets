@@ -14,7 +14,11 @@ const markdown: Array<string> = []
 
 for (const snippet of Object.values(snippets)) {
   const { prefix, description } = snippet
-  markdown.push(`### \`${prefix}\`: ${markdownEscape(description)}`)
+  markdown.push(
+    `### \`${prefix}\`: ${markdownEscape(
+      description.replace(/^\s*Material[ -]UI\s*/i, '')
+    )}`
+  )
   if (typeof snippet.body === 'function') {
     const { parameters } = snippet.body as CompiledSnippet
     if (parameters.has('formControlMode')) {

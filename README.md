@@ -6,18 +6,50 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 ![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/vscodeshift.material-ui-snippets)
 
-snippets for Material-UI
+Snippets for Material-UI
+
+# Features
+
+* Works in JSX and TSX
+* You can configure whether to use controlled or uncontrolled form controls in the extension settings.
 
 # Snippets
 
 <!-- snippets -->
-### `mui-bottom-navigation-action`: Material-UI &lt;BottomNavigationAction&gt;
+### `mui-app-bar-menu`: &lt;AppBar&gt; with menu icon
+
+```
+<AppBar position="${1:static}">
+  <Toolbar $2>
+    <IconButton edge="start" color="inherit" aria-label="menu">
+      <MenuIcon />
+    </IconButton>
+    <Typography variant="h6" $3>
+      $0
+    </Typography>
+  </Toolbar>
+</AppBar>
+```
+
+### `mui-app-bar`: &lt;AppBar&gt;
+
+```
+<AppBar position="${1:static}">
+  <Toolbar $2>
+    <Typography variant="h6" $3>
+      $0
+    </Typography>
+  </Toolbar>
+</AppBar>
+```
+
+### `mui-bottom-navigation-action`: &lt;BottomNavigationAction&gt;
 
 ```
 <BottomNavigationAction label="$1" value={$2} icon={$3} $0 />
 ```
 
-### `mui-bottom-navigation`: Material-UI &lt;BottomNavigation&gt;
+### `mui-bottom-navigation`: &lt;BottomNavigation&gt;
 
 ```
 <BottomNavigation
@@ -29,7 +61,7 @@ snippets for Material-UI
 <BottomNavigation>
 ```
 
-### `mui-button-group-vertical`: Material-UI vertical &lt;ButtonGroup&gt;
+### `mui-button-group-vertical`: vertical &lt;ButtonGroup&gt;
 
 ```
 <ButtonGroup orientation="vertical" variant="${1:outlined}" color="${2:primary}" aria-label="$3" $4>
@@ -39,7 +71,7 @@ snippets for Material-UI
 </ButtonGroup>
 ```
 
-### `mui-button-group`: Material-UI &lt;ButtonGroup&gt;
+### `mui-button-group`: &lt;ButtonGroup&gt;
 
 ```
 <ButtonGroup variant="${1:outlined}" color="${2:primary}" aria-label="$3" $4>
@@ -49,7 +81,7 @@ snippets for Material-UI
 </ButtonGroup>
 ```
 
-### `mui-button-text`: Material-UI text &lt;Button&gt;
+### `mui-button-text`: text &lt;Button&gt;
 
 ```
 <Button color="${1:primary}" $2>
@@ -57,7 +89,7 @@ snippets for Material-UI
 </Button>
 ```
 
-### `mui-button-with-icon`: Material-UI &lt;Button&gt; with icon and label
+### `mui-button-with-icon`: &lt;Button&gt; with icon and label
 
 ```
 <Button
@@ -70,7 +102,7 @@ snippets for Material-UI
 </Button>
 ```
 
-### `mui-button`: Material-UI &lt;Button&gt;
+### `mui-button`: &lt;Button&gt;
 
 ```
 <Button variant="${1:contained}" color="${2:primary}" $3>
@@ -78,7 +110,36 @@ snippets for Material-UI
 </Button>
 ```
 
-### `mui-checkbox-label-placement`: Material-UI &lt;Checkbox&gt; with labelPlacement
+### `mui-card-header`: &lt;CardHeader&gt;
+
+```
+<CardHeader
+  avatar={
+    <Avatar aria-label="$1" $2>
+      $3
+    </Avatar>
+  }
+  action={
+    <IconButton aria-label="$4" $5>
+      ${6:<MoreVertIcon />}
+    </IconButton>
+  }
+  title="$7"
+  subheader="$8"
+  $9
+/>
+```
+
+### `mui-card-media`: &lt;CardMedia&gt;
+
+```
+<CardMedia
+  title="$1"
+  image=$2
+/>
+```
+
+### `mui-checkbox-label-placement`: &lt;Checkbox&gt; with labelPlacement
 
 #### Controlled
 
@@ -113,7 +174,7 @@ snippets for Material-UI
 />
 ```
 
-### `mui-checkbox-label`: Material-UI &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
+### `mui-checkbox-label`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
 
 #### Controlled
 
@@ -146,7 +207,7 @@ snippets for Material-UI
 />
 ```
 
-### `mui-container`: Material-UI &lt;Container&gt;
+### `mui-container`: &lt;Container&gt;
 
 ```
 <Container maxWidth="${1:sm}">
@@ -154,7 +215,34 @@ snippets for Material-UI
 </Container>
 ```
 
-### `mui-drawer-permanent`: Material-UI permanent &lt;Drawer&gt;
+### `mui-dialog-simple`: &lt;Dialog&gt;
+
+```
+<Dialog open={$1} onClose={$2} aria-labelledby="$3">
+  <DialogTitle id="$3">$4</DialogTitle>
+  $0
+</Dialog>
+```
+
+### `mui-dialog`: &lt;Dialog&gt;
+
+```
+<Dialog open={$1} onClose={$2} aria-labelledby="$3">
+  <DialogTitle id="$3">$4</DialogTitle>
+  <DialogContent>
+    <DialogContentText>
+      $5
+    </DialogContentText>
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={$2} color="primary">
+      Cancel
+    </Button>
+  </DialogActions>
+</Dialog>
+```
+
+### `mui-drawer-permanent`: permanent &lt;Drawer&gt;
 
 ```
 <Drawer
@@ -166,7 +254,7 @@ snippets for Material-UI
 </Drawer>
 ```
 
-### `mui-drawer-persistent`: Material-UI persistent &lt;Drawer&gt;
+### `mui-drawer-persistent`: persistent &lt;Drawer&gt;
 
 ```
 <Drawer
@@ -179,7 +267,7 @@ snippets for Material-UI
 </Drawer>
 ```
 
-### `mui-drawer-temporary`: Material-UI temporary &lt;Drawer&gt;
+### `mui-drawer-temporary`: temporary &lt;Drawer&gt;
 
 ```
 <Drawer
@@ -193,7 +281,7 @@ snippets for Material-UI
 </Drawer>
 ```
 
-### `mui-end-adornment`: Material-UI start &lt;InputAdornment&gt;
+### `mui-end-adornment`: start &lt;InputAdornment&gt;
 
 ```
 startAdornment={
@@ -203,7 +291,43 @@ startAdornment={
 }
 ```
 
-### `mui-form-control-group`: Material-UI &lt;FormControl&gt; with &lt;FormGroup&gt;
+### `mui-expansion-panel-controlled`: controlled &lt;ExpansionPanel&gt;
+
+```
+<ExpansionPanel expanded={$1} onChange={$2}>
+  <ExpansionPanelSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-label="${3:Expand}"
+    aria-controls="$4-content"
+    id="$5-header"
+  >
+    <Typography $6>$7</Typography>
+  </ExpansionPanelSummary>
+  <ExpansionPanelDetails>
+    $0
+  </ExpansionPanelDetails>
+</ExpansionPanel>
+```
+
+### `mui-expansion-panel`: &lt;ExpansionPanel&gt;
+
+```
+<ExpansionPanel>
+  <ExpansionPanelSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-label="${1:Expand}"
+    aria-controls="$2-content"
+    id="$2-header"
+  >
+    <Typography $3>$4</Typography>
+  </ExpansionPanelSummary>
+  <ExpansionPanelDetails>
+    $0
+  </ExpansionPanelDetails>
+</ExpansionPanel>
+```
+
+### `mui-form-control-group`: &lt;FormControl&gt; with &lt;FormGroup&gt;
 
 ```
 <FormControl component=${1:"fieldset"} $2>
@@ -215,7 +339,7 @@ startAdornment={
 </FormControl>
 ```
 
-### `mui-form-control`: Material-UI &lt;FormControl&gt;
+### `mui-form-control`: &lt;FormControl&gt;
 
 ```
 <FormControl $1>
@@ -225,7 +349,7 @@ startAdornment={
 </FormControl>
 ```
 
-### `mui-grid-container-center`: Material-UI &lt;Grid container&gt; with centering
+### `mui-grid-container-center`: &lt;Grid container&gt; with centering
 
 ```
 <Grid
@@ -242,7 +366,7 @@ startAdornment={
 </Grid>
 ```
 
-### `mui-grid-container-full`: Material-UI &lt;Grid container&gt; with all props
+### `mui-grid-container-full`: &lt;Grid container&gt; with all props
 
 ```
 <Grid
@@ -259,7 +383,7 @@ startAdornment={
 </Grid>
 ```
 
-### `mui-grid-container`: Material-UI &lt;Grid container&gt;
+### `mui-grid-container`: &lt;Grid container&gt;
 
 ```
 <Grid container spacing={${1:1}} $2>
@@ -267,7 +391,7 @@ startAdornment={
 </Grid>
 ```
 
-### `mui-grid-list-subheader`: Material-UI GridList subheader
+### `mui-grid-list-subheader`: GridList subheader
 
 ```
 <GridListTile cols={${1:2}} style={{ height: 'auto' }}>
@@ -275,12 +399,12 @@ startAdornment={
 </GridListTile>
 ```
 
-### `mui-grid-list-tilebar`: Material-UI &lt;GridListTileBar&gt;
+### `mui-grid-list-tilebar`: &lt;GridListTileBar&gt;
 
 ```
 <GridListTileBar
-  title=${1:""}
-  subtitle=${2:""}
+  title="$1"
+  subtitle="$2"
   actionIcon={
     <IconButton aria-label="$3" $4>
       $0
@@ -289,7 +413,7 @@ startAdornment={
 />
 ```
 
-### `mui-icon-button`: Material-UI &lt;IconButton&gt;
+### `mui-icon-button`: &lt;IconButton&gt;
 
 ```
 <IconButton
@@ -301,13 +425,13 @@ startAdornment={
 </IconButton>
 ```
 
-### `mui-menu-item`: Material-UI &lt;MenuItem&gt;
+### `mui-menu-item`: &lt;MenuItem&gt;
 
 ```
 <MenuItem onClick={$1} $2>$0</MenuItem>
 ```
 
-### `mui-menu-popup-state`: Material-UI &lt;Menu&gt; for material-ui-popup-state
+### `mui-menu-popup-state`: &lt;Menu&gt; for material-ui-popup-state
 
 ```
 <Menu
@@ -320,7 +444,7 @@ startAdornment={
 </Menu>
 ```
 
-### `mui-menu`: Material-UI &lt;Menu&gt;
+### `mui-menu`: &lt;Menu&gt;
 
 ```
 <Menu
@@ -335,7 +459,7 @@ startAdornment={
 </Menu>
 ```
 
-### `mui-radio-group`: Material-UI &lt;FormControl&gt; with &lt;RadioGroup&gt;
+### `mui-radio-group`: &lt;FormControl&gt; with &lt;RadioGroup&gt;
 
 ```
 <FormControl component=${1:"fieldset"} $2>
@@ -347,25 +471,25 @@ startAdornment={
 </FormControl>
 ```
 
-### `mui-radio-label-placement`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
+### `mui-radio-label-placement`: &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
 
 ```
 <FormControlLabel value="$1" label="$2" labelPlacement="${3:start}" control={<Radio $0 />} />
 ```
 
-### `mui-radio-label`: Material-UI &lt;Radio&gt; with &lt;FormControlLabel&gt;
+### `mui-radio-label`: &lt;Radio&gt; with &lt;FormControlLabel&gt;
 
 ```
 <FormControlLabel value="$1" label="$2" control={<Radio $0 />} />
 ```
 
-### `mui-select-item`: Material-UI &lt;MenuItem&gt; inside &lt;Select&gt;
+### `mui-select-item`: &lt;MenuItem&gt; inside &lt;Select&gt;
 
 ```
 <MenuItem value={$1} $2>$0</MenuItem>
 ```
 
-### `mui-slider-continuous`: Material-UI &lt;Slider&gt; with continuous values
+### `mui-slider-continuous`: &lt;Slider&gt; with continuous values
 
 #### Controlled
 
@@ -392,7 +516,7 @@ startAdornment={
 />
 ```
 
-### `mui-slider-discrete`: Material-UI &lt;Slider&gt; with discrete values
+### `mui-slider-discrete`: &lt;Slider&gt; with discrete values
 
 #### Controlled
 
@@ -423,7 +547,35 @@ startAdornment={
 />
 ```
 
-### `mui-start-adornment`: Material-UI end &lt;InputAdornment&gt;
+### `mui-snackbar-content`: &lt;SnackbarContent&gt;
+
+```
+<SnackbarContent
+  message="$1"
+  action={$2}
+/>
+```
+
+### `mui-snackbar`: &lt;Snackbar&gt;
+
+```
+<Snackbar
+  anchorOrigin={{
+    vertical: '$1',
+    horizontal: '$2',
+  }}
+  open={$3}
+  onClose={$4}
+  message="$5"
+  action={
+    <IconButton size="small" aria-label="close" color="inherit" onClick={$4}>
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  }
+/>
+```
+
+### `mui-start-adornment`: end &lt;InputAdornment&gt;
 
 ```
 endAdornment={
@@ -433,7 +585,58 @@ endAdornment={
 }
 ```
 
-### `mui-switch-label-placement`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement
+### `mui-step-content`: &lt;Step&gt; with &lt;StepContent&gt;
+
+```
+<Step key={$1} completed={$2} $3>
+  <StepLabel>$4</StepLabel>
+  <StepContent>
+  </StepContent>
+</Step>
+```
+
+### `mui-step-optional`: optional &lt;Step&gt;
+
+```
+<Step key={$1} completed={$2} $3>
+  <StepLabel
+    optional={<Typography variant="caption">${4:Optional}</Typography>}
+  >
+    $0
+  </StepLabel>
+</Step>
+```
+
+### `mui-step`: &lt;Step&gt;
+
+```
+<Step key={$1} completed={$2} $3>
+  <StepLabel>$0</StepLabel>
+</Step>
+```
+
+### `mui-stepper`: &lt;Stepper&gt;
+
+```
+<Stepper activeStep={$1}>
+  $0
+</Stepper>
+```
+
+### `mui-swipeable-views`: &lt;SwipeableViews&gt;
+
+```
+<SwipeableViews
+  axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+  index={$1}
+  onChangeIndex={$2}
+  $3
+>
+  $0
+</SwipeableViews>
+```
+
+### `mui-switch-label-placement`: &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement
 
 #### Controlled
 
@@ -468,7 +671,7 @@ endAdornment={
 />
 ```
 
-### `mui-switch-label`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt;
+### `mui-switch-label`: &lt;Switch&gt; with &lt;FormControlLabel&gt;
 
 #### Controlled
 
@@ -501,7 +704,7 @@ endAdornment={
 />
 ```
 
-### `mui-switch`: Material-UI &lt;Switch&gt;
+### `mui-switch`: &lt;Switch&gt;
 
 #### Controlled
 
@@ -526,7 +729,42 @@ endAdornment={
 />
 ```
 
-### `mui-text-field-select`: Material-UI &lt;TextField select&gt;
+### `mui-tab-panel`: &lt;TabPanel&gt;
+
+```
+<TabPanel value={$1} index={$2} dir={theme.direction} $3>
+  $4
+</TabPanel>
+```
+
+### `mui-tabs-scrollable`: scrollable &lt;Tabs&gt;
+
+```
+<AppBar position="static" color="${1:primary}">
+  <Tabs
+    value={$2}
+    onChange={$3}
+    aria-label="$4"
+    variant="scrollable"
+    scrollButtons="${5:auto}"
+    $6
+  >
+    $0
+  </Tabs>
+</AppBar>
+```
+
+### `mui-tabs`: &lt;Tabs&gt;
+
+```
+<AppBar position="static" color="${1:primary}">
+  <Tabs value={$2} onChange={$3} aria-label="$4" $5>
+    $0
+  </Tabs>
+</AppBar>
+```
+
+### `mui-text-field-select`: &lt;TextField select&gt;
 
 #### Controlled
 
@@ -557,7 +795,7 @@ endAdornment={
 </TextFIeld>
 ```
 
-### `mui-text-field-variant`: Material-UI &lt;TextField&gt; with variant
+### `mui-text-field-variant`: &lt;TextField&gt; with variant
 
 #### Controlled
 
@@ -584,7 +822,7 @@ endAdornment={
 />
 ```
 
-### `mui-text-field`: Material-UI &lt;TextField&gt;
+### `mui-text-field`: &lt;TextField&gt;
 
 #### Controlled
 
@@ -607,5 +845,13 @@ endAdornment={
   defaultValue={$3}
   $0
 />
+```
+
+### `mui-tooltip`: &lt;Tooltip&gt;
+
+```
+<Tooltip title="$1">
+  $0
+</Tooltip>
 ```
 <!-- snippetsend -->

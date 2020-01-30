@@ -4,8 +4,8 @@ export const description = 'Material-UI <GridListTileBar>'
 
 export const body = snip`
 <GridListTileBar
-  title=\${#:""}
-  subtitle=\${#:""}
+  title="$#"
+  subtitle="$#"
   actionIcon={
     <IconButton aria-label="$#" $#>
       $0

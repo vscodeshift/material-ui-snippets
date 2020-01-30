@@ -143,8 +143,10 @@
     "@types/chai": "^4.2.0",
     "@types/fs-extra": "^8.0.1",
     "@types/glob": "^7.1.1",
+    "@types/jscodeshift": "^0.6.3",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.6",
+    "@types/shallowequal": "^1.1.1",
     "@types/vscode": "^1.40.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^5.1.0",
@@ -188,5 +190,10 @@
     "major": {
       "automerge": false
     }
+  },
+  "dependencies": {
+    "jscodeshift": "^0.7.0",
+    "jscodeshift-choose-parser": "^1.0.0",
+    "shallowequal": "^1.1.0"
   }
 }
