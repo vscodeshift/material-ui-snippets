@@ -45,7 +45,7 @@
     "prettier:check": "prettier --list-different .babelrc.js *.json *.md *.ts 'src/**/*.{js,ts}'",
     "tsc": "tsc --noEmit",
     "clean": "rimraf out",
-    "build": "babel-node --extensions \".js,.ts\" scripts/buildReadme.ts && markdown-toc -i --maxdepth 3 README.md && babel src --out-dir out --extensions \".js,.ts\"",
+    "build": "babel-node --extensions \".js,.ts\" scripts/buildReadme.ts && markdown-toc -i --maxdepth 3 README.md && prettier --write README.md && babel src --out-dir out --extensions \".js,.ts\"",
     "build:watch": "nodemon -e js,ts,json --watch src --watch .babelrc.js --exec \"(babel-node --extensions '.js,.ts' scripts/buildReadme.ts && babel src --out-dir out --extensions '.js,.ts'; exit 0)\"",
     "pretest": "npm run build",
     "test": "rimraf .nyc_output; node ./out/test/runTest.js; nyc report; nyc report --reporter=lcov",

@@ -845,7 +845,7 @@ endAdornment={
   $5
 >
   $0
-</TextFIeld>
+</TextField>
 ```
 
 #### Uncontrolled
@@ -859,7 +859,7 @@ endAdornment={
   $4
 >
   $0
-</TextFIeld>
+</TextField>
 ```
 
 ### `mui-text-field-variant`: &lt;TextField&gt; with variant
