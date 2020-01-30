@@ -11,9 +11,6 @@ snippets for Material-UI
 # Snippets
 
 <!-- snippets -->
-
-## javascriptreact
-
 ### `mui-button-group-vertical`: Material-UI vertical &lt;ButtonGroup&gt;
 
 ```
@@ -292,5 +289,4 @@ snippets for Material-UI
   $0
 />
 ```
-
 <!-- snippetsend -->
