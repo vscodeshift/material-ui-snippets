@@ -1,14 +1,21 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <Slider> with discrete values'
 
-export const body = `
+export const body = snip`
 <Slider
-  value={$1}
-  onChange={$2}
-  aria-labelledby="$3"
-  step={$4:1}
+  {{#if formControlMode === "controlled"}}
+  value={$#}
+  onChange={$#}
+  {{/if}}
+  {{#if formControlMode === "uncontrolled"}}
+  defaultValue={$#}
+  {{/if}}
+  aria-labelledby="$#"
+  step={$#:1}
   marks
-  min={$5:0}
-  max={$6:100}
+  min={$#:0}
+  max={$#:100}
   $0
 />
 `

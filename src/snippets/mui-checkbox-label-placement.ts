@@ -1,14 +1,21 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <Checkbox> with labelPlacement'
-export const body = `
+export const body = snip`
 <FormControlLabel
-  label="$1"
-  labelPlacement="\${2:start}"
+  label="$#"
+  labelPlacement="\${#:start}"
   control={
     <Checkbox
-      value="$3"
-      checked={$4}
-      onChange={$5}
-      color="\${6:primary}"
+      value="$#"
+      {{#if formControlMode === "controlled"}}
+      checked={$#}
+      onChange={$#}
+      {{/if}}
+      {{#if formControlMode === "uncontrolled"}}
+      defaultChecked={$#}
+      {{/if}}
+      color="\${#:primary}"
     />
   }
 />

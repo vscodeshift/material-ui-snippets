@@ -1,12 +1,19 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <Slider> with continuous values'
 
-export const body = `
+export const body = snip`
 <Slider
-  value={$1}
-  onChange={$2}
-  aria-labelledby="$3"
-  min={$4:0}
-  max={$5:100}
+  {{#if formControlMode === "controlled"}}
+  value={$#}
+  onChange={$#}
+  {{/if}}
+  {{#if formControlMode === "uncontrolled"}}
+  defaultValue={$#}
+  {{/if}}
+  aria-labelledby="$#"
+  min={$#:0}
+  max={$#:100}
   $0
 />
 `

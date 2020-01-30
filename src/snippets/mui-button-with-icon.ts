@@ -1,10 +1,12 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <Button> with icon and label'
-export const body = `
+export const body = snip`
 <Button
-  variant="\${1:contained}"
-  color="\${2:primary}"
-  startIcon={$3}
-  $4
+  variant="\${#:contained}"
+  color="\${#:primary}"
+  startIcon={$#}
+  $#
 >
   $0
 </Button>

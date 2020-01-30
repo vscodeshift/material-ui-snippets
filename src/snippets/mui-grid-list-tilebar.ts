@@ -1,11 +1,13 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <GridListTileBar>'
 
-export const body = `
+export const body = snip`
 <GridListTileBar
-  title=\${1:""}
-  subtitle=\${2:""}
+  title=\${#:""}
+  subtitle=\${#:""}
   actionIcon={
-    <IconButton aria-label="$3" $4>
+    <IconButton aria-label="$#" $#>
       $0
     </IconButton>
   }

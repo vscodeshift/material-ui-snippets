@@ -11,6 +11,7 @@ snippets for Material-UI
 # Snippets
 
 <!-- snippets -->
+
 ### `mui-button-group-vertical`: Material-UI vertical &lt;ButtonGroup&gt;
 
 ```
@@ -62,6 +63,8 @@ snippets for Material-UI
 
 ### `mui-checkbox-label-placement`: Material-UI &lt;Checkbox&gt; with labelPlacement
 
+#### Controlled
+
 ```
 <FormControlLabel
   label="$1"
@@ -77,7 +80,25 @@ snippets for Material-UI
 />
 ```
 
+#### Uncontrolled
+
+```
+<FormControlLabel
+  label="$1"
+  labelPlacement="${2:start}"
+  control={
+    <Checkbox
+      value="$3"
+      defaultChecked={$4}
+      color="${5:primary}"
+    />
+  }
+/>
+```
+
 ### `mui-checkbox-label`: Material-UI &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
+
+#### Controlled
 
 ```
 <FormControlLabel
@@ -88,6 +109,21 @@ snippets for Material-UI
       checked={$3}
       onChange={$4}
       color="${5:primary}"
+    />
+  }
+/>
+```
+
+#### Uncontrolled
+
+```
+<FormControlLabel
+  label="$1"
+  control={
+    <Checkbox
+      value="$2"
+      defaultChecked={$3}
+      color="${4:primary}"
     />
   }
 />
@@ -219,6 +255,8 @@ snippets for Material-UI
 
 ### `mui-slider-continuous`: Material-UI &lt;Slider&gt; with continuous values
 
+#### Controlled
+
 ```
 <Slider
   value={$1}
@@ -230,7 +268,21 @@ snippets for Material-UI
 />
 ```
 
+#### Uncontrolled
+
+```
+<Slider
+  defaultValue={$1}
+  aria-labelledby="$2"
+  min={$3:0}
+  max={$4:100}
+  $0
+/>
+```
+
 ### `mui-slider-discrete`: Material-UI &lt;Slider&gt; with discrete values
+
+#### Controlled
 
 ```
 <Slider
@@ -245,7 +297,23 @@ snippets for Material-UI
 />
 ```
 
+#### Uncontrolled
+
+```
+<Slider
+  defaultValue={$1}
+  aria-labelledby="$2"
+  step={$3:1}
+  marks
+  min={$4:0}
+  max={$5:100}
+  $0
+/>
+```
+
 ### `mui-switch-label-placement`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement
+
+#### Controlled
 
 ```
 <FormControlLabel
@@ -253,9 +321,25 @@ snippets for Material-UI
   labelPlacement="${2:start}"
   control={
     <Switch
-      checked={$3}
-      onChange={$4}
-      value="$5"
+      value="$3"
+      checked={$4}
+      onChange={$5}
+      $0
+    />
+  }
+/>
+```
+
+#### Uncontrolled
+
+```
+<FormControlLabel
+  label="$1"
+  labelPlacement="${2:start}"
+  control={
+    <Switch
+      value="$3"
+      defaultChecked="$4"
       $0
     />
   }
@@ -264,14 +348,31 @@ snippets for Material-UI
 
 ### `mui-switch-label`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt;
 
+#### Controlled
+
 ```
 <FormControlLabel
   label="$1"
   control={
     <Switch
-      checked={$2}
-      onChange={$3}
-      value="$4"
+      value="$2"
+      checked={$3}
+      onChange={$4}
+      $0
+    />
+  }
+/>
+```
+
+#### Uncontrolled
+
+```
+<FormControlLabel
+  label="$1"
+  control={
+    <Switch
+      value="$2"
+      defaultChecked="$3"
       $0
     />
   }
@@ -280,13 +381,27 @@ snippets for Material-UI
 
 ### `mui-switch`: Material-UI &lt;Switch&gt;
 
+#### Controlled
+
 ```
 <Switch
-  checked={$1}
-  onChange={$2}
-  value="$3"
+  value="$1"
+  checked={$2}
+  onChange={$3}
   inputProps={{ 'aria-label': '$4' }}
   $0
 />
 ```
+
+#### Uncontrolled
+
+```
+<Switch
+  value="$1"
+  defaultChecked="$2"
+  inputProps={{ 'aria-label': '$3' }}
+  $0
+/>
+```
+
 <!-- snippetsend -->

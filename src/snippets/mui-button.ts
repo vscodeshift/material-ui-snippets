@@ -1,6 +1,8 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <Button>'
-export const body = `
-<Button variant="\${1:contained}" color="\${2:primary}" $3>
+export const body = snip`
+<Button variant="\${#:contained}" color="\${#:primary}" $#>
   $0
 </Button>
 `

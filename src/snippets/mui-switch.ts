@@ -1,17 +1,18 @@
-import { SnippetOptions } from '.'
+import snip from '../snip'
 
 export const description = 'Material-UI <Switch>'
 
-export const body = ({ formControlMode }: SnippetOptions): string => `
+export const body = snip`
 <Switch
-  checked={$1}
-  ${
-    formControlMode === 'controlled'
-      ? `onChange={$2}
-  value="$3"`
-      : `defaultValue="$2"`
-  }
-  inputProps={{ 'aria-label': '$4' }}
+  value="$#"
+  {{#if formControlMode === "controlled"}}
+  checked={$#}
+  onChange={$#}
+  {{/if}}
+  {{#if formControlMode === "uncontrolled"}}
+  defaultChecked="$#"
+  {{/if}}
+  inputProps={{ 'aria-label': '$#' }}
   $0
 />
 `

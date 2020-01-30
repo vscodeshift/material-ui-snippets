@@ -1,7 +1,9 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <Grid container>'
 
-export const body = `
-<Grid container spacing={\${1:1}} $2>
+export const body = snip`
+<Grid container spacing={\${#:1}} $#>
   $0
 </Grid>
 `

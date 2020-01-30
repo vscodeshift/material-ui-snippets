@@ -2,15 +2,14 @@
 
 import requireGlob from 'require-glob'
 import path from 'path'
+import { CompiledSnippet } from '../snip'
 
 export type SnippetOptions = {
   language: 'javascriptreact' | 'typescriptreact'
   formControlMode: 'controlled' | 'uncontrolled'
 }
 
-export type SnippetBodyFunction = (options: SnippetOptions) => string
-
-export type SnippetBody = string | SnippetBodyFunction
+export type SnippetBody = string | CompiledSnippet
 
 export type Snippet = {
   prefix: string

@@ -1,9 +1,11 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <FormControl>'
 
-export const body = `
-<FormControl $1>
-  <FormLabel>$2</FormLabel>
+export const body = snip`
+<FormControl $#>
+  <FormLabel>$#</FormLabel>
   $0
-  <FormHelperText>$3</FormHelperText>
+  <FormHelperText>$#</FormHelperText>
 </FormControl>
 `

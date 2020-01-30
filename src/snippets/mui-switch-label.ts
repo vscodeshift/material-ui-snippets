@@ -1,13 +1,20 @@
+import snip from '../snip'
+
 export const description = 'Material-UI <Switch> with <FormControlLabel>'
 
-export const body = `
+export const body = snip`
 <FormControlLabel
-  label="$1"
+  label="$#"
   control={
     <Switch
-      checked={$2}
-      onChange={$3}
-      value="$4"
+      value="$#"
+      {{#if formControlMode === "controlled"}}
+      checked={$#}
+      onChange={$#}
+      {{/if}}
+      {{#if formControlMode === "uncontrolled"}}
+      defaultChecked="$#"
+      {{/if}}
       $0
     />
   }
