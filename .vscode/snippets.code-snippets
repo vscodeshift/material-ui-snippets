@@ -1,12 +1,14 @@
 {
-	"Snippet Template": {
-	  "prefix": "snip",
-	  "body": [
-	    "export const description = '$1'",
-	    "",
-	    "export const body = `",
-	    "$0",
-	    "`",
-	  ]
-	}
+  "Snippet Template": {
+    "prefix": "snip",
+    "body": [
+      "import snip from '../snip'",
+      "",
+      "export const description = '$1'",
+      "",
+      "export const body = snip`",
+      "$0",
+      "`"
+    ]
+  }
 }

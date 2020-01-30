@@ -11,6 +11,23 @@ snippets for Material-UI
 # Snippets
 
 <!-- snippets -->
+### `mui-bottom-navigation-action`: Material-UI &lt;BottomNavigationAction&gt;
+
+```
+<BottomNavigationAction label="$1" value={$2} icon={$3} $0 />
+```
+
+### `mui-bottom-navigation`: Material-UI &lt;BottomNavigation&gt;
+
+```
+<BottomNavigation
+  value={$1}
+  onChange={$2}
+  $3
+>
+  $0
+<BottomNavigation>
+```
 
 ### `mui-button-group-vertical`: Material-UI vertical &lt;ButtonGroup&gt;
 
@@ -137,6 +154,55 @@ snippets for Material-UI
 </Container>
 ```
 
+### `mui-drawer-permanent`: Material-UI permanent &lt;Drawer&gt;
+
+```
+<Drawer
+  variant="permanent"
+  anchor="${1:left}"
+  $2
+>
+  $0
+</Drawer>
+```
+
+### `mui-drawer-persistent`: Material-UI persistent &lt;Drawer&gt;
+
+```
+<Drawer
+  variant="persistent"
+  anchor="${1:left}"
+  open={$2}
+  $3
+>
+  $0
+</Drawer>
+```
+
+### `mui-drawer-temporary`: Material-UI temporary &lt;Drawer&gt;
+
+```
+<Drawer
+  variant="temporary"
+  anchor="${1:left}"
+  open={$2}
+  onClose={$3}
+  $4
+>
+  $0
+</Drawer>
+```
+
+### `mui-end-adornment`: Material-UI start &lt;InputAdornment&gt;
+
+```
+startAdornment={
+  <InputAdornment position="start">
+    $0
+  </InputAdornment>
+}
+```
+
 ### `mui-form-control-group`: Material-UI &lt;FormControl&gt; with &lt;FormGroup&gt;
 
 ```
@@ -221,6 +287,52 @@ snippets for Material-UI
     </IconButton>
   }
 />
+```
+
+### `mui-icon-button`: Material-UI &lt;IconButton&gt;
+
+```
+<IconButton
+  aria=label="$1"
+  onClick={$2}
+  $3
+>
+  $0
+</IconButton>
+```
+
+### `mui-menu-item`: Material-UI &lt;MenuItem&gt;
+
+```
+<MenuItem onClick={$1} $2>$0</MenuItem>
+```
+
+### `mui-menu-popup-state`: Material-UI &lt;Menu&gt; for material-ui-popup-state
+
+```
+<Menu
+  id="$1"
+  keepMounted
+  {...bindMenu(${2:popupState})}
+  $3
+>
+  $0
+</Menu>
+```
+
+### `mui-menu`: Material-UI &lt;Menu&gt;
+
+```
+<Menu
+  id="$1"
+  anchorEl={$2}
+  keepMounted
+  open={Boolean($2)}
+  onClose={$3}
+  $4
+>
+  $0
+</Menu>
 ```
 
 ### `mui-radio-group`: Material-UI &lt;FormControl&gt; with &lt;RadioGroup&gt;
@@ -309,6 +421,16 @@ snippets for Material-UI
   max={$5:100}
   $0
 />
+```
+
+### `mui-start-adornment`: Material-UI end &lt;InputAdornment&gt;
+
+```
+endAdornment={
+  <InputAdornment position="end">
+    $0
+  </InputAdornment>
+}
 ```
 
 ### `mui-switch-label-placement`: Material-UI &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement
@@ -404,4 +526,86 @@ snippets for Material-UI
 />
 ```
 
+### `mui-text-field-select`: Material-UI &lt;TextField select&gt;
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  select
+  value={$3}
+  onChange={$4}
+  $5
+>
+  $0
+</TextFIeld>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  select
+  defaultValue={$3}
+  $4
+>
+  $0
+</TextFIeld>
+```
+
+### `mui-text-field-variant`: Material-UI &lt;TextField&gt; with variant
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  variant="${3:filled}"
+  value={$4}
+  onChange={$5}
+  $0
+/>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  variant="${3:filled}"
+  defaultValue={$4}
+  $0
+/>
+```
+
+### `mui-text-field`: Material-UI &lt;TextField&gt;
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  value={$3}
+  onChange={$4}
+  $0
+/>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  defaultValue={$3}
+  $0
+/>
+```
 <!-- snippetsend -->
