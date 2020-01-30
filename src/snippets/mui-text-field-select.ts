@@ -17,5 +17,5 @@ export const body = snip`
   $#
 >
   $0
-</TextFIeld>
+</TextField>
 `
