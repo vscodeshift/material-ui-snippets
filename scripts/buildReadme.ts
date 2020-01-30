@@ -2,6 +2,7 @@
 
 import * as fs from 'fs-extra'
 import * as path from 'path'
+import * as prettier from 'prettier'
 import markdownEscape from 'markdown-escape'
 import snippets from '../src/snippets'
 import { CompiledSnippet } from '../src/snip'
@@ -61,18 +62,20 @@ for (const snippet of Object.values(snippets)) {
   }
 }
 
-const oldReadme = fs.readFileSync(path.join(root, 'README.md'), 'utf8')
+const readmePath = path.join(root, 'README.md')
+
+const oldReadme = fs.readFileSync(readmePath, 'utf8')
 const startComment = /<!--\s*snippets\s*-->/.exec(oldReadme)
 const endComment = /<!--\s*snippetsend\s*-->/.exec(oldReadme)
 if (startComment && endComment && endComment.index > startComment.index) {
-  const newReadme = `${oldReadme.substring(
-    0,
-    startComment.index + startComment[0].length
-  )}
+  const newReadme = prettier.format(
+    `${oldReadme.substring(0, startComment.index + startComment[0].length)}
 ${markdown.join('\n\n')}
-${oldReadme.substring(endComment.index)}`
+${oldReadme.substring(endComment.index)}`,
+    { filepath: readmePath }
+  )
   if (newReadme !== oldReadme) {
-    fs.writeFileSync(path.join(root, 'README.md'), newReadme, 'utf8')
+    fs.writeFileSync(readmePath, newReadme, 'utf8')
   }
   console.log('README.md') // eslint-disable-line no-console
 }

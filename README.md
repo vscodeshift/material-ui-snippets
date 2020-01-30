@@ -10,12 +10,13 @@ Snippets for Material-UI
 
 # Features
 
-* Works in JSX and TSX
-* You can configure whether to use controlled or uncontrolled form controls in the extension settings.
+- Works in JSX and TSX
+- You can configure whether to use controlled or uncontrolled form controls in the extension settings.
 
 # Snippets
 
 <!-- snippets -->
+
 ### `mui-app-bar-menu`: &lt;AppBar&gt; with menu icon
 
 ```
@@ -854,4 +855,5 @@ endAdornment={
   $0
 </Tooltip>
 ```
+
 <!-- snippetsend -->
