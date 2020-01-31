@@ -135,7 +135,6 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-typescript": "^7.7.2",
-    "@babel/runtime": "^7.1.5",
     "@commitlint/cli": "^6.0.2",
     "@commitlint/config-conventional": "^6.0.2",
     "@jedwards1211/commitlint-config": "^1.0.0",
@@ -168,7 +167,6 @@
     "nyc": "^13.1.0",
     "prettier": "^1.19.1",
     "prettier-eslint": "^8.8.2",
-    "require-glob": "^3.2.0",
     "rimraf": "^2.6.0",
     "semantic-release": "^15.1.4",
     "semantic-release-vsce": "^2.2.8",
@@ -194,8 +192,10 @@
     }
   },
   "dependencies": {
+    "@babel/runtime": "^7.8.4",
     "jscodeshift": "^0.7.0",
     "jscodeshift-choose-parser": "^1.0.0",
+    "require-glob": "^3.2.0",
     "shallowequal": "^1.1.0"
   }
 }
