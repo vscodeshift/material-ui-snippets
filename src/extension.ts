@@ -12,12 +12,6 @@ interface TextSnippet {
 }
 
 export function activate(context: vscode.ExtensionContext): void {
-  const output = vscode.window.createOutputChannel('Material-UI Snippets')
-  output.appendLine('Available snippets:')
-  for (const snippet of Object.values(snippets)) {
-    output.appendLine(`  ${snippet.prefix}`)
-  }
-
   for (const language of ['javascriptreact', 'typescriptreact']) {
     let lastOptions: SnippetOptions | null = null
     let lastSnippets: TextSnippet[]
@@ -56,52 +50,44 @@ export function activate(context: vscode.ExtensionContext): void {
         ): vscode.ProviderResult<
           vscode.CompletionItem[] | vscode.CompletionList
         > {
-          output.appendLine('provideCompletionItems() called')
+          let insertPosition: vscode.Position = new vscode.Position(0, 0)
+          let existingImports: Set<string> | null
           try {
-            let insertPosition: vscode.Position = new vscode.Position(0, 0)
-            let existingImports: Set<string> | null
-            try {
-              ;({ insertPosition, existingImports } = getExistingImports(
-                document
-              ))
-            } catch (error) {
-              existingImports = null
-            }
-            const result = []
-            for (const snippet of getSnippets({
-              language: language as any, // eslint-disable-line @typescript-eslint/no-explicit-any
-              formControlMode:
-                vscode.workspace
-                  .getConfiguration('material-ui-snippets')
-                  .get('formControlMode') || 'controlled',
-            })) {
-              const { prefix, description, body, imports } = snippet
-              const snippetCompletion = new vscode.CompletionItem(prefix)
-              snippetCompletion.insertText = new vscode.SnippetString(body)
-              snippetCompletion.documentation = new vscode.MarkdownString(
-                description
-              )
-              const finalExistingImports = existingImports
-              if (finalExistingImports) {
-                snippetCompletion.additionalTextEdits = [
-                  vscode.TextEdit.insert(
-                    insertPosition,
-                    [...Object.entries(imports)]
-                      .filter(([source]) => !finalExistingImports.has(source))
-                      .map(entry => entry[1])
-                      .join('\n') + '\n'
-                  ),
-                ]
-              }
-              result.push(snippetCompletion)
-            }
-            output.appendLine('provideCompletionItems() returning')
-            return result
+            ;({ insertPosition, existingImports } = getExistingImports(
+              document
+            ))
           } catch (error) {
-            output.appendLine(
-              'provideCompletionItems() ERROR: ' + error.message
-            )
+            existingImports = null
           }
+          const result = []
+          for (const snippet of getSnippets({
+            language: language as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+            formControlMode:
+              vscode.workspace
+                .getConfiguration('material-ui-snippets')
+                .get('formControlMode') || 'controlled',
+          })) {
+            const { prefix, description, body, imports } = snippet
+            const snippetCompletion = new vscode.CompletionItem(prefix)
+            snippetCompletion.insertText = new vscode.SnippetString(body)
+            snippetCompletion.documentation = new vscode.MarkdownString(
+              description
+            )
+            const finalExistingImports = existingImports
+            if (finalExistingImports) {
+              snippetCompletion.additionalTextEdits = [
+                vscode.TextEdit.insert(
+                  insertPosition,
+                  [...Object.entries(imports)]
+                    .filter(([source]) => !finalExistingImports.has(source))
+                    .map(entry => entry[1])
+                    .join('\n') + '\n'
+                ),
+              ]
+            }
+            result.push(snippetCompletion)
+          }
+          return result
         },
       })
     )
