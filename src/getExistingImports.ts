@@ -13,11 +13,20 @@ export default function getExistingImports(
 
   let insertLine = 0
 
-  j(text)
+  let root
+  try {
+    root = j(text)
+  } catch (error) {
+    // fall back to trying with flow parser, because it tends to be
+    // very tolerant of errors and we might at least get the import
+    // nodes
+    root = j.withParser('flow')(text)
+  }
+  root
     .find(j.ImportDeclaration)
     .forEach(({ node }: ASTPath<ImportDeclaration>): void => {
       if (!node) return
-      if (node.loc) insertLine = node.loc.end.line + 1
+      if (node.loc) insertLine = node.loc.end.line
       const source = node.source.value
       if (typeof source === 'string' && source.startsWith('@material-ui')) {
         result.add(source)
