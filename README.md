@@ -7,9 +7,9 @@
 
 Snippets for Material-UI
 
-**Note:** properly speaking, these are _completions_, not true _snippets_. Typing the name and then tab doesn't insert them.
-Instead, you have to **Trigger Suggest** (`⌃ Space` on macOS) and then type in the name. This is because there's no way
-for snippets to insert imports at the top of the file or vary based upon extension settings.
+**Note:** To insert these, you have to **Trigger Suggest** (<kbd>⌃</kbd><kbd>Space</kbd> on macOS) and then type in the name; typing the name and pressing <kbd>Tab</kbd> won't work because these aren't true "snippets".
+This is because there's no way for snippets to insert imports at the top of the file or vary based upon extension settings;
+I had to provide "completions" instead.
 
 These completions work in **JavaScript React** and **TypeScript React** mode. If you use JSX in `.js` files you will need
 to click on **JavaScript** in the bottom right corner of VSCode and **Configure File Association for .js...** to be **JavaScript React**.
