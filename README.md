@@ -512,7 +512,7 @@ startAdornment={
 
 ```
 <IconButton
-  aria=label="$1"
+  aria-label="$1"
   onClick={$2}
   $3
 >

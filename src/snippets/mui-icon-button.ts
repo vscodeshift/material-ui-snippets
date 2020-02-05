@@ -4,7 +4,7 @@ export const description = 'Material-UI <IconButton>'
 
 export const body = snip`
 <IconButton
-  aria=label="$#"
+  aria-label="$#"
   onClick={$#}
   $#
 >
