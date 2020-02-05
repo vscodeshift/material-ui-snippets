@@ -47,6 +47,8 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
   - [`mui-end-adornment`: start &lt;InputAdornment&gt;](#mui-end-adornment-start-ltinputadornmentgt)
   - [`mui-expansion-panel-controlled`: controlled &lt;ExpansionPanel&gt;](#mui-expansion-panel-controlled-controlled-ltexpansionpanelgt)
   - [`mui-expansion-panel`: &lt;ExpansionPanel&gt;](#mui-expansion-panel-ltexpansionpanelgt)
+  - [`mui-fab-extended`: &lt;Fab variant="extended"&gt;](#mui-fab-extended-ltfab-variantextendedgt)
+  - [`mui-fab`: &lt;Fab&gt;](#mui-fab-ltfabgt)
   - [`mui-form-control-group`: &lt;FormControl&gt; with &lt;FormGroup&gt;](#mui-form-control-group-ltformcontrolgt-with-ltformgroupgt)
   - [`mui-form-control`: &lt;FormControl&gt;](#mui-form-control-ltformcontrolgt)
   - [`mui-grid-container-center`: &lt;Grid container&gt; with centering](#mui-grid-container-center-ltgrid-containergt-with-centering)
@@ -399,6 +401,25 @@ startAdornment={
     $0
   </ExpansionPanelDetails>
 </ExpansionPanel>
+```
+
+### `mui-fab-extended`: &lt;Fab variant="extended"&gt;
+
+```
+<Fab variant="extended">
+  <Box marginRight={1}>
+    <$1Icon />
+  </Box>
+  $0
+</Fab>
+```
+
+### `mui-fab`: &lt;Fab&gt;
+
+```
+<Fab color="${1:primary}" aria-label="$2">
+  <$3Icon />
+</Fab>
 ```
 
 ### `mui-form-control-group`: &lt;FormControl&gt; with &lt;FormGroup&gt;
