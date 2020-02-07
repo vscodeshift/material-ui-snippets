@@ -18,9 +18,9 @@ const headingUrl = (heading: string): string =>
   '#' +
   heading
     .replace(/&[^;]+;/g, '')
-    .replace(/[^-a-z0-9]/gi, ' ')
-    .trim()
     .replace(/\s+/g, '-')
+    .replace(/[^-a-z0-9]/gi, '')
+    .trim()
     .toLowerCase()
 
 for (const snippet of Object.values(snippets)) {

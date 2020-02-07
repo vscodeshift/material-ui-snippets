@@ -46,7 +46,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 - [`mui-end-adornment`: start &lt;InputAdornment&gt;](#mui-end-adornment-start-inputadornment)
 - [`mui-expansion-panel-controlled`: controlled &lt;ExpansionPanel&gt;](#mui-expansion-panel-controlled-controlled-expansionpanel)
 - [`mui-expansion-panel`: &lt;ExpansionPanel&gt;](#mui-expansion-panel-expansionpanel)
-- [`mui-fab-extended`: &lt;Fab variant="extended"&gt;](#mui-fab-extended-fab-variant-extended)
+- [`mui-fab-extended`: &lt;Fab variant="extended"&gt;](#mui-fab-extended-fab-variantextended)
 - [`mui-fab`: &lt;Fab&gt;](#mui-fab-fab)
 - [`mui-form-control-group`: &lt;FormControl&gt; with &lt;FormGroup&gt;](#mui-form-control-group-formcontrol-with-formgroup)
 - [`mui-form-control`: &lt;FormControl&gt;](#mui-form-control-formcontrol)
