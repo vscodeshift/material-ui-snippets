@@ -11,15 +11,26 @@ const root = path.resolve(__dirname, '..')
 const out = path.resolve(root, 'out')
 fs.mkdirsSync(out)
 
+const toc: Array<string> = []
 const markdown: Array<string> = []
 
+const headingUrl = (heading: string): string =>
+  '#' +
+  heading
+    .replace(/&[^;]+;/g, '')
+    .replace(/[^-a-z0-9]/gi, ' ')
+    .trim()
+    .replace(/\s+/g, '-')
+    .toLowerCase()
+
 for (const snippet of Object.values(snippets)) {
-  const { prefix, description } = snippet
-  markdown.push(
-    `### \`${prefix}\`: ${markdownEscape(
-      description.replace(/^\s*Material[ -]UI\s*/i, '')
-    )}`
+  const { prefix } = snippet
+  const description = markdownEscape(
+    snippet.description.replace(/^\s*Material[ -]UI\s*/i, '')
   )
+  const heading = `\`${prefix}\`: ${description}`
+  toc.push(`- [${heading}](${headingUrl(heading)})`)
+  markdown.push(`### ${heading}`)
   if (typeof snippet.body === 'function') {
     const { parameters } = snippet.body as CompiledSnippet
     if (parameters.has('formControlMode')) {
@@ -70,6 +81,7 @@ const endComment = /<!--\s*snippetsend\s*-->/.exec(oldReadme)
 if (startComment && endComment && endComment.index > startComment.index) {
   const newReadme = prettier.format(
     `${oldReadme.substring(0, startComment.index + startComment[0].length)}
+${toc.join('\n')}
 ${markdown.join('\n\n')}
 ${oldReadme.substring(endComment.index)}`,
     { filepath: readmePath }
