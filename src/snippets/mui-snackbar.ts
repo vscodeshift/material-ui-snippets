@@ -10,11 +10,11 @@ export const body = snip`
   }}
   open={$3}
   onClose={$4}
-  message="$5"
+  message="$5"\${6:
   action={
-    <IconButton size="small" aria-label="close" color="inherit" onClick={$4}>
+    <IconButton size="small" aria-label="close" color="inherit" onClick={$4\\}>
       <CloseIcon fontSize="small" />
     </IconButton>
-  }
+  \\}}
 />
 `

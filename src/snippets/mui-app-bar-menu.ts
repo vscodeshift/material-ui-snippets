@@ -1,14 +1,15 @@
 import snip from '../snip'
+import { positions, colors } from './mui-app-bar'
 
 export const description = 'Material-UI <AppBar> with menu icon'
 
 export const body = snip`
-<AppBar position="\${#:static}">
-  <Toolbar $#>
+<AppBar position="\${#${positions}}" color="\${#${colors}}">
+  <Toolbar$#>
     <IconButton edge="start" color="inherit" aria-label="menu">
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6" $#>
+    <Typography variant="h6"$#>
       $0
     </Typography> 
   </Toolbar>

@@ -1,8 +1,9 @@
 import snip from '../snip'
+import { variants, colors } from './mui-button'
 
 export const description = 'Material-UI vertical <ButtonGroup>'
 export const body = snip`
-<ButtonGroup orientation="vertical" variant="\${#:outlined}" color="\${#:primary}" aria-label="$#" $#>
+<ButtonGroup orientation="vertical" variant="\${#${variants}}" color="\${#${colors}}" aria-label="$#"$#>
   <Button>$#</Button>
   <Button>$#</Button>
   $0

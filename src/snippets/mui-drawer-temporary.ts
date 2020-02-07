@@ -1,11 +1,12 @@
 import snip from '../snip'
+import { anchors } from './mui-drawer-permanent'
 
 export const description = 'Material-UI temporary <Drawer>'
 
 export const body = snip`
 <Drawer
   variant="temporary"
-  anchor="\${#:left}"
+  anchor="\${#${anchors}}"
   open={$#}
   onClose={$#} 
   $#

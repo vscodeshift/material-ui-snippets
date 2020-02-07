@@ -9,8 +9,21 @@ export interface CompiledSnippet {
   parameters: Set<Parameter>
 }
 
-export default function snip([body]: TemplateStringsArray): CompiledSnippet {
-  body = body.replace(/\s+$/gm, '')
+export default function snip(
+  strings: TemplateStringsArray,
+  ...expressions: any[]
+): CompiledSnippet {
+  const parts = []
+  for (let i = 0; i < strings.length - 1; i++) {
+    parts.push(strings[i])
+    parts.push(
+      Array.isArray(expressions[i])
+        ? `|${expressions[i].join(',')}|`
+        : String(expressions[i])
+    )
+  }
+  parts.push(...strings.slice(expressions.length))
+  const body = parts.join('').replace(/\s+$/gm, '')
 
   const parameters: Set<Parameter> = new Set()
 

@@ -28,8 +28,10 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 - [`mui-app-bar`: &lt;AppBar&gt;](#mui-app-bar-appbar)
 - [`mui-bottom-navigation-action`: &lt;BottomNavigationAction&gt;](#mui-bottom-navigation-action-bottomnavigationaction)
 - [`mui-bottom-navigation`: &lt;BottomNavigation&gt;](#mui-bottom-navigation-bottomnavigation)
+- [`mui-button-group-size`: &lt;ButtonGroup&gt; with size](#mui-button-group-size-buttongroup-with-size)
 - [`mui-button-group-vertical`: vertical &lt;ButtonGroup&gt;](#mui-button-group-vertical-vertical-buttongroup)
 - [`mui-button-group`: &lt;ButtonGroup&gt;](#mui-button-group-buttongroup)
+- [`mui-button-size`: &lt;Button&gt; with size](#mui-button-size-button-with-size)
 - [`mui-button-text`: text &lt;Button&gt;](#mui-button-text-text-button)
 - [`mui-button-with-icon`: &lt;Button&gt; with icon and label](#mui-button-with-icon-button-with-icon-and-label)
 - [`mui-button`: &lt;Button&gt;](#mui-button-button)
@@ -43,7 +45,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 - [`mui-drawer-permanent`: permanent &lt;Drawer&gt;](#mui-drawer-permanent-permanent-drawer)
 - [`mui-drawer-persistent`: persistent &lt;Drawer&gt;](#mui-drawer-persistent-persistent-drawer)
 - [`mui-drawer-temporary`: temporary &lt;Drawer&gt;](#mui-drawer-temporary-temporary-drawer)
-- [`mui-end-adornment`: start &lt;InputAdornment&gt;](#mui-end-adornment-start-inputadornment)
+- [`mui-end-adornment`: end &lt;InputAdornment&gt;](#mui-end-adornment-end-inputadornment)
 - [`mui-expansion-panel-controlled`: controlled &lt;ExpansionPanel&gt;](#mui-expansion-panel-controlled-controlled-expansionpanel)
 - [`mui-expansion-panel`: &lt;ExpansionPanel&gt;](#mui-expansion-panel-expansionpanel)
 - [`mui-fab-extended`: &lt;Fab variant="extended"&gt;](#mui-fab-extended-fab-variantextended)
@@ -67,7 +69,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 - [`mui-slider-discrete`: &lt;Slider&gt; with discrete values](#mui-slider-discrete-slider-with-discrete-values)
 - [`mui-snackbar-content`: &lt;SnackbarContent&gt;](#mui-snackbar-content-snackbarcontent)
 - [`mui-snackbar`: &lt;Snackbar&gt;](#mui-snackbar-snackbar)
-- [`mui-start-adornment`: end &lt;InputAdornment&gt;](#mui-start-adornment-end-inputadornment)
+- [`mui-start-adornment`: start &lt;InputAdornment&gt;](#mui-start-adornment-start-inputadornment)
 - [`mui-step-content`: &lt;Step&gt; with &lt;StepContent&gt;](#mui-step-content-step-with-stepcontent)
 - [`mui-step-optional`: optional &lt;Step&gt;](#mui-step-optional-optional-step)
 - [`mui-step`: &lt;Step&gt;](#mui-step-step)
@@ -79,6 +81,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 - [`mui-tab-panel`: &lt;TabPanel&gt;](#mui-tab-panel-tabpanel)
 - [`mui-tabs-scrollable`: scrollable &lt;Tabs&gt;](#mui-tabs-scrollable-scrollable-tabs)
 - [`mui-tabs`: &lt;Tabs&gt;](#mui-tabs-tabs)
+- [`mui-text-field-more`: &lt;TextField&gt; with more props](#mui-text-field-more-textfield-with-more-props)
 - [`mui-text-field-select`: &lt;TextField select&gt;](#mui-text-field-select-textfield-select)
 - [`mui-text-field-variant`: &lt;TextField&gt; with variant](#mui-text-field-variant-textfield-with-variant)
 - [`mui-text-field`: &lt;TextField&gt;](#mui-text-field-textfield)
@@ -88,12 +91,12 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-app-bar-menu`: &lt;AppBar&gt; with menu icon
 
 ```
-<AppBar position="${1:static}">
-  <Toolbar $2>
+<AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
+  <Toolbar$3>
     <IconButton edge="start" color="inherit" aria-label="menu">
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6" $3>
+    <Typography variant="h6"$4>
       $0
     </Typography>
   </Toolbar>
@@ -103,9 +106,9 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-app-bar`: &lt;AppBar&gt;
 
 ```
-<AppBar position="${1:static}">
-  <Toolbar $2>
-    <Typography variant="h6" $3>
+<AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
+  <Toolbar$3>
+    <Typography variant="h6"$4>
       $0
     </Typography>
   </Toolbar>
@@ -115,7 +118,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-bottom-navigation-action`: &lt;BottomNavigationAction&gt;
 
 ```
-<BottomNavigationAction label="$1" value={$2} icon={$3} $0 />
+<BottomNavigationAction label="$1" value={$2} icon={$3}$0 />
 ```
 
 ### `mui-bottom-navigation`: &lt;BottomNavigation&gt;
@@ -130,10 +133,20 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 <BottomNavigation>
 ```
 
+### `mui-button-group-size`: &lt;ButtonGroup&gt; with size
+
+```
+<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}" aria-label="$4"$5>
+  <Button>$6</Button>
+  <Button>$7</Button>
+  $0
+</ButtonGroup>
+```
+
 ### `mui-button-group-vertical`: vertical &lt;ButtonGroup&gt;
 
 ```
-<ButtonGroup orientation="vertical" variant="${1:outlined}" color="${2:primary}" aria-label="$3" $4>
+<ButtonGroup orientation="vertical" variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3"$4>
   <Button>$5</Button>
   <Button>$6</Button>
   $0
@@ -143,17 +156,25 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-button-group`: &lt;ButtonGroup&gt;
 
 ```
-<ButtonGroup variant="${1:outlined}" color="${2:primary}" aria-label="$3" $4>
+<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3"$4>
   <Button>$5</Button>
   <Button>$6</Button>
   $0
 </ButtonGroup>
 ```
 
+### `mui-button-size`: &lt;Button&gt; with size
+
+```
+<Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}"$4>
+  $0
+</Button>
+```
+
 ### `mui-button-text`: text &lt;Button&gt;
 
 ```
-<Button color="${1:primary}" $2>
+<Button color="${1|default,inherit,primary,secondary|}"$2>
   $0
 </Button>
 ```
@@ -162,8 +183,8 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 
 ```
 <Button
-  variant="${1:contained}"
-  color="${2:primary}"
+  variant="${1|text,contained,outlined|}"
+  color="${2|default,inherit,primary,secondary|}"
   startIcon={$3}
   $4
 >
@@ -174,7 +195,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-button`: &lt;Button&gt;
 
 ```
-<Button variant="${1:contained}" color="${2:primary}" $3>
+<Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}"$3>
   $0
 </Button>
 ```
@@ -182,20 +203,20 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-card-header`: &lt;CardHeader&gt;
 
 ```
-<CardHeader
+<CardHeader${1:
   avatar={
-    <Avatar aria-label="$1" $2>
-      $3
+    <Avatar aria-label="$2"$3>
+      $4
     </Avatar>
-  }
+  \}}${5:
   action={
-    <IconButton aria-label="$4" $5>
-      ${6:<MoreVertIcon />}
+    <IconButton aria-label="$6"$7>
+      ${8:<MoreVertIcon />}
     </IconButton>
-  }
-  title="$7"
-  subheader="$8"
-  $9
+  \}}${9:
+  title="$10"}${11:
+  subheader="$12"}
+  $13
 />
 ```
 
@@ -215,7 +236,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ```
 <FormControlLabel
   label="$1"
-  labelPlacement="${2:start}"
+  labelPlacement="${2|end,start,top,bottom|}"
   control={
     <Checkbox
       value="$3"
@@ -232,7 +253,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ```
 <FormControlLabel
   label="$1"
-  labelPlacement="${2:start}"
+  labelPlacement="${2|end,start,top,bottom|}"
   control={
     <Checkbox
       value="$3"
@@ -279,7 +300,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-container`: &lt;Container&gt;
 
 ```
-<Container maxWidth="${1:sm}">
+<Container maxWidth="${1|xs,sm,md,lg,xl|}"$2>
   $0
 </Container>
 ```
@@ -288,7 +309,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 
 ```
 <Dialog open={$1} onClose={$2} aria-labelledby="$3">
-  <DialogTitle id="$3">$4</DialogTitle>
+  ${4:<DialogTitle id="$3">$5</DialogTitle>}
   $0
 </Dialog>
 ```
@@ -296,18 +317,18 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ### `mui-dialog`: &lt;Dialog&gt;
 
 ```
-<Dialog open={$1} onClose={$2} aria-labelledby="$3">
-  <DialogTitle id="$3">$4</DialogTitle>
+<Dialog open={$1} onClose={$2} aria-labelledby="$3">${4:
+  <DialogTitle id="$3">$5</DialogTitle>}${6:
   <DialogContent>
-    <DialogContentText>
-      $5
-    </DialogContentText>
-  </DialogContent>
+    ${7:<DialogContentText>
+      $8
+    </DialogContentText>}
+  </DialogContent>}${9:
   <DialogActions>
-    <Button onClick={$2} color="primary">
-      Cancel
+    <Button onClick={$2\} color="${10|default,inherit,primary,secondary|}">
+      ${11:Cancel}
     </Button>
-  </DialogActions>
+  </DialogActions>}
 </Dialog>
 ```
 
@@ -316,7 +337,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ```
 <Drawer
   variant="permanent"
-  anchor="${1:left}"
+  anchor="${1|left,right,top,bottom|}"
   $2
 >
   $0
@@ -328,7 +349,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ```
 <Drawer
   variant="persistent"
-  anchor="${1:left}"
+  anchor="${1|left,right,top,bottom|}"
   open={$2}
   $3
 >
@@ -341,7 +362,7 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 ```
 <Drawer
   variant="temporary"
-  anchor="${1:left}"
+  anchor="${1|left,right,top,bottom|}"
   open={$2}
   onClose={$3}
   $4
@@ -350,11 +371,11 @@ to click on **JavaScript** in the bottom right corner of VSCode and **Configure 
 </Drawer>
 ```
 
-### `mui-end-adornment`: start &lt;InputAdornment&gt;
+### `mui-end-adornment`: end &lt;InputAdornment&gt;
 
 ```
-startAdornment={
-  <InputAdornment position="start">
+endAdornment={
+  <InputAdornment position="end">
     $0
   </InputAdornment>
 }
@@ -399,9 +420,9 @@ startAdornment={
 ### `mui-fab-extended`: &lt;Fab variant="extended"&gt;
 
 ```
-<Fab variant="extended">
+<Fab variant="extended" color=${1|default,inherit,primary,secondary|}$2>
   <Box marginRight={1}>
-    <$1Icon />
+    <$3Icon />
   </Box>
   $0
 </Fab>
@@ -410,15 +431,15 @@ startAdornment={
 ### `mui-fab`: &lt;Fab&gt;
 
 ```
-<Fab color="${1:primary}" aria-label="$2">
-  <$3Icon />
+<Fab color="${1|default,inherit,primary,secondary|}" aria-label="$2"$3>
+  <$4Icon />
 </Fab>
 ```
 
 ### `mui-form-control-group`: &lt;FormControl&gt; with &lt;FormGroup&gt;
 
 ```
-<FormControl component=${1:"fieldset"} $2>
+<FormControl component=${1:"fieldset"}$2>
   <FormLabel component=${3:"legend"}>$4</FormLabel>
   <FormGroup>
     $0
@@ -430,7 +451,7 @@ startAdornment={
 ### `mui-form-control`: &lt;FormControl&gt;
 
 ```
-<FormControl $1>
+<FormControl$1>
   <FormLabel>$2</FormLabel>
   $0
   <FormHelperText>$3</FormHelperText>
@@ -442,13 +463,13 @@ startAdornment={
 ```
 <Grid
   container
-  spacing={${1:1}}
-  direction="${2:row}"
-  justify="${3:center}"
-  alignItems="${4:center}"
-  alignContent="${5:center}"
-  wrap="${6:wrap}"
-  $7
+  spacing={${1:1}}${2:
+  direction="${3|row,row-reverse,column,column-reverse|}"}
+  justify="${4:center}"
+  alignItems="${5:center}"
+  alignContent="${6:center}"${7:
+  wrap="${8|nowrap,wrap,wrap-reverse|}"}
+  $9
 >
   $0
 </Grid>
@@ -458,14 +479,14 @@ startAdornment={
 
 ```
 <Grid
-  container
-  spacing={${1:1}}
-  direction="${2:row}"
-  justify="${3:flex-start}"
-  alignItems="${4:stretch}"
-  alignContent="${5:stretch}"
-  wrap="${6:wrap}"
-  $7
+  container${1:
+  spacing={${2:1}\}}${3:
+  direction="${4|row,row-reverse,column,column-reverse|}"}${5:
+  justify="${6|flex-start,center,flex-end,space-between,space-around,space-evenly|}"}${7:
+  alignItems="${8|flex-start,center,flex-end,stretch,baseline|}"}${9:
+  alignContent="${10|stretch,center,flex-start,flex-end,space-between,space-around|}"}${11:
+  wrap="${12|nowrap,wrap,wrap-reverse|}"}
+  $13
 >
   $0
 </Grid>
@@ -474,7 +495,7 @@ startAdornment={
 ### `mui-grid-container`: &lt;Grid container&gt;
 
 ```
-<Grid container spacing={${1:1}} $2>
+<Grid container spacing={${1:1}}$2>
   $0
 </Grid>
 ```
@@ -490,25 +511,21 @@ startAdornment={
 ### `mui-grid-list-tilebar`: &lt;GridListTileBar&gt;
 
 ```
-<GridListTileBar
-  title="$1"
-  subtitle="$2"
+<GridListTileBar${1:
+  title="$2"}${3:
+  subtitle="$4"}${5:
   actionIcon={
-    <IconButton aria-label="$3" $4>
+    <IconButton aria-label="$6"$7>
       $0
     </IconButton>
-  }
+  \}}
 />
 ```
 
 ### `mui-icon-button`: &lt;IconButton&gt;
 
 ```
-<IconButton
-  aria-label="$1"
-  onClick={$2}
-  $3
->
+<IconButton aria-label="$1" onClick={$2}$3>
   $0
 </IconButton>
 ```
@@ -516,7 +533,7 @@ startAdornment={
 ### `mui-menu-item`: &lt;MenuItem&gt;
 
 ```
-<MenuItem onClick={$1} $2>$0</MenuItem>
+<MenuItem onClick={$1}$2>$0</MenuItem>
 ```
 
 ### `mui-menu-popup-state`: &lt;Menu&gt; for material-ui-popup-state
@@ -550,7 +567,7 @@ startAdornment={
 ### `mui-radio-group`: &lt;FormControl&gt; with &lt;RadioGroup&gt;
 
 ```
-<FormControl component=${1:"fieldset"} $2>
+<FormControl component=${1:"fieldset"}$2>
   <FormLabel component=${3:"legend"}>$4</FormLabel>
   <RadioGroup aria-label="$5" name="$6" value={$7} onChange={$8}>
     $0
@@ -562,7 +579,7 @@ startAdornment={
 ### `mui-radio-label-placement`: &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
 
 ```
-<FormControlLabel value="$1" label="$2" labelPlacement="${3:start}" control={<Radio $0 />} />
+<FormControlLabel value="$1" label="$2" labelPlacement="${3|end,start,top,bottom|}" control={<Radio $0 />} />
 ```
 
 ### `mui-radio-label`: &lt;Radio&gt; with &lt;FormControlLabel&gt;
@@ -574,7 +591,7 @@ startAdornment={
 ### `mui-select-item`: &lt;MenuItem&gt; inside &lt;Select&gt;
 
 ```
-<MenuItem value={$1} $2>$0</MenuItem>
+<MenuItem value={$1}$2>$0</MenuItem>
 ```
 
 ### `mui-slider-continuous`: &lt;Slider&gt; with continuous values
@@ -654,20 +671,20 @@ startAdornment={
   }}
   open={$3}
   onClose={$4}
-  message="$5"
+  message="$5"${6:
   action={
-    <IconButton size="small" aria-label="close" color="inherit" onClick={$4}>
+    <IconButton size="small" aria-label="close" color="inherit" onClick={$4\}>
       <CloseIcon fontSize="small" />
     </IconButton>
-  }
+  \}}
 />
 ```
 
-### `mui-start-adornment`: end &lt;InputAdornment&gt;
+### `mui-start-adornment`: start &lt;InputAdornment&gt;
 
 ```
-endAdornment={
-  <InputAdornment position="end">
+startAdornment={
+  <InputAdornment position="start">
     $0
   </InputAdornment>
 }
@@ -676,7 +693,7 @@ endAdornment={
 ### `mui-step-content`: &lt;Step&gt; with &lt;StepContent&gt;
 
 ```
-<Step key={$1} completed={$2} $3>
+<Step key={$1} completed={$2}$3>
   <StepLabel>$4</StepLabel>
   <StepContent>
   </StepContent>
@@ -686,7 +703,7 @@ endAdornment={
 ### `mui-step-optional`: optional &lt;Step&gt;
 
 ```
-<Step key={$1} completed={$2} $3>
+<Step key={$1} completed={$2}$3>
   <StepLabel
     optional={<Typography variant="caption">${4:Optional}</Typography>}
   >
@@ -698,7 +715,7 @@ endAdornment={
 ### `mui-step`: &lt;Step&gt;
 
 ```
-<Step key={$1} completed={$2} $3>
+<Step key={$1} completed={$2}$3>
   <StepLabel>$0</StepLabel>
 </Step>
 ```
@@ -731,7 +748,7 @@ endAdornment={
 ```
 <FormControlLabel
   label="$1"
-  labelPlacement="${2:start}"
+  labelPlacement="${2|end,start,top,bottom|}"
   control={
     <Switch
       value="$3"
@@ -748,7 +765,7 @@ endAdornment={
 ```
 <FormControlLabel
   label="$1"
-  labelPlacement="${2:start}"
+  labelPlacement="${2|end,start,top,bottom|}"
   control={
     <Switch
       value="$3"
@@ -820,22 +837,22 @@ endAdornment={
 ### `mui-tab-panel`: &lt;TabPanel&gt;
 
 ```
-<TabPanel value={$1} index={$2} dir={theme.direction} $3>
-  $4
+<TabPanel value={$1} index={$2}${3: dir={theme.direction\}}$4>
+  $5
 </TabPanel>
 ```
 
 ### `mui-tabs-scrollable`: scrollable &lt;Tabs&gt;
 
 ```
-<AppBar position="static" color="${1:primary}">
+<AppBar position="static" color="${1|primary,default,inherit,secondary,transparent|}"$2>
   <Tabs
-    value={$2}
-    onChange={$3}
-    aria-label="$4"
+    value={$3}
+    onChange={$4}
+    aria-label="$5"
     variant="scrollable"
-    scrollButtons="${5:auto}"
-    $6
+    scrollButtons="${6:auto}"
+    $7
   >
     $0
   </Tabs>
@@ -845,11 +862,44 @@ endAdornment={
 ### `mui-tabs`: &lt;Tabs&gt;
 
 ```
-<AppBar position="static" color="${1:primary}">
-  <Tabs value={$2} onChange={$3} aria-label="$4" $5>
+<AppBar position="static" color="${1|primary,default,inherit,secondary,transparent|}"$2>
+  <Tabs value={$3} onChange={$4} aria-label="$5" $6>
     $0
   </Tabs>
 </AppBar>
+```
+
+### `mui-text-field-more`: &lt;TextField&gt; with more props
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"${3:
+  variant="${4|standard,outlined,filled|}"}${5:
+  color="${6|primary,secondary|}"}${7:
+  margin="${8|none,dense,normal|}"}${9:
+  size="${10|small,medium|}"}
+  value={$11}
+  onChange={$12}
+  $0
+/>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"${3:
+  variant="${4|standard,outlined,filled|}"}${5:
+  color="${6|primary,secondary|}"}${7:
+  margin="${8|none,dense,normal|}"}${9:
+  size="${10|small,medium|}"}
+  defaultValue={$11}
+  $0
+/>
 ```
 
 ### `mui-text-field-select`: &lt;TextField select&gt;
@@ -891,7 +941,7 @@ endAdornment={
 <TextField
   id="$1"
   label="$2"
-  variant="${3:filled}"
+  variant="${3|standard,outlined,filled|}"
   value={$4}
   onChange={$5}
   $0
@@ -904,7 +954,7 @@ endAdornment={
 <TextField
   id="$1"
   label="$2"
-  variant="${3:filled}"
+  variant="${3|standard,outlined,filled|}"
   defaultValue={$4}
   $0
 />
@@ -938,15 +988,15 @@ endAdornment={
 ### `mui-tooltip`: &lt;Tooltip&gt;
 
 ```
-<Tooltip title="$1">
-  $0
+<Tooltip title="$1"$2>
+  $TM_SELECTED_TEXT$0
 </Tooltip>
 ```
 
 ### `mui-typography`: &lt;Typography&gt;
 
 ```
-<Typography variant="$1">$0</Typography>
+<Typography variant="${1|h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,caption,button,overline,srOnly,inherit|}"${2: color="${3|initial,inherit,primary,secondary,textPrimary,textSecondary,error|}"}$4>$TM_SELECTED_TEXT$0</Typography>
 ```
 
 <!-- snippetsend -->

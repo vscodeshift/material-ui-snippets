@@ -1,10 +1,10 @@
 import snip from '../snip'
 
-export const description = 'Material-UI start <InputAdornment>'
+export const description = 'Material-UI end <InputAdornment>'
 
 export const body = snip`
-startAdornment={
-  <InputAdornment position="start">
+endAdornment={
+  <InputAdornment position="end">
     $0
   </InputAdornment>
 }
