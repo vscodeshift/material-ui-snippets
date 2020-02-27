@@ -1,5 +1,5 @@
 import snip from '../snip'
-import { labelPlacements } from './mui-form-control'
+import { labelPlacements } from './muiFormControl'
 
 export const description =
   'Material-UI <Radio> with <FormControlLabel> with labelPlacement'

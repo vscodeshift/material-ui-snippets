@@ -1,5 +1,5 @@
 import snip from '../snip'
-import { variants } from './mui-text-field'
+import { variants } from './muiTextField'
 
 export const description = 'Material-UI <TextField> with variant'
 

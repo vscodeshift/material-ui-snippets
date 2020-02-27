@@ -5,7 +5,7 @@ import {
   alignItems,
   alignContents,
   wraps,
-} from './mui-grid-container'
+} from './muiGridContainer'
 
 export const description = 'Material-UI <Grid container> with all props'
 

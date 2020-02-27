@@ -1,22 +1,25 @@
 import snip from '../snip'
-import { labelPlacements } from './mui-form-control'
 
-export const description = 'Material-UI <Checkbox> with labelPlacement'
+import { labelPlacements } from './muiFormControl'
+
+export const description =
+  'Material-UI <Switch> with <FormControlLabel> with labelPlacement'
+
 export const body = snip`
 <FormControlLabel
   label="$#"
   labelPlacement="\${#${labelPlacements}}"
   control={
-    <Checkbox
+    <Switch
       value="$#"
       {{#if formControlMode === "controlled"}}
       checked={$#}
       onChange={$#}
       {{/if}}
       {{#if formControlMode === "uncontrolled"}}
-      defaultChecked={$#}
+      defaultChecked="$#"
       {{/if}}
-      color="\${#:primary}"
+      $0
     />
   }
 />

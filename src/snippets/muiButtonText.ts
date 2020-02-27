@@ -1,5 +1,5 @@
 import snip from '../snip'
-import { colors } from './mui-button'
+import { colors } from './muiButton'
 
 export const description = 'Material-UI text <Button>'
 export const body = snip`

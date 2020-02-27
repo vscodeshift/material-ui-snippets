@@ -1,5 +1,5 @@
 import snip from '../snip'
-import { anchors } from './mui-drawer-permanent'
+import { anchors } from './muiDrawerPermanent'
 
 export const description = 'Material-UI temporary <Drawer>'
 

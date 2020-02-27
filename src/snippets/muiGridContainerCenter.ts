@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-import { directions, wraps } from './mui-grid-container'
+import { directions, wraps } from './muiGridContainer'
 
 export const description = 'Material-UI <Grid container> with centering'
 

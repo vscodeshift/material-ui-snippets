@@ -1,5 +1,5 @@
 import snip from '../snip'
-import { positions, colors } from './mui-app-bar'
+import { positions, colors } from './muiAppBar'
 
 export const description = 'Material-UI <AppBar> with menu icon'
 
