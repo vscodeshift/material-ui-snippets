@@ -14,6 +14,12 @@ snippet and press <kbd>Tab</kbd>.
 These snippets work in **JavaScript React** and **TypeScript React** mode. If you use JSX in `.js` files you will need
 to click on **JavaScript** in the bottom right corner of VSCode and **Configure File Association for .js...** to be **JavaScript React**.
 
+# Where did my snippets go?
+
+I just convered all snippet names from kebab-case to camelCase.  I released this in a new major version (3.0), but I'm
+worried VSCode will automatically upgrade anyway and confuse some people...if so sorry for the thrash, the camelCase
+names make it possible to use tab completion so I hope it makes them easier for you to use.
+
 # Features
 
 - Works in JSX and TSX
