@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-import { colors } from './mui-app-bar'
+import { colors } from './muiAppBar'
 
 export const description = 'Material-UI scrollable <Tabs>'
 
