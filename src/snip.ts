@@ -11,7 +11,7 @@ export interface CompiledSnippet {
 
 export default function snip(
   strings: TemplateStringsArray,
-  ...expressions: any[]
+  ...expressions: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
 ): CompiledSnippet {
   const parts = []
   for (let i = 0; i < strings.length - 1; i++) {

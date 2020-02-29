@@ -26,6 +26,19 @@ names make it possible to use tab completion so I hope it makes them easier for 
 - Automatically adds missing imports when a snippet is inserted (as long as it succeeds in parsing the entire file)
 - You can configure whether to use controlled or uncontrolled form controls in the extension settings.
 
+# Settings
+
+## Form Control Mode
+
+- controlled - inserts `value` and `onChange` properties
+- uncontrolled - inserts `defaultValue` property
+
+## Import Paths
+
+- auto - uses top level if other top level imports are found, second level otherwise
+- top level - `import { Button } from '@material-ui/core'`
+- second level - `import Button from '@material-ui/core/Button'`
+
 # Snippets
 
 <!-- snippets -->

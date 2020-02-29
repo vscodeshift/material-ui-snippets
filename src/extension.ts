@@ -8,7 +8,7 @@ interface TextSnippet {
   prefix: string
   description: string
   body: string
-  imports: Record<string, string>
+  imports: string[]
 }
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -50,22 +50,34 @@ export function activate(context: vscode.ExtensionContext): void {
         ): vscode.ProviderResult<
           vscode.CompletionItem[] | vscode.CompletionList
         > {
-          let insertPosition: vscode.Position = new vscode.Position(0, 0)
           let existingImports: Set<string> | null
+          let insertPosition: vscode.Position = new vscode.Position(0, 0)
+          let coreInsertPosition: vscode.Position | null = null
+          let iconsInsertPosition: vscode.Position | null = null
           try {
-            ;({ insertPosition, existingImports } = getExistingImports(
-              document
-            ))
+            ;({
+              existingImports,
+              insertPosition,
+              coreInsertPosition,
+              iconsInsertPosition,
+            } = getExistingImports(document))
           } catch (error) {
             existingImports = null
+          }
+          const config = vscode.workspace.getConfiguration(
+            'material-ui-snippets'
+          )
+          let importPaths = config.get('importPaths') || 'auto'
+          if (importPaths === 'auto') {
+            importPaths =
+              coreInsertPosition || iconsInsertPosition
+                ? 'top level'
+                : 'second level'
           }
           const result = []
           for (const snippet of getSnippets({
             language: language as any, // eslint-disable-line @typescript-eslint/no-explicit-any
-            formControlMode:
-              vscode.workspace
-                .getConfiguration('material-ui-snippets')
-                .get('formControlMode') || 'controlled',
+            formControlMode: config.get('formControlMode') || 'controlled',
           })) {
             const { prefix, description, body, imports } = snippet
             const snippetCompletion = new vscode.CompletionItem(prefix)
@@ -75,15 +87,79 @@ export function activate(context: vscode.ExtensionContext): void {
             )
             const finalExistingImports = existingImports
             if (finalExistingImports) {
-              snippetCompletion.additionalTextEdits = [
-                vscode.TextEdit.insert(
-                  insertPosition,
-                  [...Object.entries(imports)]
-                    .filter(([source]) => !finalExistingImports.has(source))
-                    .map(entry => entry[1])
-                    .join('\n') + '\n'
-                ),
-              ]
+              const additionalTextEdits: vscode.TextEdit[] = []
+              if (importPaths === 'second level') {
+                additionalTextEdits.push(
+                  vscode.TextEdit.insert(
+                    insertPosition,
+                    imports
+                      .filter(comp => !finalExistingImports.has(comp))
+                      .map(comp =>
+                        comp.endsWith('Icon')
+                          ? `import ${comp} from '@material-ui/icons/${comp.substring(
+                              0,
+                              comp.length - 4
+                            )}'`
+                          : `import ${comp} from '@material-ui/core/${comp}'`
+                      )
+                      .join('\n') + '\n'
+                  )
+                )
+              } else {
+                const coreImports = imports.filter(
+                  comp =>
+                    !comp.endsWith('Icon') && !finalExistingImports.has(comp)
+                )
+                const iconsImports = imports
+                  .filter(
+                    comp =>
+                      comp.endsWith('Icon') && !finalExistingImports.has(comp)
+                  )
+                  .map(
+                    comp => `${comp.substring(0, comp.length - 4)} as ${comp}`
+                  )
+
+                if (coreImports.length) {
+                  if (coreInsertPosition) {
+                    additionalTextEdits.push(
+                      vscode.TextEdit.insert(
+                        coreInsertPosition,
+                        ', ' + coreImports.join(', ')
+                      )
+                    )
+                  } else {
+                    additionalTextEdits.push(
+                      vscode.TextEdit.insert(
+                        insertPosition,
+                        `import { ${coreImports.join(
+                          ', '
+                        )} } from '@material-ui/core'\n`
+                      )
+                    )
+                  }
+                }
+                if (iconsImports.length) {
+                  if (iconsInsertPosition) {
+                    additionalTextEdits.push(
+                      vscode.TextEdit.insert(
+                        iconsInsertPosition,
+                        ', ' + iconsImports.join(', ')
+                      )
+                    )
+                  } else {
+                    additionalTextEdits.push(
+                      vscode.TextEdit.insert(
+                        insertPosition,
+                        `import { ${iconsImports.join(
+                          ', '
+                        )} } from '@material-ui/icons'\n`
+                      )
+                    )
+                  }
+                }
+              }
+              if (additionalTextEdits.length)
+                snippetCompletion.additionalTextEdits = additionalTextEdits
             }
             result.push(snippetCompletion)
           }
