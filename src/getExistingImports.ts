@@ -4,7 +4,12 @@ import chooseJSCodeshiftParser from 'jscodeshift-choose-parser'
 
 export default function getExistingImports(
   document: vscode.TextDocument
-): { insertPosition: vscode.Position; existingImports: Set<string> } {
+): {
+  existingImports: Set<string>
+  insertPosition: vscode.Position
+  coreInsertPosition: vscode.Position | null
+  iconsInsertPosition: vscode.Position | null
+} {
   const text = document.getText()
   const parser = chooseJSCodeshiftParser(document.uri.fsPath)
   const j = parser ? jscodeshift.withParser(parser) : jscodeshift
@@ -12,6 +17,8 @@ export default function getExistingImports(
   const result: Set<string> = new Set()
 
   let insertLine = 0
+  let coreInsertPosition: vscode.Position | null = null
+  let iconsInsertPosition: vscode.Position | null = null
 
   let root
   try {
@@ -28,12 +35,42 @@ export default function getExistingImports(
       if (!node) return
       if (node.loc) insertLine = node.loc.end.line
       const source = node.source.value
-      if (typeof source === 'string' && source.startsWith('@material-ui')) {
-        result.add(source)
+      if (typeof source !== 'string') return
+      if (source === '@material-ui/core') {
+        for (const specifier of node.specifiers) {
+          if (specifier.type !== 'ImportSpecifier') continue
+          const { loc } = specifier
+          if (loc) {
+            const { line, column } = loc.end
+            coreInsertPosition = new vscode.Position(line - 1, column)
+          }
+          const { imported, local } = specifier
+          if (imported && local && imported.name === local.name) {
+            result.add(local.name)
+          }
+        }
+      } else if (source === '@material-ui/icons') {
+        for (const specifier of node.specifiers) {
+          if (specifier.type !== 'ImportSpecifier') continue
+          const { loc } = specifier
+          if (loc) {
+            const { line, column } = loc.end
+            iconsInsertPosition = new vscode.Position(line - 1, column)
+          }
+          const { imported, local } = specifier
+          if (imported && local && imported.name + 'Icon' === local.name) {
+            result.add(local.name)
+          }
+        }
+      } else {
+        const match = /^@material-ui\/(core|icons)\/([^/]+)/.exec(source)
+        if (match) result.add(match[2] + (match[1] === 'icons' ? 'Icon' : ''))
       }
     })
   return {
-    insertPosition: new vscode.Position(insertLine, 0),
     existingImports: result,
+    insertPosition: new vscode.Position(insertLine, 0),
+    coreInsertPosition,
+    iconsInsertPosition,
   }
 }

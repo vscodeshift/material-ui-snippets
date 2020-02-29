@@ -17,6 +17,21 @@
       {
         "title": "Material-UI Snippets",
         "properties": {
+          "material-ui-snippets.importPaths": {
+            "type": "string",
+            "default": "auto",
+            "markdownDescription": "Which import paths to use in generated import statements",
+            "enum": [
+              "auto",
+              "top level",
+              "second level"
+            ],
+            "enumDescriptions": [
+              "Uses top level if other top level imports are found, second level otherwise",
+              "import { Button } from '@material-ui/core'",
+              "import Button from '@material-ui/core/Button'"
+            ]
+          },
           "material-ui-snippets.formControlMode": {
             "type": "string",
             "default": "controlled",
