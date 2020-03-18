@@ -1,8 +1,9 @@
 {
   "name": "material-ui-snippets",
   "version": "0.0.0-development",
-  "displayName": "Snippets for Material-UI",
-  "description": "snippets for Material-UI",
+  "displayName": "Material-UI Snippets",
+  "description": "Code snippets for Material-UI",
+  "icon": "icon.png",
   "publisher": "vscodeshift",
   "engines": {
     "vscode": "^1.40.0"
