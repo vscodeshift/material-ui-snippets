@@ -11,18 +11,9 @@
 enable the **Editor: Tab Completion** setting, then type the name of the
 snippet and press <kbd>Tab</kbd>.
 
-These snippets work in **JavaScript React** and **TypeScript React** mode. If you use JSX in `.js` files you will need
-to click on **JavaScript** in the bottom right corner of VSCode and **Configure File Association for .js...** to be **JavaScript React**.
-
-# Where did my snippets go?
-
-I just convered all snippet names from kebab-case to camelCase. I released this in a new major version (3.0), but I'm
-worried VSCode will automatically upgrade anyway and confuse some people...if so sorry for the thrash, the camelCase
-names make it possible to use tab completion so I hope it makes them easier for you to use.
-
 # Features
 
-- Works in JSX and TSX
+- Works in JS/X and TSX
 - Automatically adds missing imports when a snippet is inserted (as long as it succeeds in parsing the entire file)
 - You can configure whether to use controlled or uncontrolled form controls in the extension settings.
 

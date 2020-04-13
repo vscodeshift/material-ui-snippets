@@ -12,7 +12,7 @@ interface TextSnippet {
 }
 
 export function activate(context: vscode.ExtensionContext): void {
-  for (const language of ['javascriptreact', 'typescriptreact']) {
+  for (const language of ['javascript', 'javascriptreact', 'typescriptreact']) {
     let lastOptions: SnippetOptions | null = null
     let lastSnippets: TextSnippet[]
 
