@@ -10,6 +10,7 @@
   },
   "main": "./out/extension.js",
   "activationEvents": [
+    "onLanguage:javascript",
     "onLanguage:javascriptreact",
     "onLanguage:typescriptreact"
   ],
