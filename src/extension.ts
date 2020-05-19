@@ -50,6 +50,27 @@ export function activate(context: vscode.ExtensionContext): void {
         ): vscode.ProviderResult<
           vscode.CompletionItem[] | vscode.CompletionList
         > {
+          const config = vscode.workspace.getConfiguration(
+            'material-ui-snippets'
+          )
+          const rawSnippets = getSnippets({
+            language: language as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+            formControlMode: config.get('formControlMode') || 'controlled',
+          })
+          const convertToCompletion = ({
+            prefix,
+            description,
+            body,
+          }: TextSnippet): vscode.CompletionItem => {
+            const completion = new vscode.CompletionItem(prefix)
+            completion.insertText = new vscode.SnippetString(body)
+            completion.documentation = new vscode.MarkdownString(description)
+            return completion
+          }
+          if (!config.get('addCompletionImports')) {
+            return rawSnippets.map(convertToCompletion)
+          }
+
           let existingImports: Set<string> | null
           let insertPosition: vscode.Position = new vscode.Position(0, 0)
           let coreInsertPosition: vscode.Position | null = null
@@ -64,9 +85,6 @@ export function activate(context: vscode.ExtensionContext): void {
           } catch (error) {
             existingImports = null
           }
-          const config = vscode.workspace.getConfiguration(
-            'material-ui-snippets'
-          )
           let importPaths = config.get('importPaths') || 'auto'
           if (importPaths === 'auto') {
             importPaths =
@@ -75,16 +93,9 @@ export function activate(context: vscode.ExtensionContext): void {
                 : 'second level'
           }
           const result = []
-          for (const snippet of getSnippets({
-            language: language as any, // eslint-disable-line @typescript-eslint/no-explicit-any
-            formControlMode: config.get('formControlMode') || 'controlled',
-          })) {
-            const { prefix, description, body, imports } = snippet
-            const snippetCompletion = new vscode.CompletionItem(prefix)
-            snippetCompletion.insertText = new vscode.SnippetString(body)
-            snippetCompletion.documentation = new vscode.MarkdownString(
-              description
-            )
+          for (const snippet of rawSnippets) {
+            const { imports } = snippet
+            const snippetCompletion = convertToCompletion(snippet)
             const finalExistingImports = existingImports
             if (finalExistingImports) {
               const additionalTextEdits: vscode.TextEdit[] = []
