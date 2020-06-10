@@ -49,8 +49,13 @@
           },
           "material-ui-snippets.addCompletionImports": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "markdownDescription": "Whether to add imports for snippets.  Disable this or use the snippet commands instead if you're seeing performance issues.  For more details see https://github.com/vscodeshift/material-ui-snippets/issues/14"
+          },
+          "material-ui-snippets.showNotesOnStartup": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Whether to show release notes on startup"
           }
         }
       }

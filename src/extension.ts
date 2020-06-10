@@ -12,6 +12,19 @@ interface TextSnippet {
 }
 
 export function activate(context: vscode.ExtensionContext): void {
+  const config = vscode.workspace.getConfiguration('material-ui-snippets')
+  if (config.get('showNotesOnStartup')) {
+    const message = config.get('addCompletionImports')
+      ? 'Material-UI Snippets: if you experience performance problems, uncheck Add Completion Imports in the extension settings.  Once improvements to the VSCode API have been released, it will be possible to turn automatic imports back on without performance problems.'
+      : 'Material-UI Snippets: automatic imports have been disabled due to performance problems.  You can turn them back on in the extension settings.  Once improvements to the VSCode API have been released, it will be possible to turn automatic imports back on without performance problems.'
+    vscode.window.showInformationMessage(message)
+    config.update(
+      'showNotesOnStartup',
+      false,
+      vscode.ConfigurationTarget.Global
+    )
+  }
+
   for (const language of ['javascript', 'javascriptreact', 'typescriptreact']) {
     let lastOptions: SnippetOptions | null = null
     let lastSnippets: TextSnippet[]
