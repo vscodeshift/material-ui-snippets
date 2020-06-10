@@ -7,9 +7,17 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/vscodeshift.material-ui-snippets)](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)
 
-**Note:** To insert these, you have to **Trigger Suggest** (<kbd>⌃</kbd><kbd>Space</kbd> on macOS) and then type in the name; or you can
-enable the **Editor: Tab Completion** setting, then type the name of the
-snippet and press <kbd>Tab</kbd>.
+**Note:** There are two ways to insert these:
+
+- **Trigger Suggest** (<kbd>⌃</kbd><kbd>Space</kbd> on macOS) and then type in the name; or you can
+  enable the **Editor: Tab Completion** setting, then type the name of the
+  snippet and press <kbd>Tab</kbd>.
+- Execute the corresponding **editor commands** like `Material-UI: insert <Button>` (or even better, make keybindings for them!).
+
+**Performance Warning:** Currently, the suggestions can cause performance issues due to VSCode API limitations.
+After the API is improved in an upcoming release I can fix these performance issues. Until then, the workaround
+is to either disable adding automatic imports for snippets (**Settings &gt; Extensions &gt; Material-UI Snippets &gt; Add Completion Imports**)
+or use the commands to insert snippets instead of suggestions.
 
 # Features
 

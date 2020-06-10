@@ -14,6 +14,8 @@ fs.mkdirsSync(out)
 const toc: Array<string> = []
 const markdown: Array<string> = []
 
+const commands: Array<Object> = []
+
 const headingUrl = (heading: string): string =>
   '#' +
   heading
@@ -25,6 +27,14 @@ const headingUrl = (heading: string): string =>
 
 for (const snippet of Object.values(snippets)) {
   const { prefix } = snippet
+
+  commands.push({
+    command: `extension.${prefix}`,
+    title:
+      'Insert ' + snippet.description.replace(/^\s*Material[ -]UI\s*/i, ''),
+    category: 'Material-UI Snippets',
+  })
+
   const description = markdownEscape(
     snippet.description.replace(/^\s*Material[ -]UI\s*/i, '')
   )
@@ -72,6 +82,12 @@ for (const snippet of Object.values(snippets)) {
     markdown.push('```\n' + snippet.body.replace(/^\n|\n$/gm, '') + '\n```')
   }
 }
+
+const packageJsonPath = path.join(root, 'package.json')
+const packageJson = fs.readJsonSync(packageJsonPath)
+packageJson.contributes.commands = commands
+fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 })
+console.log('package.json') // eslint-disable-line no-console
 
 const readmePath = path.join(root, 'README.md')
 
