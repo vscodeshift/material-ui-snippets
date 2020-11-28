@@ -1,23 +1,20 @@
 import * as vscode from 'vscode'
-import snippets, { SnippetOptions } from './snippets'
+import loadSnippets, { SnippetOptions } from './snippets'
 import shallowEqual from 'shallowequal'
 import getExistingImports from './getExistingImports'
 import getSnippetImports from './getSnippetImports'
-import once from './once'
 
-interface TextSnippet {
-  prefix: string
-  description: string
-  body: string
-  imports: string[]
+class MaterialUICompletionItem extends vscode.CompletionItem {
+  imports: string[] | undefined
 }
 
-export function activate(context: vscode.ExtensionContext): void {
+export async function activate(
+  context: vscode.ExtensionContext
+): Promise<void> {
   const config = vscode.workspace.getConfiguration('material-ui-snippets')
   if (config.get('showNotesOnStartup')) {
-    const message = config.get('addCompletionImports')
-      ? 'Material-UI Snippets: if you experience performance problems, uncheck Add Completion Imports in the extension settings.  Once improvements to the VSCode API have been released, it will be possible to turn automatic imports back on without performance problems.'
-      : 'Material-UI Snippets: automatic imports have been disabled due to performance problems.  You can turn them back on in the extension settings.  Once improvements to the VSCode API have been released, it will be possible to turn automatic imports back on without performance problems.'
+    const message =
+      'Material-UI Snippets: automatic imports for snippets have been re-enabled now that the VSCode completions API has been improved.'
     vscode.window.showInformationMessage(message)
     config.update(
       'showNotesOnStartup',
@@ -26,19 +23,15 @@ export function activate(context: vscode.ExtensionContext): void {
     )
   }
 
-  function getAdditionalTextEdits(
-    snippet: TextSnippet,
-    getExistingImports: (
-      document: vscode.TextDocument
-    ) => {
-      existingImports: Set<string>
-      insertPosition: vscode.Position
-      coreInsertPosition: vscode.Position | null
-      iconsInsertPosition: vscode.Position | null
-    }
-  ): vscode.TextEdit[] {
+  const snippets = await loadSnippets()
+
+  function getAdditionalTextEdits({
+    imports,
+  }: {
+    imports: string[] | undefined
+  }): vscode.TextEdit[] {
     const document = vscode.window.activeTextEditor?.document
-    if (!document) return []
+    if (!document || !imports) return []
 
     let existingImports: Set<string> | null
     let insertPosition: vscode.Position = new vscode.Position(0, 0)
@@ -61,7 +54,6 @@ export function activate(context: vscode.ExtensionContext): void {
     }
 
     const additionalTextEdits: vscode.TextEdit[] = []
-    const { imports } = snippet
     const finalExistingImports = existingImports
     if (finalExistingImports) {
       if (importPaths === 'second level') {
@@ -167,15 +159,9 @@ export function activate(context: vscode.ExtensionContext): void {
 
             if (token.isCancellationRequested) return
 
-            const additionalTextEdits = getAdditionalTextEdits(
-              {
-                prefix,
-                body,
-                description,
-                imports: getSnippetImports(body),
-              },
-              getExistingImports
-            )
+            const additionalTextEdits = getAdditionalTextEdits({
+              imports: getSnippetImports(body),
+            })
 
             if (token.isCancellationRequested) return
 
@@ -198,11 +184,13 @@ export function activate(context: vscode.ExtensionContext): void {
 
   for (const language of ['javascript', 'javascriptreact', 'typescriptreact']) {
     let lastOptions: SnippetOptions | null = null
-    let lastSnippets: TextSnippet[]
+    let lastCompletionItems: MaterialUICompletionItem[]
 
-    const getSnippets = (options: SnippetOptions): TextSnippet[] => {
+    const getCompletionItems = (
+      options: SnippetOptions
+    ): MaterialUICompletionItem[] => {
       if (shallowEqual(options, lastOptions)) {
-        return lastSnippets
+        return lastCompletionItems
       }
       lastOptions = options
       const result = []
@@ -212,14 +200,13 @@ export function activate(context: vscode.ExtensionContext): void {
           ? snippet.body(options)
           : snippet.body
         ).replace(/^\n|\n$/gm, '')
-        result.push({
-          prefix,
-          description,
-          body,
-          imports: getSnippetImports(body),
-        })
+        const completion = new MaterialUICompletionItem(prefix)
+        completion.insertText = new vscode.SnippetString(body)
+        completion.documentation = new vscode.MarkdownString(description)
+        completion.imports = getSnippetImports(body)
+        result.push(completion)
       }
-      return (lastSnippets = result)
+      return (lastCompletionItems = result)
     }
 
     context.subscriptions.push(
@@ -232,43 +219,25 @@ export function activate(context: vscode.ExtensionContext): void {
           context: vscode.CompletionContext
           /* eslint-enable @typescript-eslint/no-unused-vars */
         ): vscode.ProviderResult<
-          vscode.CompletionItem[] | vscode.CompletionList
+          | MaterialUICompletionItem[]
+          | vscode.CompletionList<MaterialUICompletionItem>
         > {
           const config = vscode.workspace.getConfiguration(
             'material-ui-snippets'
           )
-          const rawSnippets = getSnippets({
+          return getCompletionItems({
             language: language as any, // eslint-disable-line @typescript-eslint/no-explicit-any
             formControlMode: config.get('formControlMode') || 'controlled',
           })
-          const convertToCompletion = ({
-            prefix,
-            description,
-            body,
-          }: TextSnippet): vscode.CompletionItem => {
-            const completion = new vscode.CompletionItem(prefix)
-            completion.insertText = new vscode.SnippetString(body)
-            completion.documentation = new vscode.MarkdownString(description)
-            return completion
-          }
-          if (!config.get('addCompletionImports')) {
-            return rawSnippets.map(convertToCompletion)
-          }
-
-          const getExistingImportsOnce = once((document: vscode.TextDocument) =>
-            getExistingImports(document)
-          )
-
-          const result = []
-          for (const snippet of rawSnippets) {
-            const snippetCompletion = convertToCompletion(snippet)
-            snippetCompletion.additionalTextEdits = getAdditionalTextEdits(
-              snippet,
-              getExistingImportsOnce
-            )
-            result.push(snippetCompletion)
-          }
-          return result
+        },
+        async resolveCompletionItem(
+          item: MaterialUICompletionItem,
+          /* eslint-disable @typescript-eslint/no-unused-vars */
+          token: vscode.CancellationToken
+          /* eslint-enable @typescript-eslint/no-unused-vars */
+        ): Promise<MaterialUICompletionItem> {
+          item.additionalTextEdits = getAdditionalTextEdits(item)
+          return item
         },
       })
     )
