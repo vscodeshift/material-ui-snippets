@@ -6,7 +6,7 @@
   "icon": "icon.png",
   "publisher": "vscodeshift",
   "engines": {
-    "vscode": "^1.40.0"
+    "vscode": "^1.51.0"
   },
   "main": "./out/extension.js",
   "activationEvents": [
