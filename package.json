@@ -506,7 +506,7 @@
     "prettier": "^1.19.1",
     "prettier-eslint": "^8.8.2",
     "rimraf": "^2.6.0",
-    "semantic-release": "^17.0.4",
+    "semantic-release": "^17.2.3",
     "semantic-release-vsce": "^2.2.8",
     "typescript": "^3.7.2",
     "vscode-test": "^1.2.3"
