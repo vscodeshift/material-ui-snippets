@@ -9,5 +9,5 @@ export const body = snip`
   $#
 >
   $0
-<BottomNavigation>
+</BottomNavigation>
 `

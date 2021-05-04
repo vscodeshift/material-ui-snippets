@@ -1,17 +1,26 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {AppBar,Toolbar,Typography} from '@material-ui/core'
+import {Avatar,CardHeader} from '@material-ui/core'
+import {MoreVert} from '@material-ui/icons'
 
 ReactDOM.render(
   <>
-  <AppBar position="fixed" color="primary">
-  <Toolbar>
-    <Typography variant="h6">
+  <CardHeader
+  avatar={
+    <Avatar aria-label="Text">
       Text
-    </Typography>
-  </Toolbar>
-</AppBar>
+    </Avatar>
+  }
+  action={
+    <IconButton aria-label="Text">
+      <MoreVertIcon />}
+    </IconButton>
+  }
+  title="Text0"}${11:
+  subheader="Text2"}
+  Text3
+/>
   </>,
   document.getElementById('root')
 )

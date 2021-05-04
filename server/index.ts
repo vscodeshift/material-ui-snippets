@@ -7,23 +7,30 @@ import { build } from 'esbuild'
 
 async function go() {
   const snippets = await loadSnippets()
-  const snippet = snippets['muiAppBar']
   const browser = await webkit.launch()
 
-  // for (const snippet of Object.values(snippets))
-  {
+  for (const snippet of Object.values(snippets)) {
     const { prefix, body } = snippet
-
-    let compBody = (body as Function)() as string
+    let compBody: string
+    if (typeof body === 'function') compBody = (body as Function)() as string
+    else compBody = body as string
     compBody = compBody.replace(/\$\{\d\|(\w+),\S+\}/g, '$1')
     compBody = compBody.replace(/\$\d\s{0,}>/g, '>')
+    compBody = compBody.replace(/=\{\$\d\}/g, '')
+    compBody = compBody.replace(/\$\{\d:|\\\}/g, '')
     compBody = compBody.replace(/\$\d/g, 'Text')
     const imports = getSnippetImports(compBody)
 
     const fileContent = `
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {${imports.join(',')}} from '@material-ui/core'
+import {${imports
+      .filter(e => !e.includes('Icon'))
+      .join(',')}} from '@material-ui/core'
+import {${imports
+      .filter(e => /Icon$/.test(e))
+      .map(e => e.replace('Icon', ''))
+      .join(',')}} from '@material-ui/icons'
 
 ReactDOM.render(
   <>
@@ -60,8 +67,8 @@ ReactDOM.render(
     await page.setViewportSize({ width: 512, height: 200 })
     await page.goto(`file://${__dirname}/index.html`)
     // await page.setContent(htmlContent)
-    // await page.waitForTimeout(1000)
-    await page.screenshot({ path: `img/${prefix}.png` })
+    await page.waitForTimeout(1000)
+    await page.screenshot({ path: `img/${prefix}.png`, fullPage: true })
   }
   return browser.close()
 }
