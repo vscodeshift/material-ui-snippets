@@ -17,6 +17,7 @@ async function go() {
     compBody = compBody.replace(/\$\{\d\|(\w+),\S+\}/g, '$1')
     compBody = compBody.replace(/\$\d\s{0,}>/g, '>')
     compBody = compBody.replace(/=\{\$\d\}/g, '')
+    compBody = compBody.replace(/$\{\d:(\n)(.*)(\n)\}/g, '$2')
     compBody = compBody.replace(/\$\{\d:|\\\}/g, '')
     compBody = compBody.replace(/\$\d/g, 'Text')
     const imports = getSnippetImports(compBody)
