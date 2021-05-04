@@ -195,14 +195,18 @@ export async function activate(
       lastOptions = options
       const result = []
       for (const snippet of Object.values(snippets)) {
-        const { prefix, description } = snippet
+        const { prefix, description, docURL } = snippet
         const body = (typeof snippet.body === 'function'
           ? snippet.body(options)
           : snippet.body
         ).replace(/^\n|\n$/gm, '')
+        const documentation =
+          `**${description}**\n\n**Preview**\n\n` +
+          `![${prefix}](https://github.com/vscodeshift/material-ui-snippets/blob/master/img/${prefix}.png)` +
+          `**Documentation**: [click here](https://material-ui.com/components/${docURL})`
         const completion = new MaterialUICompletionItem(prefix)
         completion.insertText = new vscode.SnippetString(body)
-        completion.documentation = new vscode.MarkdownString(description)
+        completion.documentation = new vscode.MarkdownString(documentation)
         completion.imports = getSnippetImports(body)
         result.push(completion)
       }
