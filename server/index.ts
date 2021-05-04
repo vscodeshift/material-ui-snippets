@@ -7,9 +7,8 @@ import { build } from 'esbuild'
 
 async function go() {
   const snippets = await loadSnippets()
-  const snippet = snippets['muiButton']
+  const snippet = snippets['muiAppBar']
   const browser = await webkit.launch()
-  const page = await browser.newPage()
 
   // for (const snippet of Object.values(snippets))
   {
@@ -43,23 +42,25 @@ ReactDOM.render(
       outfile: 'temp.js',
     }).catch(() => process.exit(1))
 
-    await page.setContent(
-      `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${prefix}</title>
-</head>
-<body>
-    <div id="root"></div>
-</body>
-<script src="temp.js"></script>
-</html>
-`,
-      { waitUntil: 'networkidle' }
-    )
+    const htmlContent = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${prefix}</title>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="temp.js"></script>
+    </html>
+    `
+    const page = await browser.newPage()
+    await page.setViewportSize({ width: 1000, height: 600 })
+    await page.goto('about:blank')
+    await page.setContent(htmlContent)
+    await page.waitForTimeout(1000)
     await page.screenshot({ path: `img/${prefix}.png` })
   }
   return browser.close()
