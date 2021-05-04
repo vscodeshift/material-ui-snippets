@@ -203,7 +203,7 @@ export async function activate(
         const documentation =
           `**${description}**\n\n**Preview**\n\n` +
           `![${prefix}](https://github.com/vscodeshift/material-ui-snippets/blob/master/img/${prefix}.png)` +
-          `**Documentation**: [click here](https://material-ui.com/components/${docURL})`
+          `\n\n**Documentation**: [click here](https://material-ui.com/components/${docURL})`
         const completion = new MaterialUICompletionItem(prefix)
         completion.insertText = new vscode.SnippetString(body)
         completion.documentation = new vscode.MarkdownString(documentation)
