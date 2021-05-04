@@ -7,7 +7,7 @@ export default () => {
       <p>
         Contained
         <br />
-        <Button variant="contained" color="inherit">
+        <Button variant="contained" color="primary">
           Contained
         </Button>
       </p>
@@ -16,6 +16,13 @@ export default () => {
         <br />
         <Button variant="outlined" color="primary">
           Outlined
+        </Button>
+      </p>
+      <p>
+        Text
+        <br />
+        <Button variant="text" color="primary">
+          Text
         </Button>
       </p>
     </>

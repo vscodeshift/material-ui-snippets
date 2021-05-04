@@ -1,2 +1,4 @@
 img/**
 temp*
+app.js
+app.tsx
