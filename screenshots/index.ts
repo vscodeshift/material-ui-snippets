@@ -8,8 +8,8 @@ const capitalize = (s: string): string => s[0].toUpperCase() + s.substr(1)
 
 async function go() {
   const browser = await webkit.launch()
-  const files = fs.readdirSync('components/').map(e => e.split('.')[0])
-  // const files = ['muiBottomNavigation', 'muiBottomNavigationAction']
+  // const files = fs.readdirSync('components/').map(e => e.split('.')[0])
+  const files = ['muiDrawerPermanent']
 
   const App = `import React from 'react'
 import ReactDOM from 'react-dom'

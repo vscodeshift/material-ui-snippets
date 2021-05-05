@@ -4,7 +4,7 @@ import { colors } from './muiButton'
 export const description = 'Material-UI <Fab variant="extended">'
 
 export const body = snip`
-<Fab variant="extended" color=\${#${colors}}$#>
+<Fab variant="extended" color="\${#${colors}}"$#>
   <Box marginRight={1}>
     <$#Icon />
   </Box>

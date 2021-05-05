@@ -446,7 +446,7 @@ endAdornment={
 ### `muiFabExtended`: &lt;Fab variant="extended"&gt;
 
 ```
-<Fab variant="extended" color=${1|default,inherit,primary,secondary|}$2>
+<Fab variant="extended" color="${1|default,inherit,primary,secondary|}"$2>
   <Box marginRight={1}>
     <$3Icon />
   </Box>
