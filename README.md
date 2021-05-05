@@ -142,7 +142,7 @@ or use the commands to insert snippets instead of suggestions.
   $3
 >
   $0
-<BottomNavigation>
+</BottomNavigation>
 ```
 
 ### `muiBottomNavigationAction`: &lt;BottomNavigationAction&gt;
