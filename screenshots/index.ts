@@ -6,9 +6,9 @@ import { build } from 'esbuild'
 async function go() {
   const browser = await webkit.launch()
   const files = fs.readdirSync('components/')
+  // const files = ['muiAppBar.tsx', 'muiRadioLabel.tsx']
 
   for await (let file of files) {
-    // let file = 'muiRadioLabel.tsx'
     file = file.split('.')[0]
     const ComponentName = file.toUpperCase()
     const App = `import React from 'react'
