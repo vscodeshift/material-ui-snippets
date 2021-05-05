@@ -15,6 +15,7 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: arjun27/playwright-bionic:0.2.0
 
     strategy:
       matrix:
