@@ -6,8 +6,6 @@ name: Take ScreenShot
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
 defaults:
   run:
@@ -15,7 +13,6 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: arjun27/playwright-bionic:0.2.0
 
     strategy:
       matrix:
@@ -27,6 +24,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: microsoft/playwright-github-action@v1
       - run: npm ci
       - run: npm run build --if-present
       - name: Create local changes
