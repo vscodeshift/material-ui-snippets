@@ -9,7 +9,7 @@ const capitalize = (s: string): string => s[0].toUpperCase() + s.substr(1)
 async function go() {
   const browser = await webkit.launch()
   const files = fs.readdirSync('components/').map(e => e.split('.')[0])
-  // const files = ['muiDrawerPermanent']
+  // const files = ['muiDialog']
 
   const App = `import React from 'react'
 import ReactDOM from 'react-dom'
@@ -18,8 +18,7 @@ import { Switch, HashRouter, Route } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
 
 ReactDOM.render(<>
-  <b>Material UI Snippets</b><hr/>
-  <Box p={1}>
+  <Box p={.5}>
   <HashRouter>
   <Switch>
     ${files
