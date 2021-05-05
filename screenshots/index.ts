@@ -8,8 +8,8 @@ const capitalize = (s: string): string => s[0].toUpperCase() + s.substr(1)
 
 async function go() {
   const browser = await webkit.launch()
-  const files = fs.readdirSync('components/').map(e => e.split('.')[0])
-  // const files = ['muiAppBar.tsx', 'muiRadioLabel.tsx']
+  // const files = fs.readdirSync('components/').map(e => e.split('.')[0])
+  const files = ['muiBottomNavigation', 'muiBottomNavigationAction']
 
   const App = `import React from 'react'
 import ReactDOM from 'react-dom'
@@ -34,11 +34,19 @@ ReactDOM.render(<HashRouter>
     outfile: 'app.js',
   }).catch(() => process.exit(1))
 
+  console.log('✔︎ Compiled')
+  console.log()
+
   for await (const file of files) {
+    console.log('✔︎ ' + file)
     const page = await browser.newPage()
-    await page.setViewportSize({ width: 512, height: 400 })
+    await page.setViewportSize({ width: 300, height: 400 })
     await page.goto(`file://${__dirname}/index.html#/${file}`)
-    await page.screenshot({ path: `img/${file}.png`, fullPage: true })
+    await page.screenshot({
+      path: `img/${file}.png`,
+      fullPage: true,
+      // omitBackground: true,
+    })
   }
   return browser.close()
 }

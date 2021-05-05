@@ -7,8 +7,6 @@ export default () => {
   return (
     <>
       <p>
-        Primary
-        <br />
         <AppBar position="static" color="primary">
           <Toolbar>
             <Typography variant="h6">Primary</Typography>
@@ -16,7 +14,6 @@ export default () => {
         </AppBar>
       </p>
       <p>
-        Secondary <br />
         <AppBar position="static" color="secondary">
           <Toolbar>
             <Typography variant="h6">Secondary</Typography>
