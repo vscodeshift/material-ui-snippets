@@ -15,14 +15,18 @@ async function go() {
 import ReactDOM from 'react-dom'
 ${files.map(e => `import ${capitalize(e)} from './components/${e}'`).join('\n')}
 import { Switch, HashRouter, Route } from 'react-router-dom'
+import Box from '@material-ui/core/Box'
 
-ReactDOM.render(<HashRouter>
+ReactDOM.render(<>
+  <b>Material UI Snippets</b><hr/>
+  <Box p={1}>
+  <HashRouter>
   <Switch>
     ${files
       .map(e => `<Route path="/${e}" component={${capitalize(e)}} />`)
       .join('    \n')}
   </Switch>
-</HashRouter>,document.getElementById('root'))`
+</HashRouter></Box></>,document.getElementById('root'))`
 
   const fileName = 'app.tsx'
   fs.writeFile(fileName, App, e => e && console.log(e))
