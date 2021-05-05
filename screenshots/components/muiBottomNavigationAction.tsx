@@ -9,7 +9,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn'
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 400,
   },
 })
 
