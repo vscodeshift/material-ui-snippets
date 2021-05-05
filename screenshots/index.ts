@@ -5,9 +5,10 @@ import { build } from 'esbuild'
 
 async function go() {
   const browser = await webkit.launch()
+  const files = fs.readdirSync('components/')
 
-  fs.readdirSync('components/').forEach(async file => {
-    // const file = 'muiBottomNavigation.tsx'.split('.')[0]
+  for await (let file of files) {
+    // let file = 'muiRadioLabel.tsx'
     file = file.split('.')[0]
     const ComponentName = file.toUpperCase()
     const App = `import React from 'react'
@@ -31,7 +32,7 @@ async function go() {
     await page.goto(`file://${__dirname}/index.html`)
     await page.waitForTimeout(1000)
     await page.screenshot({ path: `img/${file}.png`, fullPage: true })
-  })
+  }
   return browser.close()
 }
 
