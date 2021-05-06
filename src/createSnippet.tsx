@@ -9,8 +9,6 @@ export default function createSnippet(
     return index ?? placeholderIndex[0]++
   }
   const childOptions = { placeholderIndex }
-  if (snippet.type === Placeholder) {
-  }
   const name =
     typeof snippet.type === 'string'
       ? snippet.type
@@ -18,12 +16,13 @@ export default function createSnippet(
   const {
     children,
     __attributePlaceholder,
-    __oneLine,
+    __oneLine: oneLine,
     ...props
   } = snippet.props
 
   const parts = [`<${name}`]
-  const propSeparator = __oneLine ? ' ' : '\n  '
+  const fewProps = Object.keys(props).length <= 2
+  const propSeparator = oneLine || fewProps ? ' ' : '\n  '
   for (const [key, value] of Object.entries(props)) {
     if (value instanceof Object && React.isValidElement(value)) {
       if (value.type === Placeholder) {
@@ -65,17 +64,45 @@ export default function createSnippet(
   }
 
   if (children) {
-    parts.push(`${__oneLine ? ' ' : '\n'}>`)
-    console.log(children)
-    for (const child of React.Children.toArray(children)) {
-      const converted = React.isValidElement(child)
-        ? createSnippet(child, childOptions)
-        : JSON.stringify(child)
-      parts.push(`\n  ${converted.replace(/\n/gm, '\n  ')}`)
+    parts.push(`${oneLine || fewProps ? '' : '\n'}>`)
+    const childrenArray = React.Children.toArray(children)
+    for (const child of childrenArray) {
+      let converted
+      if (React.isValidElement(child)) {
+        if (child.type === Placeholder) {
+          const {
+            type,
+            index,
+            default: _default,
+          } = child.props as PlaceholderProps
+          if (_default === undefined) {
+            converted = `\$${i(index)}`
+          } else if (React.isValidElement(_default)) {
+            converted = `\${${i(index)}:${createSnippet(
+              _default,
+              childOptions
+            )}}`
+          } else if (type === 'string') {
+            converted = `\${${i(index)}:${_default}}`
+          } else {
+            converted = `{\${${i(index)}:${JSON.stringify(_default)}}}`
+          }
+        } else {
+          converted = createSnippet(child, childOptions)
+        }
+      } else {
+        converted = `{${JSON.stringify(child)}}`
+      }
+      parts.push(
+        oneLine && childrenArray.length === 1
+          ? converted
+          : `\n  ${converted.replace(/\n/gm, '\n  ')}`
+      )
     }
-    parts.push(`\n</${name}>`)
+    if (!oneLine || childrenArray.length !== 1) parts.push('\n')
+    parts.push(`</${name}>`)
   } else {
-    parts.push(`${__oneLine ? ' ' : '\n'}/>`)
+    parts.push(`${oneLine ? ' ' : '\n'}/>`)
   }
-  return parts.join('')
+  return parts.join('').replace(/\n(\s*)(\$\{\d+:)/g, '$2\n$1')
 }

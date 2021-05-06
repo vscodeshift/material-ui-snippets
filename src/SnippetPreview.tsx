@@ -1,6 +1,14 @@
 import * as React from 'react'
 import Placeholder, { PlaceholderProps } from './Placeholder'
 
+function getPreview({
+  choices,
+  default: _default = choices?.[0],
+  preview = _default,
+}: PlaceholderProps): any {
+  return preview
+}
+
 function getChoicesProps(
   snippet: React.ReactElement,
   output: Record<string, PlaceholderProps> = {}
@@ -17,7 +25,7 @@ function getChoicesProps(
       value.type === Placeholder
     ) {
       const props: PlaceholderProps = value.props as any
-      if (props.choices) output[key] = props
+      if (props.choices && props.preview === undefined) output[key] = props
     }
   }
   return output
@@ -70,21 +78,35 @@ function createSinglePreview({
   snippet: React.ReactElement
   bindings?: Record<string, any>
 }): React.ReactElement {
-  function convertProps(
-    props: React.ReactElement['props']
-  ): React.ReactElement['props'] {
+  function convertProps({
+    __oneLine,
+    __attributePlaceholder,
+    ...props
+  }: React.ReactElement['props']): React.ReactElement['props'] {
     const result: React.ReactElement['props'] = {}
     for (const [key, value] of Object.entries(props)) {
       if (key === '__attributePlaceholder') continue
       if (key === 'children') {
-        result.children = React.Children.map(value as any, (child, key) =>
-          React.isValidElement(child)
-            ? React.createElement(child.type, {
+        result.children = React.Children.map(value as any, (child, key) => {
+          if (React.isValidElement(child)) {
+            if (child.type === Placeholder) {
+              const preview = getPreview(child.props as PlaceholderProps)
+              if (React.isValidElement(preview)) {
+                return React.createElement(preview.type, {
+                  key,
+                  ...convertProps(preview.props),
+                })
+              } else return preview
+            } else {
+              return React.createElement(child.type, {
                 key,
                 ...convertProps(child.props),
               })
-            : child
-        )
+            }
+          } else {
+            return child
+          }
+        })
         continue
       }
       if (
@@ -92,8 +114,8 @@ function createSinglePreview({
         React.isValidElement(value) &&
         value.type === Placeholder
       ) {
-        const props: PlaceholderProps = value.props as any
-        result[key] = bindings?.[key] ?? props.preview
+        result[key] =
+          bindings?.[key] ?? getPreview(value.props as PlaceholderProps)
       } else {
         result[key] = value
       }
