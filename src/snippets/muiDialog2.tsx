@@ -1,19 +1,12 @@
 import * as React from 'react'
 import { colors } from './muiButton'
 import Placeholder from '../Placeholder'
-import importedComponent from '../importedComponent'
-
-const Dialog = importedComponent('Dialog')
-const DialogTitle = importedComponent('DialogTitle')
-const DialogContent = importedComponent('DialogContent')
-const DialogContentText = importedComponent('DialogContentText')
-const DialogActions = importedComponent('DialogActions')
-const Button = importedComponent('Button')
+import { SnippetOptions } from '../createSnippet'
 
 export const description = 'Material-UI <Dialog>'
 
-export const body = ({ forPreview }: { forPreview?: boolean }) => (
-  <Dialog
+export const body = ({ forPreview, Mui }: SnippetOptions) => (
+  <Mui.Dialog
     {...(forPreview && { disablePortal: true })}
     open={<Placeholder type="expression" index={1} preview={true} />}
     onClose={<Placeholder type="expression" index={2} />}
@@ -26,45 +19,45 @@ export const body = ({ forPreview }: { forPreview?: boolean }) => (
       type="expression"
       index={4}
       default={
-        <DialogTitle
+        <Mui.DialogTitle
           id={<Placeholder type="string" index={3} preview="muiDialogTitle" />}
         >
           <Placeholder type="string" index={5} preview="Title" />
-        </DialogTitle>
+        </Mui.DialogTitle>
       }
     />
     <Placeholder
       type="expression"
       index={6}
       default={
-        <DialogContent>
+        <Mui.DialogContent>
           <Placeholder
             type="expression"
             index={7}
             default={
-              <DialogContentText>
+              <Mui.DialogContentText>
                 <Placeholder type="string" index={8} />
-              </DialogContentText>
+              </Mui.DialogContentText>
             }
           />
-        </DialogContent>
+        </Mui.DialogContent>
       }
     />
     <Placeholder
       type="expression"
       index={9}
       default={
-        <DialogActions>
-          <Button
+        <Mui.DialogActions>
+          <Mui.Button
             onClick={<Placeholder type="expression" index={2} />}
             color={
               <Placeholder type="string" choices={colors} preview="primary" />
             }
           >
             <Placeholder type="string" index={11} default="Cancel" />
-          </Button>
-        </DialogActions>
+          </Mui.Button>
+        </Mui.DialogActions>
       }
     />
-  </Dialog>
+  </Mui.Dialog>
 )

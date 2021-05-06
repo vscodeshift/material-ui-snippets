@@ -1,6 +1,9 @@
 import * as React from 'react'
 import Placeholder, { PlaceholderProps } from './Placeholder'
 
+import { InputSnippetOptions, SnippetOptions } from './createSnippet'
+import { optionalCallExpression } from 'jscodeshift'
+
 function getPreview({
   choices,
   default: _default = choices?.[0],
@@ -130,10 +133,17 @@ function createSinglePreview({
 }
 
 export default function SnippetPreview({
-  snippet,
-}: {
-  snippet: React.ReactElement
+  snippet: makeSnippet,
+  ...options
+}: InputSnippetOptions & {
+  snippet: (options: SnippetOptions) => React.ReactElement
 }): React.ReactElement {
+  const Mui = new Proxy({} as Record<string, React.ComponentType<any>>, {
+    get(target: any, prop: string): React.ComponentType<any> {
+      return require(`@material-ui/core/${prop}`).default
+    },
+  })
+  const snippet = makeSnippet({ ...options, Mui })
   const choicesProps: Record<string, PlaceholderProps> = getChoicesProps(
     snippet
   )

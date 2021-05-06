@@ -1,18 +1,12 @@
 import * as React from 'react'
 import { variants, colors, margins, sizes } from './muiTextField'
 import Placeholder from '../Placeholder'
-import importedComponent from '../importedComponent'
-
-const TextField = importedComponent('TextField')
+import { SnippetOptions } from '../createSnippet'
 
 export const description = 'Material-UI <TextField> with more props'
 
-export const body = ({
-  formControlMode,
-}: {
-  formControlMode: 'controlled' | 'uncontrolled'
-}) => (
-  <TextField
+export const body = ({ formControlMode, Mui }: SnippetOptions) => (
+  <Mui.TextField
     id={<Placeholder type="string" />}
     label={<Placeholder type="string" preview="Label" />}
     variant={<Placeholder type="string" choices={variants} optional />}

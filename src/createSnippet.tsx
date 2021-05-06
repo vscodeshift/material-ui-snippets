@@ -1,7 +1,35 @@
 import * as React from 'react'
 import Placeholder, { PlaceholderProps } from './Placeholder'
 
+export type InputSnippetOptions = {
+  forPreview?: boolean
+  formControlMode: 'controlled' | 'uncontrolled'
+}
+export type SnippetOptions = InputSnippetOptions & {
+  Mui: Record<string, React.ComponentType<any>>
+}
+
 export default function createSnippet(
+  snippet: (options: SnippetOptions) => React.ReactElement,
+  options: InputSnippetOptions
+): { text: string; imports: string[] } {
+  const imports: string[] = []
+  const Mui = new Proxy({} as Record<string, React.ComponentType<any>>, {
+    get(target: any, prop: string): React.ComponentType<any> {
+      if (!target[prop]) {
+        imports.push(`import ${prop} from '@material-ui/core/${prop}'`)
+        const component = () => null
+        component.displayName = prop
+        target[prop] = component
+      }
+      return target[prop]
+    },
+  })
+  const el = snippet({ ...options, Mui })
+  return { text: createSnippetText(el), imports }
+}
+
+export function createSnippetText(
   snippet: React.ReactElement,
   { placeholderIndex = [1] }: { placeholderIndex?: [number] } = {}
 ): string {
@@ -55,7 +83,7 @@ export default function createSnippet(
         if (optional) parts.push('}')
       } else {
         parts.push(
-          `${propSeparator}${key}={${createSnippet(value, childOptions)}}`
+          `${propSeparator}${key}={${createSnippetText(value, childOptions)}}`
         )
       }
     } else {
@@ -78,7 +106,7 @@ export default function createSnippet(
           if (_default === undefined) {
             converted = `\$${i(index)}`
           } else if (React.isValidElement(_default)) {
-            converted = `\${${i(index)}:${createSnippet(
+            converted = `\${${i(index)}:${createSnippetText(
               _default,
               childOptions
             )}}`
@@ -88,7 +116,7 @@ export default function createSnippet(
             converted = `{\${${i(index)}:${JSON.stringify(_default)}}}`
           }
         } else {
-          converted = createSnippet(child, childOptions)
+          converted = createSnippetText(child, childOptions)
         }
       } else {
         converted = `{${JSON.stringify(child)}}`
