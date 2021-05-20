@@ -2,20 +2,23 @@
 
 import requireGlob from 'require-glob'
 import path from 'path'
+import { CompiledSnippet } from '../snip'
 
 export type SnippetOptions = {
   language: 'javascriptreact' | 'typescriptreact'
   formControlMode: 'controlled' | 'uncontrolled'
 }
 
+export type SnippetBody = string | CompiledSnippet
+
 export type Snippet = {
   prefix: string
   description: string
-  body: (options: SnippetOptions) => React.ReactElement
+  body: SnippetBody
 }
 
 export default async function loadSnippets(): Promise<Record<string, Snippet>> {
-  return await requireGlob('./*.{js,tsx}', {
+  return await requireGlob('./*.{js,ts}', {
     reducer: (
       options: Record<string, any>,
       result: Record<string, any>,
@@ -35,16 +38,12 @@ export default async function loadSnippets(): Promise<Record<string, Snippet>> {
           `src/snippets/${filename}: must export a string description`
         )
       }
-      if (!body || typeof body !== 'function') {
+      if (!body || (typeof body !== 'string' && typeof body !== 'function')) {
         throw new Error(
           `src/snippets/${filename}: must export a function or string body`
         )
       }
-      result[filenameNoExt] = {
-        prefix,
-        description,
-        body,
-      }
+      result[filenameNoExt] = { prefix, description, body }
       return result
     },
   })

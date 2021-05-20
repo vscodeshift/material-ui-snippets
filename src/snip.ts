@@ -1,4 +1,4 @@
-import { SnippetOptions } from './snippets'
+import { SnippetOptions } from './oldSnippets'
 
 type Parameter = keyof SnippetOptions
 

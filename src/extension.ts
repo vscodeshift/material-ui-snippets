@@ -1,7 +1,9 @@
 import * as vscode from 'vscode'
-import loadSnippets, { SnippetOptions } from './snippets'
+import loadSnippets, { SnippetOptions } from './snippets/index'
 import shallowEqual from 'shallowequal'
 import getExistingImports from './getExistingImports'
+
+import createSnippet from './createSnippet'
 import getSnippetImports from './getSnippetImports'
 
 class MaterialUICompletionItem extends vscode.CompletionItem {
@@ -147,20 +149,16 @@ export async function activate(
             }>,
             token: vscode.CancellationToken
           ) => {
-            const body = (typeof snippet.body === 'function'
-              ? snippet.body({
-                  language: vscode.window.activeTextEditor?.document
-                    .languageId as any, // eslint-disable-line @typescript-eslint/no-explicit-any
-                  formControlMode:
-                    config.get('formControlMode') || 'controlled',
-                })
-              : snippet.body
-            ).replace(/^\n|\n$/gm, '')
+            const { text, imports } = createSnippet(snippet.body, {
+              language: vscode.window.activeTextEditor?.document
+                .languageId as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+              formControlMode: config.get('formControlMode') || 'controlled',
+            })
 
             if (token.isCancellationRequested) return
 
             const additionalTextEdits = getAdditionalTextEdits({
-              imports: getSnippetImports(body),
+              imports,
             })
 
             if (token.isCancellationRequested) return
@@ -168,7 +166,7 @@ export async function activate(
             const editor = vscode.window.activeTextEditor
             if (!editor) return
             await editor.insertSnippet(
-              new vscode.SnippetString(body),
+              new vscode.SnippetString(text),
               editor.selection
             )
             editor.edit((edit: vscode.TextEditorEdit) => {
@@ -196,14 +194,11 @@ export async function activate(
       const result = []
       for (const snippet of Object.values(snippets)) {
         const { prefix, description } = snippet
-        const body = (typeof snippet.body === 'function'
-          ? snippet.body(options)
-          : snippet.body
-        ).replace(/^\n|\n$/gm, '')
+        const { text, imports } = createSnippet(snippet.body, options)
         const completion = new MaterialUICompletionItem(prefix)
-        completion.insertText = new vscode.SnippetString(body)
+        completion.insertText = new vscode.SnippetString(text)
         completion.documentation = new vscode.MarkdownString(description)
-        completion.imports = getSnippetImports(body)
+        completion.imports = imports
         result.push(completion)
       }
       return (lastCompletionItems = result)

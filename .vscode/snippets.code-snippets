@@ -2,13 +2,16 @@
   "Snippet Template": {
     "prefix": "snip",
     "body": [
-      "import snip from '../snip'",
+      "import * as React from 'react'",
+      "import Placeholder, { string, expression, attribute } from '../Placeholder'",
+      "import { SnippetOptions } from '../createSnippet'",
       "",
       "export const description = '$1'",
       "",
-      "export const body = snip`",
-      "$0",
-      "`"
+      "export const body = ({ forPreview, Mui }: SnippetOptions) => (",
+      "  $2",
+      ")",
+      ""
     ]
   }
 }

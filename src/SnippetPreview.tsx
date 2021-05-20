@@ -1,15 +1,12 @@
 import * as React from 'react'
 import Placeholder, { PlaceholderProps } from './Placeholder'
-
 import { InputSnippetOptions, SnippetOptions } from './createSnippet'
-import { optionalCallExpression } from 'jscodeshift'
 
 function getPreview({
   choices,
   default: _default = choices?.[0],
-  preview = _default,
 }: PlaceholderProps): any {
-  return preview
+  return _default
 }
 
 function getChoicesProps(
@@ -28,7 +25,7 @@ function getChoicesProps(
       value.type === Placeholder
     ) {
       const props: PlaceholderProps = value.props as any
-      if (props.choices && props.preview === undefined) output[key] = props
+      if (props.choices) output[key] = props
     }
   }
   return output
