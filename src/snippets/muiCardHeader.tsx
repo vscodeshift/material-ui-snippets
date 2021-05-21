@@ -6,24 +6,18 @@ export const description = 'Material-UI <CardHeader>'
 
 export const body = ({ forPreview, Mui }: SnippetOptions) => (
   <Mui.CardHeader
-    avatar={expression({
-      optional: true,
-      default: (
-        <Mui.Avatar aria-label={string()} __placeholder>
-          <Placeholder type="expression" />
-        </Mui.Avatar>
-      ),
-    })}
-    action={expression({
-      optional: true,
-      default: (
-        <Mui.IconButton aria-label={string()} __placeholder>
-          <Placeholder type="expression" default={<Mui.MoreVertIcon />} />
-        </Mui.IconButton>
-      ),
-    })}
-    title={string({ optional: true })}
-    subheader={string({ optional: true })}
+    avatar={expression.optional(
+      <Mui.Avatar aria-label={string()} __placeholder>
+        <Placeholder type="expression" />
+      </Mui.Avatar>
+    )}
+    action={expression.optional(
+      <Mui.IconButton aria-label={string()} __placeholder>
+        <Placeholder type="expression" default={<Mui.MoreVertIcon />} />
+      </Mui.IconButton>
+    )}
+    title={string.optional()}
+    subheader={string.optional()}
     __placeholder
   />
 )

@@ -7,11 +7,7 @@ export const anchors = ['left', 'right', 'top', 'bottom']
 export const description = 'Material-UI permanent <Drawer>'
 
 export const body = ({ forPreview, Mui }: SnippetOptions) => (
-  <Mui.Drawer
-    variant="permanent"
-    anchor={string({ choices: anchors })}
-    __placeholder
-  >
-    <Placeholder type="expression" stop={0} />
+  <Mui.Drawer variant="permanent" anchor={string(anchors)} __placeholder>
+    {expression(0)}
   </Mui.Drawer>
 )

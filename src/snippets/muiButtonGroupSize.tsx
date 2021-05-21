@@ -7,19 +7,15 @@ export const description = 'Material-UI <ButtonGroup> with size'
 
 export const body = ({ forPreview, Mui }: SnippetOptions) => (
   <Mui.ButtonGroup
-    variant={string({ choices: variants })}
-    color={string({ choices: colors })}
-    size={string({ choices: sizes })}
+    variant={string(variants)}
+    color={string(colors)}
+    size={string(sizes)}
     aria-label={string()}
     __placeholder
     __oneLine
   >
-    <Mui.Button>
-      <Placeholder type="expression" />
-    </Mui.Button>
-    <Mui.Button>
-      <Placeholder type="expression" />
-    </Mui.Button>
-    <Placeholder type="expression" stop={0} />
+    <Mui.Button>{expression()}</Mui.Button>
+    <Mui.Button>{expression()}</Mui.Button>
+    {expression(0)}
   </Mui.ButtonGroup>
 )

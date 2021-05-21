@@ -66,10 +66,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiAppBar`: &lt;AppBar&gt;
 
 ```
-<AppBar
-  position="${1|fixed,absolute,relative,static,sticky|}"
-  color="${2|primary,default,inherit,secondary,transparent|}"
->
+<AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
   <Toolbar $3>
     <Typography variant="h6" $4>
       $0
@@ -81,10 +78,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiAppBarMenu`: &lt;AppBar&gt; with menu icon
 
 ```
-<AppBar
-  position="${1|fixed,absolute,relative,static,sticky|}"
-  color="${2|primary,default,inherit,secondary,transparent|}"
->
+<AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
   <Toolbar $3>
     <IconButton
       edge="start"
@@ -103,11 +97,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiBottomNavigation`: &lt;BottomNavigation&gt;
 
 ```
-<BottomNavigation
-  value={$1}
-  onChange={$2}
-  $3
->
+<BottomNavigation value={$1} onChange={$2} $3>
   $0
 </BottomNavigation>
 ```
@@ -126,11 +116,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiButton`: &lt;Button&gt;
 
 ```
-<Button
-  variant="${1|text,contained,outlined|}"
-  color="${2|default,inherit,primary,secondary|}"
-  $3
->
+<Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" $3>
   $0
 </Button>
 ```
@@ -193,10 +179,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiButtonText`: text &lt;Button&gt;
 
 ```
-<Button
-  color="${1|default,inherit,primary,secondary|}"
-  $2
->
+<Button color="${1|default,inherit,primary,secondary|}" $2>
   $0
 </Button>
 ```
@@ -219,34 +202,25 @@ or use the commands to insert snippets instead of suggestions.
 ```
 <CardHeader${1:
   avatar={
-    <Avatar
-      aria-label="$2"
-      $3
-    >
-      $4
+    <Avatar aria-label="$3" $4>
+      $5
     </Avatar>
-  }}${5:
+  }}${6:
   action={
-    <IconButton
-      aria-label="$6"
-      $7
-    >${8:
+    <IconButton aria-label="$8" $9>${10:
       <MoreVertIcon />}
     </IconButton>
-  }}${9:
-  title="$10"}${11:
-  subheader="$12"}
-  $13
+  }}${11:
+  title="$12"}${13:
+  subheader="$14"}
+  $15
 />
 ```
 
 ### `muiCardMedia`: &lt;CardMedia&gt;
 
 ```
-<CardMedia
-  title="$1"
-  image="$2"
-/>
+<CardMedia title="$1" image="$2" />
 ```
 
 ### `muiCheckboxLabel`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
@@ -285,10 +259,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiContainer`: &lt;Container&gt;
 
 ```
-<Container
-  maxWidth="${1|xs,sm,md,lg,xl|}"
-  $2
->
+<Container maxWidth="${1|xs,sm,md,lg,xl|}" $2>
   $0
 </Container>
 ```
@@ -297,9 +268,7 @@ or use the commands to insert snippets instead of suggestions.
 
 ```
 <Dialog open={$1} onClose={$2} aria-labelledby="$3">${4:
-  <DialogTitle
-    id="$3"
-  >
+  <DialogTitle id="$3">
     $5
   </DialogTitle>}${6:
   <DialogContent>${7:
@@ -308,11 +277,8 @@ or use the commands to insert snippets instead of suggestions.
     </DialogContentText>}
   </DialogContent>}${9:
   <DialogActions>
-    <Button
-      onClick={$2}
-      color="${10|default,inherit,primary,secondary|}"
-    >${11:
-      Cancel}
+    <Button onClick={$10} color="${11|default,inherit,primary,secondary|}">
+      ${12:Cancel}
     </Button>
   </DialogActions>}
 </Dialog>
@@ -327,11 +293,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiDrawerPermanent`: permanent &lt;Drawer&gt;
 
 ```
-<Drawer
-  variant="permanent"
-  anchor="${1|left,right,top,bottom|}"
-  $2
->
+<Drawer variant="permanent" anchor="${1|left,right,top,bottom|}" $2>
   $0
 </Drawer>
 ```

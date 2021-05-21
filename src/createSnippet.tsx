@@ -10,18 +10,26 @@ export type SnippetOptions = InputSnippetOptions & {
   Mui: Record<string, React.ComponentType<any>>
 }
 
+const specialAttributes = new Set([
+  '__placeholder',
+  '__optional',
+  '__oneLine',
+  'children',
+])
+
 function numAttributes(props: Record<string, any>): number {
   let count = 0
   for (const key in props) {
-    if (key !== '__placeholder' && key !== 'children') count++
+    if (!specialAttributes.has(key)) count++
   }
   return count
 }
 
 function hasElementAttributes(props: Record<string, any>): boolean {
   for (const key in props) {
-    if (key === 'children') continue
-    if (React.isValidElement(props[key])) return true
+    if (specialAttributes.has(key)) continue
+    if (React.isValidElement(props[key]) && props[key].type !== Placeholder)
+      return true
   }
   return false
 }
@@ -55,38 +63,57 @@ export default function createSnippet(
 
 export function createSnippetText(
   snippet: React.ReactElement,
-  { placeholderStop = [1] }: { placeholderStop?: [number] } = {}
+  {
+    placeholderStop = [1],
+    stops = new Map(),
+  }: {
+    placeholderStop?: [number]
+    stops?: Map<React.ReactElement<PlaceholderProps>, number>
+  } = {}
 ): string {
-  function i(stop?: number) {
-    return stop ?? placeholderStop[0]++
+  function getStop(placeholder?: React.ReactElement<PlaceholderProps>): number {
+    if (!placeholder) return placeholderStop[0]++
+    if (placeholder.props.stop != null) return placeholder.props.stop
+    let stop = stops.get(placeholder)
+    if (stop == null) {
+      stop = placeholderStop[0]++
+      stops.set(placeholder, stop)
+    }
+    return stop
   }
-  const childOptions = { placeholderStop }
+  const childOptions = { placeholderStop, stops }
   const name =
     typeof snippet.type === 'string'
       ? snippet.type
       : (snippet.type as any).displayName ?? snippet.type.name
-  const { children, __oneLine: oneLine, ...props } = snippet.props
+  const { children, __oneLine: oneLine, __optional, ...props } = snippet.props
 
-  const parts = [`<${name}`]
+  const parts = []
   const fewProps = numAttributes(props) <= 2 && !hasElementAttributes(props)
   const propSeparator = oneLine || fewProps ? ' ' : '\n  '
+
+  if (__optional) parts.push(`\${${getStop()}:`)
+  parts.push(`<${name}`)
+
   for (const [key, value] of Object.entries(props)) {
     if (key === '__placeholder') {
       parts.push(
-        `${propSeparator}$${
-          value === true ? i() : i((value as any).props.stop)
-        }`
+        `${propSeparator}$${getStop(
+          value === true
+            ? undefined
+            : (value as React.ReactElement<PlaceholderProps>)
+        )}`
       )
     } else if (value instanceof Object && React.isValidElement(value)) {
       if (value.type === Placeholder) {
         const {
           type,
-          stop,
           default: _default,
           choices,
           optional,
         } = value.props as PlaceholderProps
-        if (optional) parts.push(`\${${i(stop)}:`)
+        if (optional) parts.push(`\${${getStop()}:`)
+        const stop = getStop(value as React.ReactElement<PlaceholderProps>)
         parts.push(propSeparator)
         const open = type === 'string' ? '"' : '{'
         const close = type === 'string' ? '"' : '}'
@@ -104,15 +131,15 @@ export function createSnippetText(
                   : JSON.stringify(value)
         parts.push(
           choices
-            ? `${key}=${open}\${${i(stop)}|${(choices as any[])
+            ? `${key}=${open}\${${stop}|${(choices as any[])
                 .map(formatValue)
                 .join(',')}|}${close}`
             : `${key}=${open}${
                 _default
                   ? optional
                     ? formatValue(_default)
-                    : `\${${i(stop)}:${formatValue(_default)}}`
-                  : `\$${i(stop)}`
+                    : `\${${stop}:${formatValue(_default)}}`
+                  : `\$${stop}`
               }${close}`
         )
         if (optional) parts.push('}')
@@ -136,22 +163,19 @@ export function createSnippetText(
       let converted
       if (React.isValidElement(child)) {
         if (child.type === Placeholder) {
-          const {
-            type,
-            stop,
-            default: _default,
-          } = child.props as PlaceholderProps
+          const { type, default: _default } = child.props as PlaceholderProps
+          const stop = getStop(child as React.ReactElement<PlaceholderProps>)
           if (_default === undefined) {
-            converted = `\$${i(stop)}`
+            converted = `\$${stop}`
           } else if (React.isValidElement(_default)) {
-            converted = `\${${i(stop)}:${createSnippetText(
+            converted = `\${${stop}:${createSnippetText(
               _default,
               childOptions
             )}}`
           } else if (type === 'string') {
-            converted = `\${${i(stop)}:${_default}}`
+            converted = `\${${stop}:${_default}}`
           } else {
-            converted = `{\${${i(stop)}:${JSON.stringify(_default)}}}`
+            converted = `{\${${stop}:${JSON.stringify(_default)}}}`
           }
         } else {
           converted = createSnippetText(child, childOptions)
@@ -170,5 +194,8 @@ export function createSnippetText(
   } else {
     parts.push(`${oneLine || fewProps ? ' ' : '\n'}/>`)
   }
-  return parts.join('').replace(/\n(\s*)(\$\{\d+:)/g, '$2\n$1')
+  if (__optional) parts.push('}')
+  return parts
+    .join('')
+    .replace(/\n(\s*)(\$\{\d+:)(<|[-a-z_$][-a-z0-9_$]*=)/gi, '$2\n$1$3')
 }

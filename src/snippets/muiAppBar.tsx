@@ -16,12 +16,12 @@ export const description = 'Material-UI <AppBar>'
 
 export const body = ({ forPreview, Mui }: SnippetOptions) => (
   <Mui.AppBar
-    position={forPreview ? 'relative' : string({ choices: positions })}
-    color={string({ choices: colors })}
+    position={forPreview ? 'relative' : string(positions)}
+    color={string(colors)}
   >
     <Mui.Toolbar __placeholder>
       <Mui.Typography variant="h6" __placeholder>
-        {forPreview ? 'Title' : <Placeholder type="expression" stop={0} />}
+        {forPreview ? 'Title' : expression(0)}
       </Mui.Typography>
     </Mui.Toolbar>
   </Mui.AppBar>

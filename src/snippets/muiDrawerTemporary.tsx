@@ -8,11 +8,11 @@ export const description = 'Material-UI temporary <Drawer>'
 export const body = ({ forPreview, Mui }: SnippetOptions) => (
   <Mui.Drawer
     variant="temporary"
-    anchor={string({ choices: anchors })}
+    anchor={string(anchors)}
     open={expression()}
     onClose={expression()}
     __placeholder
   >
-    <Placeholder type="expression" stop={0} />
+    {expression(0)}
   </Mui.Drawer>
 )

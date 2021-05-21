@@ -13,7 +13,7 @@ export const body = ({ forPreview, formControlMode, Mui }: SnippetOptions) => (
         {...(formControlMode === 'controlled'
           ? { checked: expression(), onChange: expression() }
           : { defaultChecked: expression() })}
-        color={string({ default: 'primary' })}
+        color={string('primary')}
       />
     }
   />

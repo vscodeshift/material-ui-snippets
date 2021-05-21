@@ -2,14 +2,14 @@ import * as React from 'react'
 
 type StringPlaceholderProps = {
   type: 'string'
-  stop?: number
+  stop?: 0
   default?: string
   choices?: string[]
   optional?: boolean
 }
 type AnyPlaceholderProps<T> = {
   type: 'attribute' | 'expression'
-  stop?: number
+  stop?: 0
   default?: T
   choices?: T[]
   optional?: boolean
@@ -24,54 +24,82 @@ export default function Placeholder<T>({
   return React.isValidElement(_default) ? _default : <>{_default}</> ?? null
 }
 
-export function string(
-  stop: number,
-  options?: Omit<StringPlaceholderProps, 'type'>
-): React.ReactElement
-export function string(
-  options?: Omit<StringPlaceholderProps, 'type'>
-): React.ReactElement
-export function string(
-  arg0?: number | Omit<StringPlaceholderProps, 'type'>,
-  arg1?: Omit<StringPlaceholderProps, 'type'>
-): React.ReactElement {
-  if (typeof arg0 === 'number') return string({ ...arg1, stop: arg0 })
-  return <Placeholder {...arg0} type="string" />
+function stringOptional(_default?: string): React.ReactElement
+function stringOptional(choices: string[]): React.ReactElement
+function stringOptional(stop: 0): React.ReactElement
+function stringOptional(arg0?: 0 | string | string[]): React.ReactElement {
+  return (
+    <Placeholder
+      {...(Array.isArray(arg0)
+        ? { choices: arg0 }
+        : arg0 === 0
+        ? { stop: 0 }
+        : arg0
+        ? { default: arg0 }
+        : null)}
+      type="string"
+      optional
+    />
+  )
 }
 
-export function attribute<T>(
-  stop: number,
-  options?: Omit<AnyPlaceholderProps<T>, 'type'>
-): React.ReactElement
-export function attribute<T>(
-  options?: Omit<AnyPlaceholderProps<T>, 'type'>
-): React.ReactElement
-export function attribute<T>(
-  arg0?: number | Omit<AnyPlaceholderProps<T>, 'type'>,
-  arg1?: Omit<AnyPlaceholderProps<T>, 'type'>
-): React.ReactElement {
-  if (typeof arg0 === 'number') return attribute({ ...arg1, stop: arg0 })
-  return <Placeholder {...arg0} type="attribute" />
+export function string(_default?: string): React.ReactElement
+export function string(choices: string[]): React.ReactElement
+export function string(stop: 0): React.ReactElement
+export function string(arg0?: 0 | string | string[]): React.ReactElement {
+  return (
+    <Placeholder
+      {...(Array.isArray(arg0)
+        ? { choices: arg0 }
+        : arg0 === 0
+        ? { stop: 0 }
+        : arg0
+        ? { default: arg0 }
+        : null)}
+      type="string"
+    />
+  )
+}
+string.optional = stringOptional
+
+export function attribute(): React.ReactElement {
+  return <Placeholder type="attribute" />
 }
 
-export function expression<T>(
-  stop: number,
-  options?: Omit<AnyPlaceholderProps<T>, 'type'>
-): React.ReactElement
-export function expression<T>(
-  options?: Omit<AnyPlaceholderProps<T>, 'type'>
-): React.ReactElement
-export function expression<T>(
-  arg0?: number | Omit<AnyPlaceholderProps<T>, 'type'>,
-  arg1?: Omit<AnyPlaceholderProps<T>, 'type'>
-): React.ReactElement {
-  if (typeof arg0 === 'number') return expression({ ...arg1, stop: arg0 })
-  return <Placeholder {...arg0} type="expression" />
+function expressionOptional<T>(_default?: T): React.ReactElement
+function expressionOptional<T>(choices: T[]): React.ReactElement
+function expressionOptional<T>(stop: 0): React.ReactElement
+function expressionOptional<T>(arg0?: 0 | T | T[]): React.ReactElement {
+  return (
+    <Placeholder
+      {...(Array.isArray(arg0)
+        ? { choices: arg0 }
+        : arg0 === 0
+        ? { stop: 0 }
+        : arg0
+        ? { default: arg0 }
+        : null)}
+      type="expression"
+      optional
+    />
+  )
 }
 
-export function child(
-  stop: number,
-  _default: React.ReactElement
-): React.ReactElement {
-  return <Placeholder type="expression" stop={stop} default={_default} />
+export function expression<T>(_default?: T): React.ReactElement
+export function expression<T>(choices: T[]): React.ReactElement
+export function expression<T>(stop: 0): React.ReactElement
+export function expression<T>(arg0?: 0 | T | T[]): React.ReactElement {
+  return (
+    <Placeholder
+      {...(Array.isArray(arg0)
+        ? { choices: arg0 }
+        : arg0 === 0
+        ? { stop: 0 }
+        : arg0
+        ? { default: arg0 }
+        : null)}
+      type="expression"
+    />
+  )
 }
+expression.optional = expressionOptional
