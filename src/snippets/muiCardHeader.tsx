@@ -9,7 +9,7 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     avatar={expression({
       optional: true,
       default: (
-        <Mui.Avatar aria-label={string()} __attributePlaceholder={attribute()}>
+        <Mui.Avatar aria-label={string()} __placeholder>
           <Placeholder type="expression" />
         </Mui.Avatar>
       ),
@@ -17,16 +17,13 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     action={expression({
       optional: true,
       default: (
-        <Mui.IconButton
-          aria-label={string()}
-          __attributePlaceholder={attribute()}
-        >
+        <Mui.IconButton aria-label={string()} __placeholder>
           <Placeholder type="expression" default={<Mui.MoreVertIcon />} />
         </Mui.IconButton>
       ),
     })}
     title={string({ optional: true })}
     subheader={string({ optional: true })}
-    __attributePlaceholder={attribute()}
+    __placeholder
   />
 )

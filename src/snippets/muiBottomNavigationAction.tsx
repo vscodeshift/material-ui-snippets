@@ -9,6 +9,6 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     label={string()}
     value={expression()}
     icon={expression()}
-    __attributePlaceholder={attribute()}
+    __placeholder
   />
 )

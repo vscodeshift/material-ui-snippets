@@ -6,10 +6,7 @@ import { colors } from './muiButton'
 export const description = 'Material-UI text <Button>'
 
 export const body = ({ forPreview, Mui }: SnippetOptions) => (
-  <Mui.Button
-    color={string({ choices: colors })}
-    __attributePlaceholder={attribute()}
-  >
+  <Mui.Button color={string({ choices: colors })} __placeholder>
     <Placeholder type="expression" stop={0} />
   </Mui.Button>
 )

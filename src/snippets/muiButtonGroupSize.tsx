@@ -11,7 +11,7 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     color={string({ choices: colors })}
     size={string({ choices: sizes })}
     aria-label={string()}
-    __attributePlaceholder={attribute()}
+    __placeholder
     __oneLine
   >
     <Mui.Button>

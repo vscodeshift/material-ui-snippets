@@ -70,8 +70,8 @@ or use the commands to insert snippets instead of suggestions.
   position="${1|fixed,absolute,relative,static,sticky|}"
   color="${2|primary,default,inherit,secondary,transparent|}"
 >
-  <Toolbar>
-    <Typography variant="h6">
+  <Toolbar $3>
+    <Typography variant="h6" $4>
       $0
     </Typography>
   </Toolbar>
@@ -85,7 +85,7 @@ or use the commands to insert snippets instead of suggestions.
   position="${1|fixed,absolute,relative,static,sticky|}"
   color="${2|primary,default,inherit,secondary,transparent|}"
 >
-  <Toolbar>
+  <Toolbar $3>
     <IconButton
       edge="start"
       color="inherit"
@@ -93,7 +93,7 @@ or use the commands to insert snippets instead of suggestions.
     >
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6">
+    <Typography variant="h6" $4>
       $0
     </Typography>
   </Toolbar>
@@ -106,6 +106,7 @@ or use the commands to insert snippets instead of suggestions.
 <BottomNavigation
   value={$1}
   onChange={$2}
+  $3
 >
   $0
 </BottomNavigation>
@@ -118,6 +119,7 @@ or use the commands to insert snippets instead of suggestions.
   label="$1"
   value={$2}
   icon={$3}
+  $4
 />
 ```
 
@@ -127,6 +129,7 @@ or use the commands to insert snippets instead of suggestions.
 <Button
   variant="${1|text,contained,outlined|}"
   color="${2|default,inherit,primary,secondary|}"
+  $3
 >
   $0
 </Button>
@@ -135,21 +138,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiButtonGroup`: &lt;ButtonGroup&gt;
 
 ```
-<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3">
-  <Button>
-    $4
-  </Button>
-  <Button>
-    $5
-  </Button>
-  $0
-</ButtonGroup>
-```
-
-### `muiButtonGroupSize`: &lt;ButtonGroup&gt; with size
-
-```
-<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}" aria-label="$4">
+<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3" $4>
   <Button>
     $5
   </Button>
@@ -160,15 +149,29 @@ or use the commands to insert snippets instead of suggestions.
 </ButtonGroup>
 ```
 
+### `muiButtonGroupSize`: &lt;ButtonGroup&gt; with size
+
+```
+<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}" aria-label="$4" $5>
+  <Button>
+    $6
+  </Button>
+  <Button>
+    $7
+  </Button>
+  $0
+</ButtonGroup>
+```
+
 ### `muiButtonGroupVertical`: vertical &lt;ButtonGroup&gt;
 
 ```
-<ButtonGroup orientation="vertical" variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3">
-  <Button>
-    $4
-  </Button>
+<ButtonGroup orientation="vertical" variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3" $4>
   <Button>
     $5
+  </Button>
+  <Button>
+    $6
   </Button>
   $0
 </ButtonGroup>
@@ -181,6 +184,7 @@ or use the commands to insert snippets instead of suggestions.
   variant="${1|text,contained,outlined|}"
   color="${2|default,inherit,primary,secondary|}"
   size="${3|small,medium,large|}"
+  $4
 >
   $0
 </Button>
@@ -191,6 +195,7 @@ or use the commands to insert snippets instead of suggestions.
 ```
 <Button
   color="${1|default,inherit,primary,secondary|}"
+  $2
 >
   $0
 </Button>
@@ -203,6 +208,7 @@ or use the commands to insert snippets instead of suggestions.
   variant="${1|text,contained,outlined|}"
   color="${2|default,inherit,primary,secondary|}"
   startIcon={$3}
+  $4
 >
   $0
 </Button>
@@ -212,18 +218,25 @@ or use the commands to insert snippets instead of suggestions.
 
 ```
 <CardHeader${1:
-  avatar={${2:<Avatar
-      aria-label="$3"
+  avatar={
+    <Avatar
+      aria-label="$2"
+      $3
     >
       $4
-    </Avatar>}}}${5:
-  action={${6:<IconButton
-      aria-label="$7"
+    </Avatar>
+  }}${5:
+  action={
+    <IconButton
+      aria-label="$6"
+      $7
     >${8:
       <MoreVertIcon />}
-    </IconButton>}}}${9:
+    </IconButton>
+  }}${9:
   title="$10"}${11:
   subheader="$12"}
+  $13
 />
 ```
 
@@ -274,6 +287,7 @@ or use the commands to insert snippets instead of suggestions.
 ```
 <Container
   maxWidth="${1|xs,sm,md,lg,xl|}"
+  $2
 >
   $0
 </Container>
@@ -316,6 +330,7 @@ or use the commands to insert snippets instead of suggestions.
 <Drawer
   variant="permanent"
   anchor="${1|left,right,top,bottom|}"
+  $2
 >
   $0
 </Drawer>
@@ -328,6 +343,7 @@ or use the commands to insert snippets instead of suggestions.
   variant="persistent"
   anchor="${1|left,right,top,bottom|}"
   open={$2}
+  $3
 >
   $0
 </Drawer>
@@ -341,6 +357,7 @@ or use the commands to insert snippets instead of suggestions.
   anchor="${1|left,right,top,bottom|}"
   open={$2}
   onClose={$3}
+  $4
 >
   $0
 </Drawer>

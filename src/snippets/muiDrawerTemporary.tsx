@@ -11,7 +11,7 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     anchor={string({ choices: anchors })}
     open={expression()}
     onClose={expression()}
-    __attributePlaceholder={attribute()}
+    __placeholder
   >
     <Placeholder type="expression" stop={0} />
   </Mui.Drawer>

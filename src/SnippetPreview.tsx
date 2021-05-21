@@ -80,12 +80,12 @@ function createSinglePreview({
 }): React.ReactElement {
   function convertProps({
     __oneLine,
-    __attributePlaceholder,
+    __placeholder,
     ...props
   }: React.ReactElement['props']): React.ReactElement['props'] {
     const result: React.ReactElement['props'] = {}
     for (const [key, value] of Object.entries(props)) {
-      if (key === '__attributePlaceholder') continue
+      if (key === '__placeholder') continue
       if (key === 'children') {
         result.children = React.Children.map(value as any, (child, key) => {
           if (React.isValidElement(child)) {

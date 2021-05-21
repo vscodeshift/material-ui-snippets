@@ -13,7 +13,7 @@ export type SnippetOptions = InputSnippetOptions & {
 function numAttributes(props: Record<string, any>): number {
   let count = 0
   for (const key in props) {
-    if (key !== 'children') count++
+    if (key !== '__placeholder' && key !== 'children') count++
   }
   return count
 }
@@ -34,7 +34,14 @@ export default function createSnippet(
   const Mui = new Proxy({} as Record<string, React.ComponentType<any>>, {
     get(target: any, prop: string): React.ComponentType<any> {
       if (!target[prop]) {
-        imports.push(`import ${prop} from '@material-ui/core/${prop}'`)
+        imports.push(
+          prop.endsWith('Icon')
+            ? `import ${prop} from '@material-ui/icons/${prop.replace(
+                /Icon$/,
+                ''
+              )}'`
+            : `import ${prop} from '@material-ui/core/${prop}'`
+        )
         const component = () => null
         ;(component as any).displayName = prop
         target[prop] = component
@@ -58,18 +65,19 @@ export function createSnippetText(
     typeof snippet.type === 'string'
       ? snippet.type
       : (snippet.type as any).displayName ?? snippet.type.name
-  const {
-    children,
-    __attributePlaceholder,
-    __oneLine: oneLine,
-    ...props
-  } = snippet.props
+  const { children, __oneLine: oneLine, ...props } = snippet.props
 
   const parts = [`<${name}`]
   const fewProps = numAttributes(props) <= 2 && !hasElementAttributes(props)
   const propSeparator = oneLine || fewProps ? ' ' : '\n  '
   for (const [key, value] of Object.entries(props)) {
-    if (value instanceof Object && React.isValidElement(value)) {
+    if (key === '__placeholder') {
+      parts.push(
+        `${propSeparator}$${
+          value === true ? i() : i((value as any).props.stop)
+        }`
+      )
+    } else if (value instanceof Object && React.isValidElement(value)) {
       if (value.type === Placeholder) {
         const {
           type,
@@ -87,10 +95,12 @@ export function createSnippetText(
             ? (value: any) => String(value)
             : (value: any) =>
                 React.isValidElement(value)
-                  ? createSnippetText(value, childOptions).replace(
+                  ? '\n    ' +
+                    createSnippetText(value, childOptions).replace(
                       /\n/gm,
                       '\n    '
-                    )
+                    ) +
+                    '\n  '
                   : JSON.stringify(value)
         parts.push(
           choices
@@ -99,7 +109,9 @@ export function createSnippetText(
                 .join(',')}|}${close}`
             : `${key}=${open}${
                 _default
-                  ? `\${${i(stop)}:${formatValue(_default)}}`
+                  ? optional
+                    ? formatValue(_default)
+                    : `\${${i(stop)}:${formatValue(_default)}}`
                   : `\$${i(stop)}`
               }${close}`
         )

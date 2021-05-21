@@ -8,7 +8,7 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
   <Mui.BottomNavigation
     value={expression()}
     onChange={expression()}
-    __attributePlaceholder={attribute()}
+    __placeholder
   >
     <Placeholder type="expression" stop={0} />
   </Mui.BottomNavigation>

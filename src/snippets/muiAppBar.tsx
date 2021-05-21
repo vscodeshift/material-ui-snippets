@@ -19,8 +19,8 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     position={forPreview ? 'relative' : string({ choices: positions })}
     color={string({ choices: colors })}
   >
-    <Mui.Toolbar __attributePlaceholder={attribute()}>
-      <Mui.Typography variant="h6" __attributePlaceholder={attribute()}>
+    <Mui.Toolbar __placeholder>
+      <Mui.Typography variant="h6" __placeholder>
         {forPreview ? 'Title' : <Placeholder type="expression" stop={0} />}
       </Mui.Typography>
     </Mui.Toolbar>

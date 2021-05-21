@@ -12,7 +12,7 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
   <Mui.Button
     variant={string({ choices: variants })}
     color={string({ choices: colors })}
-    __attributePlaceholder={attribute()}
+    __placeholder
   >
     <Placeholder type="expression" stop={0} />
   </Mui.Button>
