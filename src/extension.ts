@@ -14,7 +14,7 @@ export async function activate(
   const config = vscode.workspace.getConfiguration('material-ui-snippets')
   if (config.get('showNotesOnStartup')) {
     const message =
-      'Material-UI Snippets: automatic imports for snippets have been re-enabled now that the VSCode completions API has been improved.'
+      'MUI Snippets: automatic imports for snippets have been re-enabled now that the VSCode completions API has been improved.'
     vscode.window.showInformationMessage(message)
     config.update(
       'showNotesOnStartup',
@@ -64,11 +64,11 @@ export async function activate(
               .filter((comp: string) => !finalExistingImports.has(comp))
               .map((comp: string) =>
                 comp.endsWith('Icon')
-                  ? `import ${comp} from '@material-ui/icons/${comp.substring(
+                  ? `import ${comp} from '@mui/icons-material/${comp.substring(
                       0,
                       comp.length - 4
                     )}'`
-                  : `import ${comp} from '@material-ui/core/${comp}'`
+                  : `import ${comp} from '@mui/material/${comp}'`
               )
               .join('\n') + '\n'
           )
@@ -99,9 +99,7 @@ export async function activate(
             additionalTextEdits.push(
               vscode.TextEdit.insert(
                 insertPosition,
-                `import { ${coreImports.join(
-                  ', '
-                )} } from '@material-ui/core'\n`
+                `import { ${coreImports.join(', ')} } from '@mui/material'\n`
               )
             )
           }
@@ -120,7 +118,7 @@ export async function activate(
                 insertPosition,
                 `import { ${iconsImports.join(
                   ', '
-                )} } from '@material-ui/icons'\n`
+                )} } from '@mui/icons-material'\n`
               )
             )
           }
@@ -138,7 +136,7 @@ export async function activate(
           {
             cancellable: true,
             location: vscode.ProgressLocation.Notification,
-            title: `Inserting Material-UI ${description}...`,
+            title: `Inserting MUI ${description}...`,
           },
           async (
             progress: vscode.Progress<{

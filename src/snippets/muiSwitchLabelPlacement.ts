@@ -3,7 +3,7 @@ import snip from '../snip'
 import { labelPlacements } from './muiFormControl'
 
 export const description =
-  'Material-UI <Switch> with <FormControlLabel> with labelPlacement'
+  'MUI <Switch> with <FormControlLabel> with labelPlacement'
 
 export const body = snip`
 <FormControlLabel

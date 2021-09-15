@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <TextField select>'
+export const description = 'MUI <TextField select>'
 
 export const body = snip`
 <TextField

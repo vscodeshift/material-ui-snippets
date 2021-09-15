@@ -1,8 +1,8 @@
 {
   "name": "material-ui-snippets",
   "version": "0.0.0-development",
-  "displayName": "Material-UI Snippets",
-  "description": "Code snippets for Material-UI",
+  "displayName": "MUI Snippets",
+  "description": "Code snippets for MUI",
   "icon": "icon.png",
   "publisher": "vscodeshift",
   "engines": {
@@ -17,7 +17,7 @@
   "contributes": {
     "configuration": [
       {
-        "title": "Material-UI Snippets",
+        "title": "MUI Snippets",
         "properties": {
           "material-ui-snippets.importPaths": {
             "type": "string",
@@ -30,8 +30,8 @@
             ],
             "enumDescriptions": [
               "Uses top level if other top level imports are found, second level otherwise",
-              "import { Button } from '@material-ui/core'",
-              "import Button from '@material-ui/core/Button'"
+              "import { Button } from '@mui/material'",
+              "import Button from '@mui/material/Button'"
             ]
           },
           "material-ui-snippets.formControlMode": {
@@ -58,318 +58,318 @@
     "commands": [
       {
         "command": "extension.muiAppBar",
-        "title": "Insert <AppBar>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <AppBar>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiAppBarMenu",
-        "title": "Insert <AppBar> with menu icon",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <AppBar> with menu icon",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiBottomNavigation",
-        "title": "Insert <BottomNavigation>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <BottomNavigation>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiBottomNavigationAction",
-        "title": "Insert <BottomNavigationAction>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <BottomNavigationAction>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiButton",
-        "title": "Insert <Button>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Button>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiButtonGroup",
-        "title": "Insert <ButtonGroup>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <ButtonGroup>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiButtonGroupSize",
-        "title": "Insert <ButtonGroup> with size",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <ButtonGroup> with size",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiButtonGroupVertical",
-        "title": "Insert vertical <ButtonGroup>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI vertical <ButtonGroup>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiButtonSize",
-        "title": "Insert <Button> with size",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Button> with size",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiButtonText",
-        "title": "Insert text <Button>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI text <Button>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiButtonWithIcon",
-        "title": "Insert <Button> with icon and label",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Button> with icon and label",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiCardHeader",
-        "title": "Insert <CardHeader>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <CardHeader>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiCardMedia",
-        "title": "Insert <CardMedia>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <CardMedia>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiCheckboxLabel",
-        "title": "Insert <Checkbox> with <FormControlLabel>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Checkbox> with <FormControlLabel>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiCheckboxLabelPlacement",
-        "title": "Insert <Checkbox> with labelPlacement",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Checkbox> with labelPlacement",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiContainer",
-        "title": "Insert <Container>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Container>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiDialog",
-        "title": "Insert <Dialog>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Dialog>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiDialogSimple",
-        "title": "Insert <Dialog>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Dialog>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiDrawerPermanent",
-        "title": "Insert permanent <Drawer>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI permanent <Drawer>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiDrawerPersistent",
-        "title": "Insert persistent <Drawer>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI persistent <Drawer>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiDrawerTemporary",
-        "title": "Insert temporary <Drawer>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI temporary <Drawer>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiEndAdornment",
-        "title": "Insert end <InputAdornment>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI end <InputAdornment>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiExpansionPanel",
-        "title": "Insert <ExpansionPanel>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <ExpansionPanel>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiExpansionPanelControlled",
-        "title": "Insert controlled <ExpansionPanel>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI controlled <ExpansionPanel>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiFab",
-        "title": "Insert <Fab>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Fab>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiFabExtended",
-        "title": "Insert <Fab variant=\"extended\">",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Fab variant=\"extended\">",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiFormControl",
-        "title": "Insert <FormControl>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <FormControl>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiFormControlGroup",
-        "title": "Insert <FormControl> with <FormGroup>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <FormControl> with <FormGroup>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiGridContainer",
-        "title": "Insert <Grid container>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Grid container>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiGridContainerCenter",
-        "title": "Insert <Grid container> with centering",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Grid container> with centering",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiGridContainerFull",
-        "title": "Insert <Grid container> with all props",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Grid container> with all props",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiGridListSubheader",
-        "title": "Insert <GridList> subheader",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <GridList> subheader",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiGridListTilebar",
-        "title": "Insert <GridListTileBar>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <GridListTileBar>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiIconButton",
-        "title": "Insert <IconButton>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <IconButton>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiMenu",
-        "title": "Insert <Menu>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Menu>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiMenuItem",
-        "title": "Insert <MenuItem>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <MenuItem>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiMenuPopupState",
-        "title": "Insert <Menu> for material-ui-popup-state",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Menu> for material-ui-popup-state",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiRadioGroup",
-        "title": "Insert <FormControl> with <RadioGroup>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <FormControl> with <RadioGroup>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiRadioLabel",
-        "title": "Insert <Radio> with <FormControlLabel>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Radio> with <FormControlLabel>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiRadioLabelPlacement",
-        "title": "Insert <Radio> with <FormControlLabel> with labelPlacement",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Radio> with <FormControlLabel> with labelPlacement",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSelectItem",
-        "title": "Insert <MenuItem> inside <Select>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <MenuItem> inside <Select>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSliderContinuous",
-        "title": "Insert <Slider> with continuous values",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Slider> with continuous values",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSliderDiscrete",
-        "title": "Insert <Slider> with discrete values",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Slider> with discrete values",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSnackbar",
-        "title": "Insert <Snackbar>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Snackbar>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSnackbarContent",
-        "title": "Insert <SnackbarContent>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <SnackbarContent>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiStartAdornment",
-        "title": "Insert start <InputAdornment>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI start <InputAdornment>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiStep",
-        "title": "Insert <Step>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Step>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiStepContent",
-        "title": "Insert <Step> with <StepContent>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Step> with <StepContent>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiStepOptional",
-        "title": "Insert optional <Step>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI optional <Step>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiStepper",
-        "title": "Insert <Stepper>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Stepper>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSwipeableViews",
-        "title": "Insert <SwipeableViews>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <SwipeableViews>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSwitch",
-        "title": "Insert <Switch>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Switch>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSwitchLabel",
-        "title": "Insert <Switch> with <FormControlLabel>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Switch> with <FormControlLabel>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiSwitchLabelPlacement",
-        "title": "Insert <Switch> with <FormControlLabel> with labelPlacement",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Switch> with <FormControlLabel> with labelPlacement",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTabPanel",
-        "title": "Insert <TabPanel>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <TabPanel>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTabs",
-        "title": "Insert <Tabs>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Tabs>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTabsScrollable",
-        "title": "Insert scrollable <Tabs>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI scrollable <Tabs>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTextField",
-        "title": "Insert <TextField>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <TextField>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTextFieldMore",
-        "title": "Insert <TextField> with more props",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <TextField> with more props",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTextFieldSelect",
-        "title": "Insert <TextField select>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <TextField select>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTextFieldVariant",
-        "title": "Insert <TextField> with variant",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <TextField> with variant",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTooltip",
-        "title": "Insert <Tooltip>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Tooltip>",
+        "category": "MUI Snippets"
       },
       {
         "command": "extension.muiTypography",
-        "title": "Insert <Typography>",
-        "category": "Material-UI Snippets"
+        "title": "Insert MUI <Typography>",
+        "category": "MUI Snippets"
       }
     ]
   },
@@ -394,6 +394,13 @@
     "semantic-release": "semantic-release"
   },
   "release": {
+    "branches": [
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ],
     "verifyConditions": [
       "semantic-release-vsce",
       "@semantic-release/github"

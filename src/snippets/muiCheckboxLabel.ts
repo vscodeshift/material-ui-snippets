@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <Checkbox> with <FormControlLabel>'
+export const description = 'MUI <Checkbox> with <FormControlLabel>'
 export const body = snip`
 <FormControlLabel
   label="$#"

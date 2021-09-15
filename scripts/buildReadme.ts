@@ -35,7 +35,7 @@ async function go(): Promise<void> {
       command: `extension.${prefix}`,
       title:
         'Insert ' + snippet.description.replace(/^\s*Material[ -]UI\s*/i, ''),
-      category: 'Material-UI Snippets',
+      category: 'MUI Snippets',
     })
 
     const description = markdownEscape(

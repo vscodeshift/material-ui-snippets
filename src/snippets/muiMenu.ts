@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <Menu>'
+export const description = 'MUI <Menu>'
 
 export const body = snip`
 <Menu

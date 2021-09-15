@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI end <InputAdornment>'
+export const description = 'MUI end <InputAdornment>'
 
 export const body = snip`
 endAdornment={

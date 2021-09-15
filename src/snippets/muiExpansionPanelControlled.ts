@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI controlled <ExpansionPanel>'
+export const description = 'MUI controlled <ExpansionPanel>'
 
 export const body = snip`
 <ExpansionPanel expanded={$1} onChange={$2}>

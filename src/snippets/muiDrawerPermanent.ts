@@ -2,7 +2,7 @@ import snip from '../snip'
 
 export const anchors = ['left', 'right', 'top', 'bottom']
 
-export const description = 'Material-UI permanent <Drawer>'
+export const description = 'MUI permanent <Drawer>'
 
 export const body = snip`
 <Drawer

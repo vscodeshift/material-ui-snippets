@@ -10,7 +10,7 @@ export const colors = [
 
 export const positions = ['fixed', 'absolute', 'relative', 'static', 'sticky']
 
-export const description = 'Material-UI <AppBar>'
+export const description = 'MUI <AppBar>'
 
 export const body = snip`
 <AppBar position="\${#${positions}}" color="\${#${colors}}">

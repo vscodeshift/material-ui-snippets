@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <BottomNavigation>'
+export const description = 'MUI <BottomNavigation>'
 
 export const body = snip`
 <BottomNavigation

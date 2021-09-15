@@ -1,7 +1,7 @@
 import snip from '../snip'
 import { variants, colors, margins, sizes } from './muiTextField'
 
-export const description = 'Material-UI <TextField> with more props'
+export const description = 'MUI <TextField> with more props'
 
 export const body = snip`
 <TextField

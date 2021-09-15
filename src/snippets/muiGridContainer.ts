@@ -30,7 +30,7 @@ export const justifies = [
 
 export const wraps = ['nowrap', 'wrap', 'wrap-reverse']
 
-export const description = 'Material-UI <Grid container>'
+export const description = 'MUI <Grid container>'
 
 export const body = snip`
 <Grid container spacing={\${#:1}}$#>

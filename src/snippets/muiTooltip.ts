@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <Tooltip>'
+export const description = 'MUI <Tooltip>'
 
 export const body = snip`
 <Tooltip title="$#"$#>

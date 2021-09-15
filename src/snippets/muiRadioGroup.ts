@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <FormControl> with <RadioGroup>'
+export const description = 'MUI <FormControl> with <RadioGroup>'
 
 export const body = snip`
 <FormControl component=\${#:"fieldset"}$#>

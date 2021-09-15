@@ -36,7 +36,7 @@ export default function getExistingImports(
       if (node.loc) insertLine = node.loc.end.line
       const source = node.source.value
       if (typeof source !== 'string') return
-      if (source === '@material-ui/core') {
+      if (source === '@mui/material') {
         for (const specifier of node.specifiers) {
           if (specifier.type !== 'ImportSpecifier') continue
           const { loc } = specifier
@@ -49,7 +49,7 @@ export default function getExistingImports(
             result.add(local.name)
           }
         }
-      } else if (source === '@material-ui/icons') {
+      } else if (source === '@mui/icons-material') {
         for (const specifier of node.specifiers) {
           if (specifier.type !== 'ImportSpecifier') continue
           const { loc } = specifier

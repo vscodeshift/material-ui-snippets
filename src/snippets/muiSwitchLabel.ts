@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <Switch> with <FormControlLabel>'
+export const description = 'MUI <Switch> with <FormControlLabel>'
 
 export const body = snip`
 <FormControlLabel

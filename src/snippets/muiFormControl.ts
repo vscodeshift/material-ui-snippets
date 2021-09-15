@@ -2,7 +2,7 @@ import snip from '../snip'
 
 export const labelPlacements = ['end', 'start', 'top', 'bottom']
 
-export const description = 'Material-UI <FormControl>'
+export const description = 'MUI <FormControl>'
 
 export const body = snip`
 <FormControl$#>

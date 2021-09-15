@@ -5,7 +5,7 @@ export const variants = ['standard', 'outlined', 'filled']
 export const margins = ['none', 'dense', 'normal']
 export const sizes = ['small', 'medium']
 
-export const description = 'Material-UI <TextField>'
+export const description = 'MUI <TextField>'
 
 export const body = snip`
 <TextField

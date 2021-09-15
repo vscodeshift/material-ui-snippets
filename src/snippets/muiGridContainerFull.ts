@@ -7,7 +7,7 @@ import {
   wraps,
 } from './muiGridContainer'
 
-export const description = 'Material-UI <Grid container> with all props'
+export const description = 'MUI <Grid container> with all props'
 
 export const body = snip`
 <Grid

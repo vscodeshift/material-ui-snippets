@@ -1,7 +1,7 @@
 import snip from '../snip'
 import { positions, colors } from './muiAppBar'
 
-export const description = 'Material-UI <AppBar> with menu icon'
+export const description = 'MUI <AppBar> with menu icon'
 
 export const body = snip`
 <AppBar position="\${#${positions}}" color="\${#${colors}}">

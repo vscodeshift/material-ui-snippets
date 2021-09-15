@@ -30,7 +30,7 @@ export const variants = [
   'inherit',
 ]
 
-export const description = 'Material-UI <Typography>'
+export const description = 'MUI <Typography>'
 
 export const body = snip`
 <Typography variant="\${#${variants}}"\${#: color="\${#${colors}}"}$#>$TM_SELECTED_TEXT$0</Typography>

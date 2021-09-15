@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <Slider> with discrete values'
+export const description = 'MUI <Slider> with discrete values'
 
 export const body = snip`
 <Slider

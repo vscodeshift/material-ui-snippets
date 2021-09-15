@@ -2,7 +2,7 @@ import snip from '../snip'
 
 import { colors } from './muiButton'
 
-export const description = 'Material-UI <Dialog>'
+export const description = 'MUI <Dialog>'
 
 export const body = snip`
 <Dialog open={$1} onClose={$2} aria-labelledby="$3">\${4:

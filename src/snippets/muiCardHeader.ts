@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <CardHeader>'
+export const description = 'MUI <CardHeader>'
 
 export const body = snip`
 <CardHeader\${#:

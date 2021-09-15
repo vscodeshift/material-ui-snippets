@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <Container>'
+export const description = 'MUI <Container>'
 
 export const maxWidths = ['xs', 'sm', 'md', 'lg', 'xl']
 

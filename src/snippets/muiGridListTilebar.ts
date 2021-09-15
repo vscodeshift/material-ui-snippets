@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI <GridListTileBar>'
+export const description = 'MUI <GridListTileBar>'
 
 export const body = snip`
 <GridListTileBar\${#:

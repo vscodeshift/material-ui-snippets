@@ -1,6 +1,6 @@
 import snip from '../snip'
 
-export const description = 'Material-UI optional <Step>'
+export const description = 'MUI optional <Step>'
 
 export const body = snip`
 <Step key={$#} completed={$#}$#>

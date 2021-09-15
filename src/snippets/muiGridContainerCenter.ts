@@ -2,7 +2,7 @@ import snip from '../snip'
 
 import { directions, wraps } from './muiGridContainer'
 
-export const description = 'Material-UI <Grid container> with centering'
+export const description = 'MUI <Grid container> with centering'
 
 export const body = snip`
 <Grid

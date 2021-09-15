@@ -1,7 +1,7 @@
 import snip from '../snip'
 import { labelPlacements } from './muiFormControl'
 
-export const description = 'Material-UI <Checkbox> with labelPlacement'
+export const description = 'MUI <Checkbox> with labelPlacement'
 export const body = snip`
 <FormControlLabel
   label="$#"
