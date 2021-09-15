@@ -69,7 +69,7 @@ or use the commands to insert snippets instead of suggestions.
 <AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
   <Toolbar $3>
     <Typography variant="h6" $4>
-      $0
+      $5
     </Typography>
   </Toolbar>
 </AppBar>
@@ -88,7 +88,7 @@ or use the commands to insert snippets instead of suggestions.
       <MenuIcon />
     </IconButton>
     <Typography variant="h6" $4>
-      $0
+      $5
     </Typography>
   </Toolbar>
 </AppBar>
@@ -98,7 +98,7 @@ or use the commands to insert snippets instead of suggestions.
 
 ```
 <BottomNavigation value={$1} onChange={$2} $3>
-  $0
+  $4
 </BottomNavigation>
 ```
 
@@ -117,7 +117,7 @@ or use the commands to insert snippets instead of suggestions.
 
 ```
 <Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" $3>
-  $0
+  $4
 </Button>
 ```
 
@@ -131,7 +131,7 @@ or use the commands to insert snippets instead of suggestions.
   <Button>
     $6
   </Button>
-  $0
+  $7
 </ButtonGroup>
 ```
 
@@ -145,7 +145,7 @@ or use the commands to insert snippets instead of suggestions.
   <Button>
     $7
   </Button>
-  $0
+  $8
 </ButtonGroup>
 ```
 
@@ -159,7 +159,7 @@ or use the commands to insert snippets instead of suggestions.
   <Button>
     $6
   </Button>
-  $0
+  $7
 </ButtonGroup>
 ```
 
@@ -172,7 +172,7 @@ or use the commands to insert snippets instead of suggestions.
   size="${3|small,medium,large|}"
   $4
 >
-  $0
+  $5
 </Button>
 ```
 
@@ -180,7 +180,7 @@ or use the commands to insert snippets instead of suggestions.
 
 ```
 <Button color="${1|default,inherit,primary,secondary|}" $2>
-  $0
+  $3
 </Button>
 ```
 
@@ -193,7 +193,7 @@ or use the commands to insert snippets instead of suggestions.
   startIcon={$3}
   $4
 >
-  $0
+  $5
 </Button>
 ```
 
@@ -207,8 +207,8 @@ or use the commands to insert snippets instead of suggestions.
     </Avatar>
   }}${6:
   action={
-    <IconButton aria-label="$8" $9>${10:
-      <MoreVertIcon />}
+    <IconButton aria-label="$8" $9>
+      $10
     </IconButton>
   }}${11:
   title="$12"}${13:
@@ -260,7 +260,7 @@ or use the commands to insert snippets instead of suggestions.
 
 ```
 <Container maxWidth="${1|xs,sm,md,lg,xl|}" $2>
-  $0
+  $3
 </Container>
 ```
 
@@ -287,14 +287,14 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiDialogSimple`: &lt;Dialog&gt;
 
 ```
-<Dialog open={$1} onClose={$2} aria-labelledby="$3">$0</Dialog>
+<Dialog open={$1} onClose={$2} aria-labelledby="$3">$4</Dialog>
 ```
 
 ### `muiDrawerPermanent`: permanent &lt;Drawer&gt;
 
 ```
 <Drawer variant="permanent" anchor="${1|left,right,top,bottom|}" $2>
-  $0
+  $3
 </Drawer>
 ```
 
@@ -307,7 +307,7 @@ or use the commands to insert snippets instead of suggestions.
   open={$2}
   $3
 >
-  $0
+  $4
 </Drawer>
 ```
 
@@ -321,7 +321,7 @@ or use the commands to insert snippets instead of suggestions.
   onClose={$3}
   $4
 >
-  $0
+  $5
 </Drawer>
 ```
 

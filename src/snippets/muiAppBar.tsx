@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Placeholder, { string, expression, attribute } from '../Placeholder'
+import { string, expression } from '../Placeholder'
 import { SnippetOptions } from '../createSnippet'
 
 export const colors = [
@@ -19,9 +19,9 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     position={forPreview ? 'relative' : string(positions)}
     color={string(colors)}
   >
-    <Mui.Toolbar __placeholder>
-      <Mui.Typography variant="h6" __placeholder>
-        {forPreview ? 'Title' : expression(0)}
+    <Mui.Toolbar $>
+      <Mui.Typography variant="h6" $>
+        {forPreview ? 'Title' : expression()}
       </Mui.Typography>
     </Mui.Toolbar>
   </Mui.AppBar>

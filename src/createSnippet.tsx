@@ -10,12 +10,7 @@ export type SnippetOptions = InputSnippetOptions & {
   Mui: Record<string, React.ComponentType<any>>
 }
 
-const specialAttributes = new Set([
-  '__placeholder',
-  '__optional',
-  '__oneLine',
-  'children',
-])
+const specialAttributes = new Set(['$', '__optional', '__oneLine', 'children'])
 
 function numAttributes(props: Record<string, any>): number {
   let count = 0
@@ -73,7 +68,6 @@ export function createSnippetText(
 ): string {
   function getStop(placeholder?: React.ReactElement<PlaceholderProps>): number {
     if (!placeholder) return placeholderStop[0]++
-    if (placeholder.props.stop != null) return placeholder.props.stop
     let stop = stops.get(placeholder)
     if (stop == null) {
       stop = placeholderStop[0]++
@@ -95,24 +89,19 @@ export function createSnippetText(
   if (__optional) parts.push(`\${${getStop()}:`)
   parts.push(`<${name}`)
 
-  for (const [key, value] of Object.entries(props)) {
-    if (key === '__placeholder') {
-      parts.push(
-        `${propSeparator}$${getStop(
-          value === true
-            ? undefined
-            : (value as React.ReactElement<PlaceholderProps>)
-        )}`
-      )
+  for (let [key, value] of Object.entries(props)) {
+    if (key === '$') {
+      parts.push(`${propSeparator}$${getStop()}`)
     } else if (value instanceof Object && React.isValidElement(value)) {
+      const optional = key.endsWith('__optional')
+      if (optional) key = key.replace(/__optional$/, '')
+      if (optional) parts.push(`\${${getStop()}:`)
       if (value.type === Placeholder) {
         const {
           type,
           default: _default,
           choices,
-          optional,
         } = value.props as PlaceholderProps
-        if (optional) parts.push(`\${${getStop()}:`)
         const stop = getStop(value as React.ReactElement<PlaceholderProps>)
         parts.push(propSeparator)
         const open = type === 'string' ? '"' : '{'
@@ -142,7 +131,6 @@ export function createSnippetText(
                   : `\$${stop}`
               }${close}`
         )
-        if (optional) parts.push('}')
       } else {
         parts.push(
           `${propSeparator}${key}={\n    ${createSnippetText(
@@ -151,6 +139,7 @@ export function createSnippetText(
           ).replace(/\n/gm, '\n    ')}\n  }`
         )
       }
+      if (optional) parts.push('}')
     } else {
       parts.push(`${propSeparator}${key}=${JSON.stringify(value)}`)
     }

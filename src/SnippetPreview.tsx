@@ -13,7 +13,9 @@ function getChoicesProps(
   snippet: React.ReactElement,
   output: Record<string, PlaceholderProps> = {}
 ): Record<string, PlaceholderProps> {
-  for (const [key, value] of Object.entries(snippet.props)) {
+  for (let [key, value] of Object.entries(snippet.props)) {
+    if (key === '$') continue
+    key = key.replace(/__optional$/, '')
     if (key === 'children') {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       for (const item of React.Children.toArray(value as any)) {
@@ -80,12 +82,12 @@ function createSinglePreview({
 }): React.ReactElement {
   function convertProps({
     __oneLine,
-    __placeholder,
+    $,
     ...props
   }: React.ReactElement['props']): React.ReactElement['props'] {
     const result: React.ReactElement['props'] = {}
-    for (const [key, value] of Object.entries(props)) {
-      if (key === '__placeholder') continue
+    for (let [key, value] of Object.entries(props)) {
+      key = key.replace(/__optional$/, '')
       if (key === 'children') {
         result.children = React.Children.map(value as any, (child, key) => {
           if (React.isValidElement(child)) {

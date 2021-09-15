@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Placeholder, { string, expression, attribute } from '../Placeholder'
+import { string, expression } from '../Placeholder'
 import { SnippetOptions } from '../createSnippet'
 import { anchors } from './muiDrawerPermanent'
 
@@ -11,8 +11,8 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     anchor={string(anchors)}
     open={expression()}
     onClose={expression()}
-    __placeholder
+    $
   >
-    {expression(0)}
+    {expression()}
   </Mui.Drawer>
 )

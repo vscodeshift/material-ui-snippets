@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { colors } from './muiButton'
-import Placeholder, { string, expression, attribute } from '../Placeholder'
+import { string, expression } from '../Placeholder'
 import { SnippetOptions } from '../createSnippet'
 
 export const description = 'Material-UI <Dialog>'
 
 export const body = ({ forPreview, Mui }: SnippetOptions) => {
-  const titleId = string()
+  const titleId = forPreview ? 'muiDialogTitle' : string()
   return (
     <Mui.Dialog
       {...(forPreview && {
@@ -15,10 +15,10 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => {
       })}
       open={forPreview ? true : expression()}
       onClose={expression()}
-      aria-labelledby={forPreview ? 'muiDialogTitle' : titleId}
+      aria-labelledby={titleId}
       __oneLine
     >
-      <Mui.DialogTitle __optional id={forPreview ? 'muiDialogTitle' : titleId}>
+      <Mui.DialogTitle __optional id={titleId}>
         {forPreview ? 'Title' : string()}
       </Mui.DialogTitle>
       <Mui.DialogContent __optional>

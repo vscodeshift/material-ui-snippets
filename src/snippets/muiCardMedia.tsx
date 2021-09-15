@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Placeholder, { string, expression, attribute } from '../Placeholder'
+import { string, expression } from '../Placeholder'
 import { SnippetOptions } from '../createSnippet'
 
 export const description = 'Material-UI <CardMedia>'

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Placeholder, { string, expression, attribute } from '../Placeholder'
+import { string, expression } from '../Placeholder'
 import { SnippetOptions } from '../createSnippet'
 import { variants, colors } from './muiButton'
 
@@ -11,11 +11,11 @@ export const body = ({ forPreview, Mui }: SnippetOptions) => (
     variant={string(variants)}
     color={string(colors)}
     aria-label={string()}
-    __placeholder
+    $
     __oneLine
   >
     <Mui.Button>{expression()}</Mui.Button>
     <Mui.Button>{expression()}</Mui.Button>
-    {expression(0)}
+    {expression()}
   </Mui.ButtonGroup>
 )
