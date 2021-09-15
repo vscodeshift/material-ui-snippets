@@ -19,6 +19,10 @@ After the API is improved in an upcoming release I can fix these performance iss
 is to either disable adding automatic imports for snippets (**Settings &gt; Extensions &gt; Material-UI Snippets &gt; Add Completion Imports**)
 or use the commands to insert snippets instead of suggestions.
 
+# Using MUI v5?
+
+For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://github.com/vscodeshift/material-ui-snippets/tree/beta). The current production release is for v4. Once MUI v5 is officially released, I'll officially release the next major version of `material-ui-snippets`.
+
 # Features
 
 - Works in JS/X and TSX
