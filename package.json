@@ -127,6 +127,11 @@
         "category": "Material-UI Snippets"
       },
       {
+        "command": "extension.muiCheckboxLabelPlacement",
+        "title": "Insert <Checkbox> with <FormControlLabel>",
+        "category": "Material-UI Snippets"
+      },
+      {
         "command": "extension.muiContainer",
         "title": "Insert <Container>",
         "category": "Material-UI Snippets"
@@ -154,6 +159,216 @@
       {
         "command": "extension.muiDrawerTemporary",
         "title": "Insert temporary <Drawer>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiEndAdornment",
+        "title": "Insert end <InputAdornment>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiExpansionPanel",
+        "title": "Insert <ExpansionPanel>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiExpansionPanelControlled",
+        "title": "Insert controlled <ExpansionPanel>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiFab",
+        "title": "Insert <Fab>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiFabExtended",
+        "title": "Insert <Fab variant=\"extended\">",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiFormControl",
+        "title": "Insert <FormControl>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiFormControlGroup",
+        "title": "Insert <FormControl> with <FormGroup>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiGridContainer",
+        "title": "Insert <Grid container>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiGridContainerCenter",
+        "title": "Insert <Grid container> with centering",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiGridContainerFull",
+        "title": "Insert <Grid container> with all props",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiGridListSubheader",
+        "title": "Insert <GridList> subheader",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiGridListTilebar",
+        "title": "Insert <GridListTileBar>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiIconButton",
+        "title": "Insert <IconButton>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiMenu",
+        "title": "Insert <Menu>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiMenuItem",
+        "title": "Insert <MenuItem>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiMenuPopupState",
+        "title": "Insert <Menu> for material-ui-popup-state",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiRadioGroup",
+        "title": "Insert <FormControl> with <RadioGroup>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiRadioLabel",
+        "title": "Insert <Radio> with <FormControlLabel>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiRadioLabelPlacement",
+        "title": "Insert <Radio> with <FormControlLabel> with labelPlacement",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSelectItem",
+        "title": "Insert <MenuItem> inside <Select>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSliderContinuous",
+        "title": "Insert <Slider> with continuous values",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSliderDiscrete",
+        "title": "Insert <Slider> with discrete values",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSnackbar",
+        "title": "Insert <Snackbar>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSnackbarContent",
+        "title": "Insert <SnackbarContent>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiStartAdornment",
+        "title": "Insert start <InputAdornment>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiStep",
+        "title": "Insert <Step>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiStepContent",
+        "title": "Insert <Step> with <StepContent>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiStepOptional",
+        "title": "Insert optional <Step>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiStepper",
+        "title": "Insert <Stepper>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSwipeableViews",
+        "title": "Insert <SwipeableViews>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSwitch",
+        "title": "Insert <Switch>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSwitchLabel",
+        "title": "Insert <Switch> with <FormControlLabel>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiSwitchLabelPlacement",
+        "title": "Insert <Switch> with <FormControlLabel> with labelPlacement",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTabPanel",
+        "title": "Insert <TabPanel>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTabs",
+        "title": "Insert <Tabs>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTabsScrollable",
+        "title": "Insert scrollable <Tabs>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTextField",
+        "title": "Insert <TextField>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTextFieldMore",
+        "title": "Insert <TextField> with more props",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTextFieldSelect",
+        "title": "Insert <TextField select>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTextFieldVariant",
+        "title": "Insert <TextField> with variant",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTooltip",
+        "title": "Insert <Tooltip>",
+        "category": "Material-UI Snippets"
+      },
+      {
+        "command": "extension.muiTypography",
+        "title": "Insert <Typography>",
         "category": "Material-UI Snippets"
       }
     ]
@@ -329,6 +544,7 @@
     "flow-parser": "^0.117.1",
     "jscodeshift": "^0.7.0",
     "jscodeshift-choose-parser": "^1.0.0",
+    "read-pkg-up": "^7.0.0",
     "require-glob": "^3.2.0",
     "shallowequal": "^1.1.0"
   }

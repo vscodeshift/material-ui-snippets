@@ -1,17 +1,11 @@
 import * as React from 'react'
-import { string, expression } from '../Placeholder'
-import { SnippetOptions } from '../createSnippet'
 import { anchors } from './muiDrawerPermanent'
+import { SnippetOptions } from './index'
 
 export const description = 'Material-UI persistent <Drawer>'
 
-export const body = ({ forPreview, Mui }: SnippetOptions) => (
-  <Mui.Drawer
-    variant="persistent"
-    anchor={string(anchors)}
-    open={expression()}
+export const body = ({ $, Components: { Drawer } }: SnippetOptions) => (
+  <Drawer variant="persistent" anchor={$(anchors)} open={$} $>
     $
-  >
-    {expression()}
-  </Mui.Drawer>
+  </Drawer>
 )

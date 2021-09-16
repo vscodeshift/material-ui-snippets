@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { string, expression } from '../Placeholder'
-import { SnippetOptions } from '../createSnippet'
+import { SnippetOptions } from './index'
 
 export const colors = [
   'primary',
@@ -14,15 +13,20 @@ export const positions = ['fixed', 'absolute', 'relative', 'static', 'sticky']
 
 export const description = 'Material-UI <AppBar>'
 
-export const body = ({ forPreview, Mui }: SnippetOptions) => (
-  <Mui.AppBar
-    position={forPreview ? 'relative' : string(positions)}
-    color={string(colors)}
+export const body = ({
+  forPreview,
+  $,
+  Components: { AppBar, Toolbar, Typography },
+}: SnippetOptions) => (
+  <AppBar
+    position={forPreview ? 'relative' : $(positions)}
+    color={$(colors)}
+    __oneLineProps
   >
-    <Mui.Toolbar $>
-      <Mui.Typography variant="h6" $>
-        {forPreview ? 'Title' : expression()}
-      </Mui.Typography>
-    </Mui.Toolbar>
-  </Mui.AppBar>
+    <Toolbar __multiLineChildren $>
+      <Typography variant="h6" __multiLineChildren $>
+        {forPreview ? 'Title' : '$'}
+      </Typography>
+    </Toolbar>
+  </AppBar>
 )

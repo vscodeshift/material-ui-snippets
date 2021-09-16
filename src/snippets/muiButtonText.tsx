@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { string, expression } from '../Placeholder'
-import { SnippetOptions } from '../createSnippet'
+import { SnippetOptions } from './index'
 import { colors } from './muiButton'
 
 export const description = 'Material-UI text <Button>'
 
-export const body = ({ forPreview, Mui }: SnippetOptions) => (
-  <Mui.Button color={string(colors)} $>
-    {expression()}
-  </Mui.Button>
+export const body = ({ $, Components: { Button } }: SnippetOptions) => (
+  <Button color={$(colors)} $>
+    $
+  </Button>
 )

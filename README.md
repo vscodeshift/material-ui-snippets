@@ -19,6 +19,10 @@ After the API is improved in an upcoming release I can fix these performance iss
 is to either disable adding automatic imports for snippets (**Settings &gt; Extensions &gt; Material-UI Snippets &gt; Add Completion Imports**)
 or use the commands to insert snippets instead of suggestions.
 
+# Using MUI v5?
+
+For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://github.com/vscodeshift/material-ui-snippets/tree/beta). The current production release is for v4. Once MUI v5 is officially released, I'll officially release the next major version of `material-ui-snippets`.
+
 # Features
 
 - Works in JS/X and TSX
@@ -56,19 +60,62 @@ or use the commands to insert snippets instead of suggestions.
 - [`muiCardHeader`: &lt;CardHeader&gt;](#muicardheader-cardheader)
 - [`muiCardMedia`: &lt;CardMedia&gt;](#muicardmedia-cardmedia)
 - [`muiCheckboxLabel`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;](#muicheckboxlabel-checkbox-with-formcontrollabel)
+- [`muiCheckboxLabelPlacement`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;](#muicheckboxlabelplacement-checkbox-with-formcontrollabel)
 - [`muiContainer`: &lt;Container&gt;](#muicontainer-container)
 - [`muiDialog`: &lt;Dialog&gt;](#muidialog-dialog)
 - [`muiDialogSimple`: &lt;Dialog&gt;](#muidialogsimple-dialog)
 - [`muiDrawerPermanent`: permanent &lt;Drawer&gt;](#muidrawerpermanent-permanent-drawer)
 - [`muiDrawerPersistent`: persistent &lt;Drawer&gt;](#muidrawerpersistent-persistent-drawer)
 - [`muiDrawerTemporary`: temporary &lt;Drawer&gt;](#muidrawertemporary-temporary-drawer)
+- [`muiEndAdornment`: end &lt;InputAdornment&gt;](#muiendadornment-end-inputadornment)
+- [`muiExpansionPanel`: &lt;ExpansionPanel&gt;](#muiexpansionpanel-expansionpanel)
+- [`muiExpansionPanelControlled`: controlled &lt;ExpansionPanel&gt;](#muiexpansionpanelcontrolled-controlled-expansionpanel)
+- [`muiFab`: &lt;Fab&gt;](#muifab-fab)
+- [`muiFabExtended`: &lt;Fab variant="extended"&gt;](#muifabextended-fab-variantextended)
+- [`muiFormControl`: &lt;FormControl&gt;](#muiformcontrol-formcontrol)
+- [`muiFormControlGroup`: &lt;FormControl&gt; with &lt;FormGroup&gt;](#muiformcontrolgroup-formcontrol-with-formgroup)
+- [`muiGridContainer`: &lt;Grid container&gt;](#muigridcontainer-grid-container)
+- [`muiGridContainerCenter`: &lt;Grid container&gt; with centering](#muigridcontainercenter-grid-container-with-centering)
+- [`muiGridContainerFull`: &lt;Grid container&gt; with all props](#muigridcontainerfull-grid-container-with-all-props)
+- [`muiGridListSubheader`: &lt;GridList&gt; subheader](#muigridlistsubheader-gridlist-subheader)
+- [`muiGridListTilebar`: &lt;GridListTileBar&gt;](#muigridlisttilebar-gridlisttilebar)
+- [`muiIconButton`: &lt;IconButton&gt;](#muiiconbutton-iconbutton)
+- [`muiMenu`: &lt;Menu&gt;](#muimenu-menu)
+- [`muiMenuItem`: &lt;MenuItem&gt;](#muimenuitem-menuitem)
+- [`muiMenuPopupState`: &lt;Menu&gt; for material-ui-popup-state](#muimenupopupstate-menu-for-material-ui-popup-state)
+- [`muiRadioGroup`: &lt;FormControl&gt; with &lt;RadioGroup&gt;](#muiradiogroup-formcontrol-with-radiogroup)
+- [`muiRadioLabel`: &lt;Radio&gt; with &lt;FormControlLabel&gt;](#muiradiolabel-radio-with-formcontrollabel)
+- [`muiRadioLabelPlacement`: &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement](#muiradiolabelplacement-radio-with-formcontrollabel-with-labelplacement)
+- [`muiSelectItem`: &lt;MenuItem&gt; inside &lt;Select&gt;](#muiselectitem-menuitem-inside-select)
+- [`muiSliderContinuous`: &lt;Slider&gt; with continuous values](#muislidercontinuous-slider-with-continuous-values)
+- [`muiSliderDiscrete`: &lt;Slider&gt; with discrete values](#muisliderdiscrete-slider-with-discrete-values)
+- [`muiSnackbar`: &lt;Snackbar&gt;](#muisnackbar-snackbar)
+- [`muiSnackbarContent`: &lt;SnackbarContent&gt;](#muisnackbarcontent-snackbarcontent)
+- [`muiStartAdornment`: start &lt;InputAdornment&gt;](#muistartadornment-start-inputadornment)
+- [`muiStep`: &lt;Step&gt;](#muistep-step)
+- [`muiStepContent`: &lt;Step&gt; with &lt;StepContent&gt;](#muistepcontent-step-with-stepcontent)
+- [`muiStepOptional`: optional &lt;Step&gt;](#muistepoptional-optional-step)
+- [`muiStepper`: &lt;Stepper&gt;](#muistepper-stepper)
+- [`muiSwipeableViews`: &lt;SwipeableViews&gt;](#muiswipeableviews-swipeableviews)
+- [`muiSwitch`: &lt;Switch&gt;](#muiswitch-switch)
+- [`muiSwitchLabel`: &lt;Switch&gt; with &lt;FormControlLabel&gt;](#muiswitchlabel-switch-with-formcontrollabel)
+- [`muiSwitchLabelPlacement`: &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement](#muiswitchlabelplacement-switch-with-formcontrollabel-with-labelplacement)
+- [`muiTabPanel`: &lt;TabPanel&gt;](#muitabpanel-tabpanel)
+- [`muiTabs`: &lt;Tabs&gt;](#muitabs-tabs)
+- [`muiTabsScrollable`: scrollable &lt;Tabs&gt;](#muitabsscrollable-scrollable-tabs)
+- [`muiTextField`: &lt;TextField&gt;](#muitextfield-textfield)
+- [`muiTextFieldMore`: &lt;TextField&gt; with more props](#muitextfieldmore-textfield-with-more-props)
+- [`muiTextFieldSelect`: &lt;TextField select&gt;](#muitextfieldselect-textfield-select)
+- [`muiTextFieldVariant`: &lt;TextField&gt; with variant](#muitextfieldvariant-textfield-with-variant)
+- [`muiTooltip`: &lt;Tooltip&gt;](#muitooltip-tooltip)
+- [`muiTypography`: &lt;Typography&gt;](#muitypography-typography)
 
 ### `muiAppBar`: &lt;AppBar&gt;
 
 ```
 <AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
-  <Toolbar $3>
-    <Typography variant="h6" $4>
+  <Toolbar$3>
+    <Typography variant="h6"$4>
       $5
     </Typography>
   </Toolbar>
@@ -79,15 +126,11 @@ or use the commands to insert snippets instead of suggestions.
 
 ```
 <AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
-  <Toolbar $3>
-    <IconButton
-      edge="start"
-      color="inherit"
-      aria-label="menu"
-    >
-      <MenuIcon />
+  <Toolbar$3>
+    <IconButton edge="start" color="inherit" aria-label="menu">
+      <Menu />
     </IconButton>
-    <Typography variant="h6" $4>
+    <Typography variant="h6"$4>
       $5
     </Typography>
   </Toolbar>
@@ -97,7 +140,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiBottomNavigation`: &lt;BottomNavigation&gt;
 
 ```
-<BottomNavigation value={$1} onChange={$2} $3>
+<BottomNavigation value={$1} onChange={$2}$3>
   $4
 </BottomNavigation>
 ```
@@ -105,18 +148,13 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiBottomNavigationAction`: &lt;BottomNavigationAction&gt;
 
 ```
-<BottomNavigationAction
-  label="$1"
-  value={$2}
-  icon={$3}
-  $4
-/>
+<BottomNavigationAction label="$1" value={$2} icon={$3}$4 />
 ```
 
 ### `muiButton`: &lt;Button&gt;
 
 ```
-<Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" $3>
+<Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}"$3>
   $4
 </Button>
 ```
@@ -124,13 +162,9 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiButtonGroup`: &lt;ButtonGroup&gt;
 
 ```
-<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3" $4>
-  <Button>
-    $5
-  </Button>
-  <Button>
-    $6
-  </Button>
+<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3"$4>
+  <Button>$5</Button>
+  <Button>$6</Button>
   $7
 </ButtonGroup>
 ```
@@ -138,13 +172,9 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiButtonGroupSize`: &lt;ButtonGroup&gt; with size
 
 ```
-<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}" aria-label="$4" $5>
-  <Button>
-    $6
-  </Button>
-  <Button>
-    $7
-  </Button>
+<ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}" aria-label="$4"$5>
+  <Button>$6</Button>
+  <Button>$7</Button>
   $8
 </ButtonGroup>
 ```
@@ -152,13 +182,9 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiButtonGroupVertical`: vertical &lt;ButtonGroup&gt;
 
 ```
-<ButtonGroup orientation="vertical" variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3" $4>
-  <Button>
-    $5
-  </Button>
-  <Button>
-    $6
-  </Button>
+<ButtonGroup orientation="vertical" variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3"$4>
+  <Button>$5</Button>
+  <Button>$6</Button>
   $7
 </ButtonGroup>
 ```
@@ -179,9 +205,7 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiButtonText`: text &lt;Button&gt;
 
 ```
-<Button color="${1|default,inherit,primary,secondary|}" $2>
-  $3
-</Button>
+<Button color="${1|default,inherit,primary,secondary|}"$2>$3</Button>
 ```
 
 ### `muiButtonWithIcon`: &lt;Button&gt; with icon and label
@@ -202,18 +226,18 @@ or use the commands to insert snippets instead of suggestions.
 ```
 <CardHeader${1:
   avatar={
-    <Avatar aria-label="$3" $4>
-      $5
+    <Avatar aria-label="$2"$3>
+      $4
     </Avatar>
-  }}${6:
+  \}}${5:
   action={
-    <IconButton aria-label="$8" $9>
-      $10
+    <IconButton aria-label="$6"$7>
+      $8
     </IconButton>
-  }}${11:
-  title="$12"}${13:
-  subheader="$14"}
-  $15
+  \}}${9:
+  title="$10"}${11:
+  subheader="$12"}
+  $13
 />
 ```
 
@@ -256,10 +280,45 @@ or use the commands to insert snippets instead of suggestions.
 />
 ```
 
+### `muiCheckboxLabelPlacement`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
+
+#### Controlled
+
+```
+<FormControlLabel
+  label="$1"
+  labelPlacement="${2|end,start,top,bottom|}"
+  control={
+    <Checkbox
+      value="$3"
+      checked={$4}
+      onChange={$5}
+      color="${6:primary}"
+    />
+  }
+/>
+```
+
+#### Uncontrolled
+
+```
+<FormControlLabel
+  label="$1"
+  labelPlacement="${2|end,start,top,bottom|}"
+  control={
+    <Checkbox
+      value="$3"
+      defaultChecked={$4}
+      color="${5:primary}"
+    />
+  }
+/>
+```
+
 ### `muiContainer`: &lt;Container&gt;
 
 ```
-<Container maxWidth="${1|xs,sm,md,lg,xl|}" $2>
+<Container maxWidth="${1|xs,sm,md,lg,xl|}"$2>
   $3
 </Container>
 ```
@@ -267,8 +326,8 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiDialog`: &lt;Dialog&gt;
 
 ```
-<Dialog open={$1} onClose={$2} aria-labelledby="$3">${4:
-  <DialogTitle id="$3">
+<Dialog open={$1} onClose={$2} aria-labelledby={$3}>${4:
+  <DialogTitle id={$3\}>
     $5
   </DialogTitle>}${6:
   <DialogContent>${7:
@@ -277,8 +336,8 @@ or use the commands to insert snippets instead of suggestions.
     </DialogContentText>}
   </DialogContent>}${9:
   <DialogActions>
-    <Button onClick={$10} color="${11|default,inherit,primary,secondary|}">
-      ${12:Cancel}
+    <Button onClick={$10\} color="${11|default,inherit,primary,secondary|}">${12:
+      Cancel}
     </Button>
   </DialogActions>}
 </Dialog>
@@ -287,13 +346,15 @@ or use the commands to insert snippets instead of suggestions.
 ### `muiDialogSimple`: &lt;Dialog&gt;
 
 ```
-<Dialog open={$1} onClose={$2} aria-labelledby="$3">$4</Dialog>
+<Dialog open={$1} onClose={$2} aria-labelledby="$3">
+  $4
+</Dialog>
 ```
 
 ### `muiDrawerPermanent`: permanent &lt;Drawer&gt;
 
 ```
-<Drawer variant="permanent" anchor="${1|left,right,top,bottom|}" $2>
+<Drawer variant="permanent" anchor="${1|left,right,top,bottom|}"$2>
   $3
 </Drawer>
 ```
@@ -323,6 +384,619 @@ or use the commands to insert snippets instead of suggestions.
 >
   $5
 </Drawer>
+```
+
+### `muiEndAdornment`: end &lt;InputAdornment&gt;
+
+```
+
+endAdornment={
+  <InputAdornment position="end">
+    $0
+  </InputAdornment>
+}
+
+```
+
+### `muiExpansionPanel`: &lt;ExpansionPanel&gt;
+
+```
+<ExpansionPanel>
+  <ExpansionPanelSummary
+    expandIcon={<ExpandMoreIcon />}
+    aria-label="${1:Expand}"
+    aria-controls="$2-content"
+    id="$2-header"
+  >
+    <Typography$3>$4</Typography>
+  </ExpansionPanelSummary>
+  <ExpansionPanelDetails>$5</ExpansionPanelDetails>
+</ExpansionPanel>
+```
+
+### `muiExpansionPanelControlled`: controlled &lt;ExpansionPanel&gt;
+
+```
+<ExpansionPanel expanded={$1} onChange={$2}>
+  <ExpansionPanelSummary
+    expandIcon={<ExpandMore />}
+    aria-label="${3:Expand}"
+    aria-controls="$4-content"
+    id="$4-header"
+  >
+    <Typography$5>$6</Typography>
+  </ExpansionPanelSummary>
+  <ExpansionPanelDetails>$7</ExpansionPanelDetails>
+</ExpansionPanel>
+```
+
+### `muiFab`: &lt;Fab&gt;
+
+```
+<Fab color="${1|default,inherit,primary,secondary|}" aria-label="$2"$3>
+  <$4Icon />
+</Fab>
+```
+
+### `muiFabExtended`: &lt;Fab variant="extended"&gt;
+
+```
+<Fab variant="extended" color="${1|default,inherit,primary,secondary|}" aria-label="$2"$3>
+  <Box marginRight={1}><$4Icon /></Box>
+  $5
+</Fab>
+```
+
+### `muiFormControl`: &lt;FormControl&gt;
+
+```
+<FormControl$1>
+  <FormLabel>$2</FormLabel>
+  $0
+  <FormHelperText>$3</FormHelperText>
+</FormControl>
+```
+
+### `muiFormControlGroup`: &lt;FormControl&gt; with &lt;FormGroup&gt;
+
+```
+<FormControl component=${1:"fieldset"}$2>
+  <FormLabel component=${3:"legend"}>$4</FormLabel>
+  <FormGroup>
+    $0
+  </FormGroup>
+  <FormHelperText>$5</FormHelperText>
+</FormControl>
+```
+
+### `muiGridContainer`: &lt;Grid container&gt;
+
+```
+<Grid container spacing={$1}$2>
+  $3
+</Grid>
+```
+
+### `muiGridContainerCenter`: &lt;Grid container&gt; with centering
+
+```
+<Grid
+  container
+  spacing={${1:1}}${2:
+  direction="${3|row,row-reverse,column,column-reverse|}"}
+  justify="${4:center}"
+  alignItems="${5:center}"
+  alignContent="${6:center}"${7:
+  wrap="${8|nowrap,wrap,wrap-reverse|}"}
+  $9
+>
+  $10
+</Grid>
+```
+
+### `muiGridContainerFull`: &lt;Grid container&gt; with all props
+
+```
+<Grid
+  container${1:
+  spacing={${2:1}\}}${3:
+  direction="${4|row,row-reverse,column,column-reverse|}"}${5:
+  justify="${6|flex-start,center,flex-end,space-between,space-around,space-evenly|}"}${7:
+  alignItems="${8|flex-start,center,flex-end,stretch,baseline|}"}${9:
+  alignContent="${10|stretch,center,flex-start,flex-end,space-between,space-around|}"}${11:
+  wrap="${12|nowrap,wrap,wrap-reverse|}"}
+  $13
+>
+  $14
+</Grid>
+```
+
+### `muiGridListSubheader`: &lt;GridList&gt; subheader
+
+```
+<GridListTile cols={${1:2}} style={{ height: 'auto' }}>
+  <ListSubheader component="div">$2</ListSubheader>
+</GridListTile>
+```
+
+### `muiGridListTilebar`: &lt;GridListTileBar&gt;
+
+```
+<GridListTileBar${1:
+  title="$2"}${3:
+  subtitle="$4"}${5:
+  actionIcon={
+    <IconButton aria-label="$6"$7>
+      $8
+    </IconButton>
+  \}}
+/>
+```
+
+### `muiIconButton`: &lt;IconButton&gt;
+
+```
+<IconButton aria-label="$1" onClick={$2}$3>
+  $4
+</IconButton>
+```
+
+### `muiMenu`: &lt;Menu&gt;
+
+```
+<Menu id="$1" anchorEl={$2} keepMounted open={Boolean($2)} onClose={$3}$4>
+  $5
+</Menu>
+```
+
+### `muiMenuItem`: &lt;MenuItem&gt;
+
+```
+<MenuItem onClick={$1}$2>$3</MenuItem>
+```
+
+### `muiMenuPopupState`: &lt;Menu&gt; for material-ui-popup-state
+
+```
+<Menu
+  id="$1"
+  keepMounted
+  {...bindMenu(${2:popupState})}
+  $3
+>
+  $4
+</Menu>
+```
+
+### `muiRadioGroup`: &lt;FormControl&gt; with &lt;RadioGroup&gt;
+
+```
+<FormControl component=${1:"fieldset"}$2>
+  <FormLabel component=${3:"legend"}>$4</FormLabel>
+  <RadioGroup aria-label="$5" name="$6" value={$7} onChange={$8}>$0</RadioGroup>
+  <FormHelperText>$9</FormHelperText>
+</FormControl>
+```
+
+### `muiRadioLabel`: &lt;Radio&gt; with &lt;FormControlLabel&gt;
+
+```
+<FormControlLabel value="$1" label="$2" control={<Radio$3 />} />
+```
+
+### `muiRadioLabelPlacement`: &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
+
+```
+<FormControlLabel
+  value="$1"
+  label="$2"
+  labelPlacement="${3|end,start,top,bottom|}"
+  control={<Radio$4 />}
+/>
+```
+
+### `muiSelectItem`: &lt;MenuItem&gt; inside &lt;Select&gt;
+
+```
+<MenuItem value={$1}$2>$3</MenuItem>
+```
+
+### `muiSliderContinuous`: &lt;Slider&gt; with continuous values
+
+#### Controlled
+
+```
+<Slider
+  value={$1}
+  onChange={$2}
+  aria-labelledby="$3"
+  min={${4:0}}
+  max={${5:100}}
+  $6
+/>
+```
+
+#### Uncontrolled
+
+```
+<Slider
+  defaultValue={$1}
+  aria-labelledby="$2"
+  min={${3:0}}
+  max={${4:100}}
+  $5
+/>
+```
+
+### `muiSliderDiscrete`: &lt;Slider&gt; with discrete values
+
+#### Controlled
+
+```
+<Slider
+  value={$1}
+  onChange={$2}
+  aria-labelledby="$3"
+  step={${4:1}}
+  marks
+  min={${5:0}}
+  max={${6:100}}
+  $7
+/>
+```
+
+#### Uncontrolled
+
+```
+<Slider
+  defaultValue={$1}
+  aria-labelledby="$2"
+  step={${3:1}}
+  marks
+  min={${4:0}}
+  max={${5:100}}
+  $6
+/>
+```
+
+### `muiSnackbar`: &lt;Snackbar&gt;
+
+```
+<Snackbar
+  anchorOrigin={{ vertical: '$1', horizontal: '$2' }}
+  open={$3}
+  onClose={$4}
+  message="$5"${6:
+  action={
+    <IconButton size="small" aria-label="close" color="inherit" onClick={$4\}>
+      <Close fontSize="small" />
+    </IconButton>
+  \}}
+/>
+```
+
+### `muiSnackbarContent`: &lt;SnackbarContent&gt;
+
+```
+<SnackbarContent message="$1" action={$2} />
+```
+
+### `muiStartAdornment`: start &lt;InputAdornment&gt;
+
+```
+
+startAdornment={
+  <InputAdornment position="start">
+    $0
+  </InputAdornment>
+}
+
+```
+
+### `muiStep`: &lt;Step&gt;
+
+```
+<Step key={$1} completed={$2}$3>
+  <StepLabel>$4</StepLabel>
+</Step>
+```
+
+### `muiStepContent`: &lt;Step&gt; with &lt;StepContent&gt;
+
+```
+<Step key={$1} completed={$2}$3>
+  <StepLabel>$4</StepLabel>
+  <StepContent>
+    $5
+  </StepContent>
+</Step>
+```
+
+### `muiStepOptional`: optional &lt;Step&gt;
+
+```
+<Step key={$1} completed={$2}$3>
+  <StepLabel
+    optional={<Typography variant="caption">${4:Optional}</Typography>}
+  >
+    $5
+  </StepLabel>
+</Step>
+```
+
+### `muiStepper`: &lt;Stepper&gt;
+
+```
+<Stepper activeStep={$1}>
+  $2
+</Stepper>
+```
+
+### `muiSwipeableViews`: &lt;SwipeableViews&gt;
+
+```
+<SwipeableViews
+  axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+  index={$1}
+  onChangeIndex={$2}
+  $3
+>
+  $0
+</SwipeableViews>
+```
+
+### `muiSwitch`: &lt;Switch&gt;
+
+#### Controlled
+
+```
+<Switch
+  value="$1"
+  checked={$2}
+  onChange={$3}
+  inputProps={{ "aria-label": '$4' }}
+  $5
+/>
+```
+
+#### Uncontrolled
+
+```
+<Switch
+  value="$1"
+  defaultChecked={$2}
+  inputProps={{ "aria-label": '$3' }}
+  $4
+/>
+```
+
+### `muiSwitchLabel`: &lt;Switch&gt; with &lt;FormControlLabel&gt;
+
+#### Controlled
+
+```
+<FormControlLabel
+  label="$1"
+  control={
+    <Switch
+      value="$2"
+      checked={$3}
+      onChange={$4}
+      $5
+    />
+  }
+/>
+```
+
+#### Uncontrolled
+
+```
+<FormControlLabel
+  label="$1"
+  control={
+    <Switch
+      value="$2"
+      defaultChecked={$3}
+      $4
+    />
+  }
+/>
+```
+
+### `muiSwitchLabelPlacement`: &lt;Switch&gt; with &lt;FormControlLabel&gt; with labelPlacement
+
+#### Controlled
+
+```
+<FormControlLabel
+  label="$1"
+  labelPlacement="${2|end,start,top,bottom|}"
+  control={
+    <Switch
+      value="$3"
+      checked={$4}
+      onChange={$5}
+      $6
+    />
+  }
+/>
+```
+
+#### Uncontrolled
+
+```
+<FormControlLabel
+  label="$1"
+  labelPlacement="${2|end,start,top,bottom|}"
+  control={
+    <Switch
+      value="$3"
+      defaultChecked={$4}
+      $5
+    />
+  }
+/>
+```
+
+### `muiTabPanel`: &lt;TabPanel&gt;
+
+```
+<TabPanel value={$1} index={$2} ${3:dir={theme.direction\}}$4>
+  $5
+</TabPanel>
+```
+
+### `muiTabs`: &lt;Tabs&gt;
+
+```
+<AppBar position="static" color="${1|primary,default,inherit,secondary,transparent|}"$2>
+  <Tabs value={$3} onChange={$4} aria-label="$5"$6>
+    $7
+  </Tabs>
+</AppBar>
+```
+
+### `muiTabsScrollable`: scrollable &lt;Tabs&gt;
+
+```
+<AppBar position="static" color="${1|primary,default,inherit,secondary,transparent|}"$2>
+  <Tabs
+    value={$3}
+    onChange={$4}
+    aria-label="$5"
+    variant="scrollable"
+    scrollButtons="${6:auto}"
+    $7
+  >
+    $8
+  </Tabs>
+</AppBar>
+```
+
+### `muiTextField`: &lt;TextField&gt;
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  value={$3}
+  onChange={$4}
+  $5
+/>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  defaultValue={$3}
+  $4
+/>
+```
+
+### `muiTextFieldMore`: &lt;TextField&gt; with more props
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"${3:
+  variant="${4|standard,outlined,filled|}"}${5:
+  color="${6|primary,secondary|}"}${7:
+  margin="${8|none,dense,normal|}"}${9:
+  sizes="${10|small,medium|}"}
+  value={$11}
+  onChange={$12}
+  $13
+/>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"${3:
+  variant="${4|standard,outlined,filled|}"}${5:
+  color="${6|primary,secondary|}"}${7:
+  margin="${8|none,dense,normal|}"}${9:
+  sizes="${10|small,medium|}"}
+  defaultValue={$11}
+  $12
+/>
+```
+
+### `muiTextFieldSelect`: &lt;TextField select&gt;
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  select
+  value={$3}
+  onChange={$4}
+  $5
+/>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  select
+  defaultValue={$3}
+  $4
+/>
+```
+
+### `muiTextFieldVariant`: &lt;TextField&gt; with variant
+
+#### Controlled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  variant="${3|standard,outlined,filled|}"
+  value={$4}
+  onChange={$5}
+  $6
+/>
+```
+
+#### Uncontrolled
+
+```
+<TextField
+  id="$1"
+  label="$2"
+  variant="${3|standard,outlined,filled|}"
+  defaultValue={$4}
+  $5
+/>
+```
+
+### `muiTooltip`: &lt;Tooltip&gt;
+
+```
+<Tooltip title="$1"$2>
+  $TM_SELECTED_TEXT$0
+</Tooltip>
+```
+
+### `muiTypography`: &lt;Typography&gt;
+
+```
+<Typography variant="${1|h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,caption,button,overline,srOnly,inherit|}" ${2:color="${3|initial,inherit,primary,secondary,textPrimary,textSecondary,error|}"}$4>$TM_SELECTED_TEXT$0</Typography>
 ```
 
 <!-- snippetsend -->

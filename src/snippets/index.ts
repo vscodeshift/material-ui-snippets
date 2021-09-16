@@ -2,20 +2,38 @@
 
 import requireGlob from 'require-glob'
 import path from 'path'
+import * as React from 'react'
 
-export type SnippetOptions = {
-  language: 'javascriptreact' | 'typescriptreact'
+export type InputSnippetOptions = {
+  forPreview?: boolean
   formControlMode: 'controlled' | 'uncontrolled'
+  language: 'javascriptreact' | 'typescriptreact'
 }
+export type SnippetOptions = InputSnippetOptions & {
+  $: {
+    (options?: any): any
+    [name: string]: (options?: any) => any
+  }
+  Components: Record<string, React.ComponentType<any>>
+  Icons: Record<string, React.ComponentType<any>>
+}
+
+export type SnippetBodyComponent = (
+  options: SnippetOptions
+) => React.ReactElement
+
+export type SnippetBody = string | SnippetBodyComponent
 
 export type Snippet = {
   prefix: string
   description: string
-  body: (options: SnippetOptions) => React.ReactElement
+  body: SnippetBody
+  components?: string[]
+  icons?: string[]
 }
 
 export default async function loadSnippets(): Promise<Record<string, Snippet>> {
-  return await requireGlob('./*.{js,tsx}', {
+  return await requireGlob('./*.{js,ts,tsx}', {
     reducer: (
       options: Record<string, any>,
       result: Record<string, any>,
@@ -35,16 +53,12 @@ export default async function loadSnippets(): Promise<Record<string, Snippet>> {
           `src/snippets/${filename}: must export a string description`
         )
       }
-      if (!body || typeof body !== 'function') {
+      if (!body || (typeof body !== 'string' && typeof body !== 'function')) {
         throw new Error(
           `src/snippets/${filename}: must export a function or string body`
         )
       }
-      result[filenameNoExt] = {
-        prefix,
-        description,
-        body,
-      }
+      result[filenameNoExt] = { prefix, description, body }
       return result
     },
   })

@@ -5,7 +5,6 @@ import * as path from 'path'
 import * as prettier from 'prettier'
 import markdownEscape from 'markdown-escape'
 import loadSnippets from '../src/snippets/index'
-import { CompiledSnippet } from '../src/snip'
 import createSnippet from '../src/createSnippet'
 
 const root = path.resolve(__dirname, '..')
@@ -45,11 +44,11 @@ async function go(): Promise<void> {
     const heading = `\`${prefix}\`: ${description}`
     toc.push(`- [${heading}](${headingUrl(heading)})`)
     markdown.push(`### ${heading}`)
-    const { text: controlledText } = createSnippet(snippet.body, {
+    const { text: controlledText } = createSnippet(snippet, {
       formControlMode: 'controlled',
       language: 'typescriptreact',
     })
-    const { text: uncontrolledText } = createSnippet(snippet.body, {
+    const { text: uncontrolledText } = createSnippet(snippet, {
       formControlMode: 'uncontrolled',
       language: 'typescriptreact',
     })

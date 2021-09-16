@@ -1,190 +1,384 @@
 import * as React from 'react'
-import Placeholder, { PlaceholderProps } from './Placeholder'
-
-export type InputSnippetOptions = {
-  forPreview?: boolean
-  formControlMode: 'controlled' | 'uncontrolled'
-  language: 'javascriptreact' | 'typescriptreact'
-}
-export type SnippetOptions = InputSnippetOptions & {
-  Mui: Record<string, React.ComponentType<any>>
-}
-
-const specialAttributes = new Set(['$', '__optional', '__oneLine', 'children'])
-
-function numAttributes(props: Record<string, any>): number {
-  let count = 0
-  for (const key in props) {
-    if (!specialAttributes.has(key)) count++
-  }
-  return count
-}
-
-function hasElementAttributes(props: Record<string, any>): boolean {
-  for (const key in props) {
-    if (specialAttributes.has(key)) continue
-    if (React.isValidElement(props[key]) && props[key].type !== Placeholder)
-      return true
-  }
-  return false
-}
+import { InputSnippetOptions, Snippet, SnippetBodyComponent } from './snippets'
 
 export default function createSnippet(
-  snippet: (options: SnippetOptions) => React.ReactElement,
+  snippet: Snippet,
   options: InputSnippetOptions
-): { text: string; imports: string[] } {
-  const imports: string[] = []
-  const Mui = new Proxy({} as Record<string, React.ComponentType<any>>, {
-    get(target: any, prop: string): React.ComponentType<any> {
-      if (!target[prop]) {
-        imports.push(
-          prop.endsWith('Icon')
-            ? `import ${prop} from '@material-ui/icons/${prop.replace(
-                /Icon$/,
-                ''
-              )}'`
-            : `import ${prop} from '@material-ui/core/${prop}'`
-        )
-        const component = () => null
-        ;(component as any).displayName = prop
-        target[prop] = component
-      }
-      return target[prop]
-    },
-  })
-  const el = snippet({ ...options, Mui })
-  return { text: createSnippetText(el), imports }
+): { text: string; components: string[]; icons: string[] } {
+  const { body, components, icons } = snippet
+  if (typeof body === 'string') {
+    return createRawSnippet({ body, components, icons })
+  } else {
+    return compileSnippet(body, options)
+  }
 }
 
-export function createSnippetText(
-  snippet: React.ReactElement,
-  {
-    placeholderStop = [1],
-    stops = new Map(),
-  }: {
-    placeholderStop?: [number]
-    stops?: Map<React.ReactElement<PlaceholderProps>, number>
-  } = {}
-): string {
-  function getStop(placeholder?: React.ReactElement<PlaceholderProps>): number {
-    if (!placeholder) return placeholderStop[0]++
-    let stop = stops.get(placeholder)
-    if (stop == null) {
-      stop = placeholderStop[0]++
-      stops.set(placeholder, stop)
-    }
-    return stop
+function createRawSnippet({
+  body,
+  components = [],
+  icons = [],
+}: {
+  body: string
+  components?: string[]
+  icons?: string[]
+}): { text: string; components: string[]; icons: string[] } {
+  return {
+    text: body,
+    components,
+    icons,
   }
-  const childOptions = { placeholderStop, stops }
-  const name =
-    typeof snippet.type === 'string'
-      ? snippet.type
-      : (snippet.type as any).displayName ?? snippet.type.name
-  const { children, __oneLine: oneLine, __optional, ...props } = snippet.props
+}
 
-  const parts = []
-  const fewProps = numAttributes(props) <= 2 && !hasElementAttributes(props)
-  const propSeparator = oneLine || fewProps ? ' ' : '\n  '
+function indent(str: string, indentation = '  '): string {
+  return str.replace(/^/gm, indentation)
+}
 
-  if (__optional) parts.push(`\${${getStop()}:`)
-  parts.push(`<${name}`)
+function escape(str: string): string {
+  function isPlaceholderClose(i: number): boolean {
+    let level = 1
+    while (--i >= 0) {
+      switch (str[i]) {
+        case '}':
+          level++
+          break
+        case '{':
+          if (str[i - 1] !== '\\') {
+            level--
+            if (!level) return str[i - 1] === '$' && str[i - 2] !== '\\'
+          }
+      }
+    }
+    return false
+  }
 
-  for (let [key, value] of Object.entries(props)) {
-    if (key === '$') {
-      parts.push(`${propSeparator}$${getStop()}`)
-    } else if (value instanceof Object && React.isValidElement(value)) {
-      const optional = key.endsWith('__optional')
-      if (optional) key = key.replace(/__optional$/, '')
-      if (optional) parts.push(`\${${getStop()}:`)
+  return str.replace(/\}/g, (match, i): string =>
+    isPlaceholderClose(i) ? '}' : '\\}'
+  )
+}
+
+type PlaceholderProps = { name?: string; value: any }
+
+function compileSnippet(
+  body: SnippetBodyComponent,
+  options: InputSnippetOptions
+): { text: string; components: string[]; icons: string[] } {
+  let stop = 1
+
+  const stops: Map<any, number> = new Map()
+
+  function getStopNumber(
+    placeholder?:
+      | string
+      | React.ReactElement<PlaceholderProps, typeof Placeholder>
+  ): number {
+    if (placeholder == null || placeholder === '$') return stop++
+    if (placeholder === '$0') return 0
+    const key = React.isValidElement(placeholder)
+      ? (placeholder as React.ReactElement<PlaceholderProps>).props.name ||
+        placeholder
+      : placeholder
+    const existing = stops.get(key)
+    if (existing) return existing
+    const result = stop++
+    stops.set(key, result)
+    return result
+  }
+
+  function getStop(
+    placeholder?:
+      | string
+      | React.ReactElement<PlaceholderProps, typeof Placeholder>
+  ): string {
+    return `$${getStopNumber(placeholder)}`
+  }
+
+  function Placeholder(props: PlaceholderProps): null {
+    return null
+  }
+
+  function formatPlaceholder(
+    placeholder: React.ReactElement<PlaceholderProps, typeof Placeholder>
+  ): string {
+    const { value } = placeholder.props
+    if (value === undefined) return getStop(placeholder)
+    const stop = getStopNumber(placeholder)
+    if (Array.isArray(value)) {
+      if (typeof value[0] === 'string') {
+        return `\${${stop}|${value.join(',')}|}`
+      }
+    }
+    return `\${${stop}:${String(value)}}`
+  }
+
+  function formatString(str: string): string {
+    return str
+      .replace(
+        /\$\{([a-z]+)?(:([^\\}]|\\.)+)?\}/gi,
+        (match, name, def, index) =>
+          str[index - 1] === '/'
+            ? match
+            : def
+            ? `\${${getStopNumber(name)}${def}}`
+            : getStop(name)
+      )
+      .replace(/\$(?![a-z0-9{])/gi, (match, index) =>
+        str[index - 1] === '/' ? match : getStop()
+      )
+  }
+
+  function formatComponentName(name: string): string {
+    return name.replace(/\$/g, () => getStop())
+  }
+
+  function formatJson(obj: any): string {
+    if (obj === $) return getStop()
+    if (React.isValidElement(obj)) {
+      if (obj.type === Placeholder) return formatPlaceholder(obj as any)
+      return formatElement(obj)
+    }
+    if (obj instanceof Object) {
+      return Array.isArray(obj) ? formatArray(obj) : formatObject(obj)
+    }
+    if (typeof obj === 'string')
+      return JSON.stringify(formatString(obj)).replace(/^"|"$/g, "'")
+    return JSON.stringify(obj)
+  }
+
+  function formatArray(array: any[]): string {
+    return `[${array.map(el => formatJson(el)).join(', ')}]`
+  }
+
+  function formatObjectKey(key: string): string {
+    const formatted = formatString(key)
+    return /^[_a-z$][_a-z0-9$]*$/.test(formatted)
+      ? formatted
+      : JSON.stringify(formatted)
+  }
+
+  function formatObject(obj: Record<string, any>): string {
+    return `{ ${[...Object.entries(obj)]
+      .map(([key, value]) => `${formatObjectKey(key)}: ${formatJson(value)}`)
+      .join(', ')} }`
+  }
+
+  function formatPropValue(key: string, value: any): string {
+    if (/__raw(_|$)/.test(key)) {
+      return formatString(value)
+    }
+    if (typeof value === 'string') {
+      return JSON.stringify(formatString(value))
+    }
+
+    if (value === $) {
+      return `{${getStop()}}`
+    }
+    if (React.isValidElement(value)) {
       if (value.type === Placeholder) {
         const {
-          type,
-          default: _default,
-          choices,
-        } = value.props as PlaceholderProps
-        const stop = getStop(value as React.ReactElement<PlaceholderProps>)
-        parts.push(propSeparator)
-        const open = type === 'string' ? '"' : '{'
-        const close = type === 'string' ? '"' : '}'
-        const formatValue =
-          type === 'string'
-            ? (value: any) => String(value)
-            : (value: any) =>
-                React.isValidElement(value)
-                  ? '\n    ' +
-                    createSnippetText(value, childOptions).replace(
-                      /\n/gm,
-                      '\n    '
-                    ) +
-                    '\n  '
-                  : JSON.stringify(value)
-        parts.push(
-          choices
-            ? `${key}=${open}\${${stop}|${(choices as any[])
-                .map(formatValue)
-                .join(',')}|}${close}`
-            : `${key}=${open}${
-                _default
-                  ? optional
-                    ? formatValue(_default)
-                    : `\${${stop}:${formatValue(_default)}}`
-                  : `\$${stop}`
-              }${close}`
-        )
-      } else {
-        parts.push(
-          `${propSeparator}${key}={\n    ${createSnippetText(
-            value,
-            childOptions
-          ).replace(/\n/gm, '\n    ')}\n  }`
-        )
+          props: { value: val },
+        } = value as React.ReactElement<{ value: any }>
+        const formatted = formatPlaceholder(value as any)
+        return typeof val === 'string' ||
+          (Array.isArray(val) && typeof val[0] === 'string')
+          ? `"${formatted}"`
+          : `{${formatted}}`
       }
-      if (optional) parts.push('}')
-    } else {
-      parts.push(`${propSeparator}${key}=${JSON.stringify(value)}`)
+      const formatted = formatElement(value)
+      return `{${
+        formatted.includes('\n')
+          ? `\n${indent(formatted, '    ')}\n  `
+          : formatted
+      }}`
     }
+    return `{${formatJson(value)}}`
   }
 
-  if (children) {
-    parts.push(`${oneLine || fewProps ? '' : '\n'}>`)
-    const childrenArray = React.Children.toArray(children)
-    for (const child of childrenArray) {
-      let converted
+  function formatProp(key: string, value: any): string {
+    if (key === '$') return getStop()
+    if (key.startsWith('__raw')) {
+      return formatString(value)
+    }
+    if (/__optional(_|$)/.test(key)) {
+      // TODO
+      return `\${${stop++}:${escape(
+        formatProp(key.replace('__optional', ''), value)
+      )}}`
+    }
+    const formattedKey =
+      key === '__key' ? 'key' : key.replace(/__optional|__raw/g, '')
+    if (value === true) return formattedKey
+    const formattedValue = formatPropValue(key, value)
+    return `${formattedKey}=${formattedValue}`
+  }
+
+  function formatElement(el: React.ReactElement<any>): any {
+    if (el.type === Placeholder) return formatPlaceholder(el as any)
+    const {
+      type,
+      props: {
+        children,
+        __optional,
+        __oneLine,
+        __oneLineProps,
+        __multiLine,
+        __multiLineChildren,
+        ...props
+      },
+    } = el
+
+    if (__optional) {
+      return `\${${stop++}:${escape(
+        formatElement(
+          React.createElement(type, {
+            ...props,
+            children,
+            __oneLine,
+            __oneLineProps,
+            __multiLine,
+            __multiLineChildren,
+          })
+        )
+      )}}`
+    }
+
+    const parts: string[] = []
+    const name = formatComponentName(
+      typeof type === 'string' ? type : (type as any).displayName
+    )
+    parts.push(`<${name}`)
+    const formattedProps = []
+    const formattedChildren = []
+    for (const key in props) {
+      formattedProps.push(formatProp(key, props[key]))
+    }
+    for (const child of React.Children.toArray(children)) {
       if (React.isValidElement(child)) {
-        if (child.type === Placeholder) {
-          const { type, default: _default } = child.props as PlaceholderProps
-          const stop = getStop(child as React.ReactElement<PlaceholderProps>)
-          if (_default === undefined) {
-            converted = `\$${stop}`
-          } else if (React.isValidElement(_default)) {
-            converted = `\${${stop}:${createSnippetText(
-              _default,
-              childOptions
-            )}}`
-          } else if (type === 'string') {
-            converted = `\${${stop}:${_default}}`
-          } else {
-            converted = `{\${${stop}:${JSON.stringify(_default)}}}`
-          }
+        formattedChildren.push(formatElement(child))
+      } else if (typeof child === 'string') {
+        formattedChildren.push(formatString(child))
+      } else {
+        formattedChildren.push(String(child))
+      }
+    }
+    const propsLength = formattedProps.reduce(
+      (len, next) => len + next.length,
+      0
+    )
+    const childrenLength = formattedChildren.reduce(
+      (len, next) => len + next.length,
+      0
+    )
+    const propsOneLine =
+      __oneLine ||
+      __oneLineProps ||
+      (!__multiLine &&
+        !formattedProps.some(p => p.includes('\n')) &&
+        propsLength + name.length < 70)
+    const childrenOneLine =
+      __oneLine ||
+      (!__multiLineChildren &&
+        !__oneLineProps &&
+        propsOneLine &&
+        !formattedProps.some(p => p.includes('\n')) &&
+        !formattedChildren.some(c => c.includes('\n')) &&
+        propsLength + childrenLength + name.length * 2 < 70)
+
+    for (const formatted of formattedProps) {
+      if (!propsOneLine) {
+        const match = /^\$\{\d+:/.exec(formatted)
+        if (match) {
+          parts.push(match[0])
+          parts.push('\n  ')
+          parts.push(formatted.substring(match[0].length))
         } else {
-          converted = createSnippetText(child, childOptions)
+          parts.push('\n  ')
+          parts.push(formatted)
         }
       } else {
-        converted = `{${JSON.stringify(child)}}`
+        if (!/^\$\d+$/.test(formatted) || !propsOneLine)
+          parts.push(propsOneLine ? ' ' : '\n  ')
+        parts.push(formatted)
       }
-      parts.push(
-        oneLine && childrenArray.length === 1
-          ? converted
-          : `\n  ${converted.replace(/\n/gm, '\n  ')}`
-      )
     }
-    if (!oneLine || childrenArray.length !== 1) parts.push('\n')
+    if (!formattedChildren.length) {
+      parts.push(propsOneLine ? ' />' : '\n/>')
+      return parts.join('')
+    }
+    parts.push(propsOneLine ? '>' : '\n>')
+    for (const formatted of formattedChildren) {
+      if (!childrenOneLine) {
+        const match = /^\$\{\d+:/.exec(formatted)
+        if (match) {
+          parts.push(match[0])
+          parts.push('\n')
+          parts.push(indent(formatted.substring(match[0].length)))
+        } else {
+          parts.push('\n')
+          parts.push(indent(formatted))
+        }
+      } else {
+        parts.push(formatted)
+      }
+    }
+    if (!childrenOneLine) parts.push('\n')
     parts.push(`</${name}>`)
-  } else {
-    parts.push(`${oneLine || fewProps ? ' ' : '\n'}/>`)
+    return parts.join('')
   }
-  if (__optional) parts.push('}')
-  return parts
-    .join('')
-    .replace(/\n(\s*)(\$\{\d+:)(<|[-a-z_$][-a-z0-9_$]*=)/gi, '$2\n$1$3')
+
+  function createPlaceholder(
+    value: any
+  ): React.ReactElement<PlaceholderProps, typeof Placeholder> {
+    return <Placeholder value={value} />
+  }
+
+  const $ = new Proxy(createPlaceholder, {
+    get(target: any, name: string) {
+      return (
+        value: any
+      ): React.ReactElement<PlaceholderProps, typeof Placeholder> => (
+        <Placeholder value={value} name={name} />
+      )
+    },
+  })
+
+  const components: string[] = []
+  const icons: string[] = []
+
+  const Components = new Proxy({} as Record<string, React.ComponentType<any>>, {
+    get(
+      target: Record<string, React.ComponentType<any>>,
+      name: string
+    ): React.ComponentType<any> {
+      if (!target[name]) {
+        if (!name.includes('$')) components.push(name)
+        const component = () => null
+        ;(component as any).displayName = name
+        target[name] = component
+      }
+      return target[name]
+    },
+  })
+
+  const Icons = new Proxy({} as Record<string, React.ComponentType<any>>, {
+    get(
+      target: Record<string, React.ComponentType<any>>,
+      name: string
+    ): React.ComponentType<any> {
+      if (!target[name]) {
+        if (!name.includes('$')) icons.push(name)
+        const component = () => null
+        ;(component as any).displayName = name
+        target[name] = component
+      }
+      return target[name]
+    },
+  })
+
+  const el = body({ ...options, Components, Icons, $ })
+
+  return {
+    text: formatElement(el),
+    components,
+    icons,
+  }
 }

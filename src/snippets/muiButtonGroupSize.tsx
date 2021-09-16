@@ -1,21 +1,23 @@
 import * as React from 'react'
-import { string, expression } from '../Placeholder'
-import { SnippetOptions } from '../createSnippet'
+import { SnippetOptions } from './index'
 import { variants, colors, sizes } from './muiButton'
 
 export const description = 'Material-UI <ButtonGroup> with size'
 
-export const body = ({ forPreview, Mui }: SnippetOptions) => (
-  <Mui.ButtonGroup
-    variant={string(variants)}
-    color={string(colors)}
-    size={string(sizes)}
-    aria-label={string()}
+export const body = ({
+  $,
+  Components: { ButtonGroup, Button },
+}: SnippetOptions) => (
+  <ButtonGroup
+    variant={$(variants)}
+    color={$(colors)}
+    size={$(sizes)}
+    aria-label="$"
     $
-    __oneLine
+    __oneLineProps
   >
-    <Mui.Button>{expression()}</Mui.Button>
-    <Mui.Button>{expression()}</Mui.Button>
-    {expression()}
-  </Mui.ButtonGroup>
+    <Button>$</Button>
+    <Button>$</Button>
+    {'$'}
+  </ButtonGroup>
 )

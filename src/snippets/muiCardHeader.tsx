@@ -1,23 +1,25 @@
 import * as React from 'react'
-import { string, expression } from '../Placeholder'
-import { SnippetOptions } from '../createSnippet'
+import { SnippetOptions } from './index'
 
 export const description = 'Material-UI <CardHeader>'
 
-export const body = ({ forPreview, Mui }: SnippetOptions) => (
-  <Mui.CardHeader
+export const body = ({
+  $,
+  Components: { CardHeader, Avatar, IconButton },
+}: SnippetOptions) => (
+  <CardHeader
     avatar__optional={
-      <Mui.Avatar aria-label={string()} $>
-        {expression()}
-      </Mui.Avatar>
+      <Avatar aria-label="$" __multiLineChildren $>
+        $
+      </Avatar>
     }
     action__optional={
-      <Mui.IconButton aria-label={string()} $>
-        {expression()}
-      </Mui.IconButton>
+      <IconButton aria-label="$" __multiLineChildren $>
+        $
+      </IconButton>
     }
-    title__optional={string()}
-    subheader__optional={string()}
+    title__optional="$"
+    subheader__optional="$"
     $
   />
 )

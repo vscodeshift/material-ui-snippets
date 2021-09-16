@@ -3,13 +3,12 @@
     "prefix": "snip",
     "body": [
       "import * as React from 'react'",
-      "import Placeholder, { string, expression, attribute } from '../Placeholder'",
-      "import { SnippetOptions } from '../createSnippet'",
+      "import { SnippetOptions } from './index'",
       "",
       "export const description = '$1'",
       "",
-      "export const body = ({ forPreview, Mui }: SnippetOptions) => (",
-      "  $2",
+      "export const body = ({ $, Components: { $2 } }: SnippetOptions) => (",
+      "  $3",
       ")",
       ""
     ]

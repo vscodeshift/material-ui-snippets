@@ -1,19 +1,23 @@
 import * as React from 'react'
-import { string, expression } from '../Placeholder'
-import { SnippetOptions } from '../createSnippet'
+import { SnippetOptions } from './index'
 
 export const description = 'Material-UI <Checkbox> with <FormControlLabel>'
 
-export const body = ({ forPreview, formControlMode, Mui }: SnippetOptions) => (
-  <Mui.FormControlLabel
-    label={string()}
+export const body = ({
+  formControlMode,
+  $,
+  Components: { FormControlLabel, Checkbox },
+}: SnippetOptions) => (
+  <FormControlLabel
+    label="$"
     control={
-      <Mui.Checkbox
-        value={string()}
+      <Checkbox
+        __multiLine
+        value="$"
         {...(formControlMode === 'controlled'
-          ? { checked: expression(), onChange: expression() }
-          : { defaultChecked: expression() })}
-        color={string('primary')}
+          ? { checked: $, onChange: $ }
+          : { defaultChecked: $ })}
+        color={$('primary')}
       />
     }
   />
