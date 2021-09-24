@@ -2,29 +2,44 @@
 
 import requireGlob from 'require-glob'
 import path from 'path'
-import { CompiledSnippet } from '../snip'
+import * as React from 'react'
 
-export type SnippetOptions = {
-  language: 'javascriptreact' | 'typescriptreact'
+export type InputSnippetOptions = {
+  forPreview?: boolean
   formControlMode: 'controlled' | 'uncontrolled'
+  language: 'javascriptreact' | 'typescriptreact'
+}
+export type SnippetOptions = InputSnippetOptions & {
+  $: {
+    (options?: any): any
+    [name: string]: (options?: any) => any
+  }
+  Components: Record<string, React.ComponentType<any>>
+  Icons: Record<string, React.ComponentType<any>>
 }
 
-export type SnippetBody = string | CompiledSnippet
+export type SnippetBodyComponent = (
+  options: SnippetOptions
+) => React.ReactElement
+
+export type SnippetBody = string | SnippetBodyComponent
 
 export type Snippet = {
   prefix: string
   description: string
   body: SnippetBody
+  components?: string[]
+  icons?: string[]
 }
 
 export default async function loadSnippets(): Promise<Record<string, Snippet>> {
-  return await requireGlob('./*.{js,ts}', {
+  return await requireGlob('./*.{js,ts,tsx}', {
     reducer: (
       options: Record<string, any>,
       result: Record<string, any>,
       file: { path: string; exports: any }
     ) => {
-      if (file.path === __filename) return result
+      if (/index\.(js|ts)$/.test(file.path)) return result
       const filename = path.basename(file.path)
       const filenameNoExt = filename.replace(/\.[^.]+$/, '')
       const { prefix = filenameNoExt, description, body } = file.exports

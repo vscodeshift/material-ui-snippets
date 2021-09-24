@@ -60,7 +60,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 - [`muiCardHeader`: &lt;CardHeader&gt;](#muicardheader-cardheader)
 - [`muiCardMedia`: &lt;CardMedia&gt;](#muicardmedia-cardmedia)
 - [`muiCheckboxLabel`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;](#muicheckboxlabel-checkbox-with-formcontrollabel)
-- [`muiCheckboxLabelPlacement`: &lt;Checkbox&gt; with labelPlacement](#muicheckboxlabelplacement-checkbox-with-labelplacement)
+- [`muiCheckboxLabelPlacement`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;](#muicheckboxlabelplacement-checkbox-with-formcontrollabel)
 - [`muiContainer`: &lt;Container&gt;](#muicontainer-container)
 - [`muiDialog`: &lt;Dialog&gt;](#muidialog-dialog)
 - [`muiDialogSimple`: &lt;Dialog&gt;](#muidialogsimple-dialog)
@@ -116,7 +116,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 <AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
   <Toolbar$3>
     <Typography variant="h6"$4>
-      $0
+      $5
     </Typography>
   </Toolbar>
 </AppBar>
@@ -128,10 +128,10 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 <AppBar position="${1|fixed,absolute,relative,static,sticky|}" color="${2|primary,default,inherit,secondary,transparent|}">
   <Toolbar$3>
     <IconButton edge="start" color="inherit" aria-label="menu">
-      <MenuIcon />
+      <Menu />
     </IconButton>
     <Typography variant="h6"$4>
-      $0
+      $5
     </Typography>
   </Toolbar>
 </AppBar>
@@ -140,26 +140,22 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 ### `muiBottomNavigation`: &lt;BottomNavigation&gt;
 
 ```
-<BottomNavigation
-  value={$1}
-  onChange={$2}
-  $3
->
-  $0
-<BottomNavigation>
+<BottomNavigation value={$1} onChange={$2}$3>
+  $4
+</BottomNavigation>
 ```
 
 ### `muiBottomNavigationAction`: &lt;BottomNavigationAction&gt;
 
 ```
-<BottomNavigationAction label="$1" value={$2} icon={$3}$0 />
+<BottomNavigationAction label="$1" value={$2} icon={$3}$4 />
 ```
 
 ### `muiButton`: &lt;Button&gt;
 
 ```
 <Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}"$3>
-  $0
+  $4
 </Button>
 ```
 
@@ -169,7 +165,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 <ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3"$4>
   <Button>$5</Button>
   <Button>$6</Button>
-  $0
+  $7
 </ButtonGroup>
 ```
 
@@ -179,7 +175,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 <ButtonGroup variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}" aria-label="$4"$5>
   <Button>$6</Button>
   <Button>$7</Button>
-  $0
+  $8
 </ButtonGroup>
 ```
 
@@ -189,24 +185,27 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 <ButtonGroup orientation="vertical" variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" aria-label="$3"$4>
   <Button>$5</Button>
   <Button>$6</Button>
-  $0
+  $7
 </ButtonGroup>
 ```
 
 ### `muiButtonSize`: &lt;Button&gt; with size
 
 ```
-<Button variant="${1|text,contained,outlined|}" color="${2|default,inherit,primary,secondary|}" size="${3|small,medium,large|}"$4>
-  $0
+<Button
+  variant="${1|text,contained,outlined|}"
+  color="${2|default,inherit,primary,secondary|}"
+  size="${3|small,medium,large|}"
+  $4
+>
+  $5
 </Button>
 ```
 
 ### `muiButtonText`: text &lt;Button&gt;
 
 ```
-<Button color="${1|default,inherit,primary,secondary|}"$2>
-  $0
-</Button>
+<Button color="${1|default,inherit,primary,secondary|}"$2>$3</Button>
 ```
 
 ### `muiButtonWithIcon`: &lt;Button&gt; with icon and label
@@ -218,7 +217,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
   startIcon={$3}
   $4
 >
-  $0
+  $5
 </Button>
 ```
 
@@ -233,7 +232,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
   \}}${5:
   action={
     <IconButton aria-label="$6"$7>
-      ${8:<MoreVertIcon />}
+      $8
     </IconButton>
   \}}${9:
   title="$10"}${11:
@@ -245,10 +244,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 ### `muiCardMedia`: &lt;CardMedia&gt;
 
 ```
-<CardMedia
-  title="$1"
-  image=$2
-/>
+<CardMedia title="$1" image="$2" />
 ```
 
 ### `muiCheckboxLabel`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
@@ -284,7 +280,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 />
 ```
 
-### `muiCheckboxLabelPlacement`: &lt;Checkbox&gt; with labelPlacement
+### `muiCheckboxLabelPlacement`: &lt;Checkbox&gt; with &lt;FormControlLabel&gt;
 
 #### Controlled
 
@@ -323,23 +319,25 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 
 ```
 <Container maxWidth="${1|xs,sm,md,lg,xl|}"$2>
-  $0
+  $3
 </Container>
 ```
 
 ### `muiDialog`: &lt;Dialog&gt;
 
 ```
-<Dialog open={$1} onClose={$2} aria-labelledby="$3">${4:
-  <DialogTitle id="$3">$5</DialogTitle>}${6:
-  <DialogContent>
-    ${7:<DialogContentText>
+<Dialog open={$1} onClose={$2} aria-labelledby={$3}>${4:
+  <DialogTitle id={$3\}>
+    $5
+  </DialogTitle>}${6:
+  <DialogContent>${7:
+    <DialogContentText>
       $8
     </DialogContentText>}
   </DialogContent>}${9:
   <DialogActions>
-    <Button onClick={$2\} color="${10|default,inherit,primary,secondary|}">
-      ${11:Cancel}
+    <Button onClick={$10\} color="${11|default,inherit,primary,secondary|}">${12:
+      Cancel}
     </Button>
   </DialogActions>}
 </Dialog>
@@ -349,20 +347,15 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
 
 ```
 <Dialog open={$1} onClose={$2} aria-labelledby="$3">
-  ${4:<DialogTitle id="$3">$5</DialogTitle>}
-  $0
+  $4
 </Dialog>
 ```
 
 ### `muiDrawerPermanent`: permanent &lt;Drawer&gt;
 
 ```
-<Drawer
-  variant="permanent"
-  anchor="${1|left,right,top,bottom|}"
-  $2
->
-  $0
+<Drawer variant="permanent" anchor="${1|left,right,top,bottom|}"$2>
+  $3
 </Drawer>
 ```
 
@@ -375,7 +368,7 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
   open={$2}
   $3
 >
-  $0
+  $4
 </Drawer>
 ```
 
@@ -389,18 +382,20 @@ For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://gith
   onClose={$3}
   $4
 >
-  $0
+  $5
 </Drawer>
 ```
 
 ### `muiEndAdornment`: end &lt;InputAdornment&gt;
 
 ```
+
 endAdornment={
   <InputAdornment position="end">
     $0
   </InputAdornment>
 }
+
 ```
 
 ### `muiExpansionPanel`: &lt;ExpansionPanel&gt;
@@ -413,11 +408,9 @@ endAdornment={
     aria-controls="$2-content"
     id="$2-header"
   >
-    <Typography $3>$4</Typography>
+    <Typography$3>$4</Typography>
   </ExpansionPanelSummary>
-  <ExpansionPanelDetails>
-    $0
-  </ExpansionPanelDetails>
+  <ExpansionPanelDetails>$5</ExpansionPanelDetails>
 </ExpansionPanel>
 ```
 
@@ -426,16 +419,14 @@ endAdornment={
 ```
 <ExpansionPanel expanded={$1} onChange={$2}>
   <ExpansionPanelSummary
-    expandIcon={<ExpandMoreIcon />}
+    expandIcon={<ExpandMore />}
     aria-label="${3:Expand}"
     aria-controls="$4-content"
-    id="$5-header"
+    id="$4-header"
   >
-    <Typography $6>$7</Typography>
+    <Typography$5>$6</Typography>
   </ExpansionPanelSummary>
-  <ExpansionPanelDetails>
-    $0
-  </ExpansionPanelDetails>
+  <ExpansionPanelDetails>$7</ExpansionPanelDetails>
 </ExpansionPanel>
 ```
 
@@ -450,11 +441,9 @@ endAdornment={
 ### `muiFabExtended`: &lt;Fab variant="extended"&gt;
 
 ```
-<Fab variant="extended" color=${1|default,inherit,primary,secondary|}$2>
-  <Box marginRight={1}>
-    <$3Icon />
-  </Box>
-  $0
+<Fab variant="extended" color="${1|default,inherit,primary,secondary|}" aria-label="$2"$3>
+  <Box marginRight={1}><$4Icon /></Box>
+  $5
 </Fab>
 ```
 
@@ -483,8 +472,8 @@ endAdornment={
 ### `muiGridContainer`: &lt;Grid container&gt;
 
 ```
-<Grid container spacing={${1:1}}$2>
-  $0
+<Grid container spacing={$1}$2>
+  $3
 </Grid>
 ```
 
@@ -501,7 +490,7 @@ endAdornment={
   wrap="${8|nowrap,wrap,wrap-reverse|}"}
   $9
 >
-  $0
+  $10
 </Grid>
 ```
 
@@ -518,7 +507,7 @@ endAdornment={
   wrap="${12|nowrap,wrap,wrap-reverse|}"}
   $13
 >
-  $0
+  $14
 </Grid>
 ```
 
@@ -526,7 +515,7 @@ endAdornment={
 
 ```
 <GridListTile cols={${1:2}} style={{ height: 'auto' }}>
-  <ListSubheader component="div">$0</ListSubheader>
+  <ListSubheader component="div">$2</ListSubheader>
 </GridListTile>
 ```
 
@@ -538,7 +527,7 @@ endAdornment={
   subtitle="$4"}${5:
   actionIcon={
     <IconButton aria-label="$6"$7>
-      $0
+      $8
     </IconButton>
   \}}
 />
@@ -548,29 +537,22 @@ endAdornment={
 
 ```
 <IconButton aria-label="$1" onClick={$2}$3>
-  $0
+  $4
 </IconButton>
 ```
 
 ### `muiMenu`: &lt;Menu&gt;
 
 ```
-<Menu
-  id="$1"
-  anchorEl={$2}
-  keepMounted
-  open={Boolean($2)}
-  onClose={$3}
-  $4
->
-  $0
+<Menu id="$1" anchorEl={$2} keepMounted open={Boolean($2)} onClose={$3}$4>
+  $5
 </Menu>
 ```
 
 ### `muiMenuItem`: &lt;MenuItem&gt;
 
 ```
-<MenuItem onClick={$1}$2>$0</MenuItem>
+<MenuItem onClick={$1}$2>$3</MenuItem>
 ```
 
 ### `muiMenuPopupState`: &lt;Menu&gt; for material-ui-popup-state
@@ -582,7 +564,7 @@ endAdornment={
   {...bindMenu(${2:popupState})}
   $3
 >
-  $0
+  $4
 </Menu>
 ```
 
@@ -591,9 +573,7 @@ endAdornment={
 ```
 <FormControl component=${1:"fieldset"}$2>
   <FormLabel component=${3:"legend"}>$4</FormLabel>
-  <RadioGroup aria-label="$5" name="$6" value={$7} onChange={$8}>
-    $0
-  </RadioGroup>
+  <RadioGroup aria-label="$5" name="$6" value={$7} onChange={$8}>$0</RadioGroup>
   <FormHelperText>$9</FormHelperText>
 </FormControl>
 ```
@@ -601,19 +581,24 @@ endAdornment={
 ### `muiRadioLabel`: &lt;Radio&gt; with &lt;FormControlLabel&gt;
 
 ```
-<FormControlLabel value="$1" label="$2" control={<Radio $0 />} />
+<FormControlLabel value="$1" label="$2" control={<Radio$3 />} />
 ```
 
 ### `muiRadioLabelPlacement`: &lt;Radio&gt; with &lt;FormControlLabel&gt; with labelPlacement
 
 ```
-<FormControlLabel value="$1" label="$2" labelPlacement="${3|end,start,top,bottom|}" control={<Radio $0 />} />
+<FormControlLabel
+  value="$1"
+  label="$2"
+  labelPlacement="${3|end,start,top,bottom|}"
+  control={<Radio$4 />}
+/>
 ```
 
 ### `muiSelectItem`: &lt;MenuItem&gt; inside &lt;Select&gt;
 
 ```
-<MenuItem value={$1}$2>$0</MenuItem>
+<MenuItem value={$1}$2>$3</MenuItem>
 ```
 
 ### `muiSliderContinuous`: &lt;Slider&gt; with continuous values
@@ -625,9 +610,9 @@ endAdornment={
   value={$1}
   onChange={$2}
   aria-labelledby="$3"
-  min={$4:0}
-  max={$5:100}
-  $0
+  min={${4:0}}
+  max={${5:100}}
+  $6
 />
 ```
 
@@ -637,9 +622,9 @@ endAdornment={
 <Slider
   defaultValue={$1}
   aria-labelledby="$2"
-  min={$3:0}
-  max={$4:100}
-  $0
+  min={${3:0}}
+  max={${4:100}}
+  $5
 />
 ```
 
@@ -652,11 +637,11 @@ endAdornment={
   value={$1}
   onChange={$2}
   aria-labelledby="$3"
-  step={$4:1}
+  step={${4:1}}
   marks
-  min={$5:0}
-  max={$6:100}
-  $0
+  min={${5:0}}
+  max={${6:100}}
+  $7
 />
 ```
 
@@ -666,11 +651,11 @@ endAdornment={
 <Slider
   defaultValue={$1}
   aria-labelledby="$2"
-  step={$3:1}
+  step={${3:1}}
   marks
-  min={$4:0}
-  max={$5:100}
-  $0
+  min={${4:0}}
+  max={${5:100}}
+  $6
 />
 ```
 
@@ -678,16 +663,13 @@ endAdornment={
 
 ```
 <Snackbar
-  anchorOrigin={{
-    vertical: '$1',
-    horizontal: '$2',
-  }}
+  anchorOrigin={{ vertical: '$1', horizontal: '$2' }}
   open={$3}
   onClose={$4}
   message="$5"${6:
   action={
     <IconButton size="small" aria-label="close" color="inherit" onClick={$4\}>
-      <CloseIcon fontSize="small" />
+      <Close fontSize="small" />
     </IconButton>
   \}}
 />
@@ -696,27 +678,26 @@ endAdornment={
 ### `muiSnackbarContent`: &lt;SnackbarContent&gt;
 
 ```
-<SnackbarContent
-  message="$1"
-  action={$2}
-/>
+<SnackbarContent message="$1" action={$2} />
 ```
 
 ### `muiStartAdornment`: start &lt;InputAdornment&gt;
 
 ```
+
 startAdornment={
   <InputAdornment position="start">
     $0
   </InputAdornment>
 }
+
 ```
 
 ### `muiStep`: &lt;Step&gt;
 
 ```
 <Step key={$1} completed={$2}$3>
-  <StepLabel>$0</StepLabel>
+  <StepLabel>$4</StepLabel>
 </Step>
 ```
 
@@ -726,6 +707,7 @@ startAdornment={
 <Step key={$1} completed={$2}$3>
   <StepLabel>$4</StepLabel>
   <StepContent>
+    $5
   </StepContent>
 </Step>
 ```
@@ -737,7 +719,7 @@ startAdornment={
   <StepLabel
     optional={<Typography variant="caption">${4:Optional}</Typography>}
   >
-    $0
+    $5
   </StepLabel>
 </Step>
 ```
@@ -746,7 +728,7 @@ startAdornment={
 
 ```
 <Stepper activeStep={$1}>
-  $0
+  $2
 </Stepper>
 ```
 
@@ -772,8 +754,8 @@ startAdornment={
   value="$1"
   checked={$2}
   onChange={$3}
-  inputProps={{ 'aria-label': '$4' }}
-  $0
+  inputProps={{ "aria-label": '$4' }}
+  $5
 />
 ```
 
@@ -782,9 +764,9 @@ startAdornment={
 ```
 <Switch
   value="$1"
-  defaultChecked="$2"
-  inputProps={{ 'aria-label': '$3' }}
-  $0
+  defaultChecked={$2}
+  inputProps={{ "aria-label": '$3' }}
+  $4
 />
 ```
 
@@ -800,7 +782,7 @@ startAdornment={
       value="$2"
       checked={$3}
       onChange={$4}
-      $0
+      $5
     />
   }
 />
@@ -814,8 +796,8 @@ startAdornment={
   control={
     <Switch
       value="$2"
-      defaultChecked="$3"
-      $0
+      defaultChecked={$3}
+      $4
     />
   }
 />
@@ -834,7 +816,7 @@ startAdornment={
       value="$3"
       checked={$4}
       onChange={$5}
-      $0
+      $6
     />
   }
 />
@@ -849,8 +831,8 @@ startAdornment={
   control={
     <Switch
       value="$3"
-      defaultChecked="$4"
-      $0
+      defaultChecked={$4}
+      $5
     />
   }
 />
@@ -859,7 +841,7 @@ startAdornment={
 ### `muiTabPanel`: &lt;TabPanel&gt;
 
 ```
-<TabPanel value={$1} index={$2}${3: dir={theme.direction\}}$4>
+<TabPanel value={$1} index={$2} ${3:dir={theme.direction\}}$4>
   $5
 </TabPanel>
 ```
@@ -868,8 +850,8 @@ startAdornment={
 
 ```
 <AppBar position="static" color="${1|primary,default,inherit,secondary,transparent|}"$2>
-  <Tabs value={$3} onChange={$4} aria-label="$5" $6>
-    $0
+  <Tabs value={$3} onChange={$4} aria-label="$5"$6>
+    $7
   </Tabs>
 </AppBar>
 ```
@@ -886,7 +868,7 @@ startAdornment={
     scrollButtons="${6:auto}"
     $7
   >
-    $0
+    $8
   </Tabs>
 </AppBar>
 ```
@@ -901,7 +883,7 @@ startAdornment={
   label="$2"
   value={$3}
   onChange={$4}
-  $0
+  $5
 />
 ```
 
@@ -912,7 +894,7 @@ startAdornment={
   id="$1"
   label="$2"
   defaultValue={$3}
-  $0
+  $4
 />
 ```
 
@@ -927,10 +909,10 @@ startAdornment={
   variant="${4|standard,outlined,filled|}"}${5:
   color="${6|primary,secondary|}"}${7:
   margin="${8|none,dense,normal|}"}${9:
-  size="${10|small,medium|}"}
+  sizes="${10|small,medium|}"}
   value={$11}
   onChange={$12}
-  $0
+  $13
 />
 ```
 
@@ -943,9 +925,9 @@ startAdornment={
   variant="${4|standard,outlined,filled|}"}${5:
   color="${6|primary,secondary|}"}${7:
   margin="${8|none,dense,normal|}"}${9:
-  size="${10|small,medium|}"}
+  sizes="${10|small,medium|}"}
   defaultValue={$11}
-  $0
+  $12
 />
 ```
 
@@ -961,9 +943,7 @@ startAdornment={
   value={$3}
   onChange={$4}
   $5
->
-  $0
-</TextField>
+/>
 ```
 
 #### Uncontrolled
@@ -975,9 +955,7 @@ startAdornment={
   select
   defaultValue={$3}
   $4
->
-  $0
-</TextField>
+/>
 ```
 
 ### `muiTextFieldVariant`: &lt;TextField&gt; with variant
@@ -991,7 +969,7 @@ startAdornment={
   variant="${3|standard,outlined,filled|}"
   value={$4}
   onChange={$5}
-  $0
+  $6
 />
 ```
 
@@ -1003,7 +981,7 @@ startAdornment={
   label="$2"
   variant="${3|standard,outlined,filled|}"
   defaultValue={$4}
-  $0
+  $5
 />
 ```
 
@@ -1018,7 +996,7 @@ startAdornment={
 ### `muiTypography`: &lt;Typography&gt;
 
 ```
-<Typography variant="${1|h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,caption,button,overline,srOnly,inherit|}"${2: color="${3|initial,inherit,primary,secondary,textPrimary,textSecondary,error|}"}$4>$TM_SELECTED_TEXT$0</Typography>
+<Typography variant="${1|h1,h2,h3,h4,h5,h6,subtitle1,subtitle2,body1,body2,caption,button,overline,srOnly,inherit|}" ${2:color="${3|initial,inherit,primary,secondary,textPrimary,textSecondary,error|}"}$4>$TM_SELECTED_TEXT$0</Typography>
 ```
 
 <!-- snippetsend -->

@@ -1,0 +1,18 @@
+import * as React from 'react'
+import { SnippetOptions } from './index'
+
+export const description = 'Material-UI <GridListTileBar>'
+
+export const body = ({
+  Components: { GridListTileBar, IconButton },
+}: SnippetOptions): React.ReactElement<any> => (
+  <GridListTileBar
+    title__optional="$"
+    subtitle__optional="$"
+    actionIcon__optional={
+      <IconButton aria-label="$" __multiLineChildren $>
+        $
+      </IconButton>
+    }
+  />
+)

@@ -4,8 +4,8 @@ import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as prettier from 'prettier'
 import markdownEscape from 'markdown-escape'
-import loadSnippets from '../src/snippets'
-import { CompiledSnippet } from '../src/snip'
+import loadSnippets from '../src/snippets/index'
+import createSnippet from '../src/createSnippet'
 
 const root = path.resolve(__dirname, '..')
 const out = path.resolve(root, 'out')
@@ -44,45 +44,21 @@ async function go(): Promise<void> {
     const heading = `\`${prefix}\`: ${description}`
     toc.push(`- [${heading}](${headingUrl(heading)})`)
     markdown.push(`### ${heading}`)
-    if (typeof snippet.body === 'function') {
-      const { parameters } = snippet.body as CompiledSnippet
-      if (parameters.has('formControlMode')) {
-        markdown.push(`#### Controlled`)
-        markdown.push(
-          '```\n' +
-            snippet
-              .body({
-                language: 'typescriptreact',
-                formControlMode: 'controlled',
-              })
-              .replace(/^\n|\n$/gm, '') +
-            '\n```'
-        )
-        markdown.push(`#### Uncontrolled`)
-        markdown.push(
-          '```\n' +
-            snippet
-              .body({
-                language: 'typescriptreact',
-                formControlMode: 'uncontrolled',
-              })
-              .replace(/^\n|\n$/gm, '') +
-            '\n```'
-        )
-      } else {
-        markdown.push(
-          '```\n' +
-            snippet
-              .body({
-                language: 'typescriptreact',
-                formControlMode: 'controlled',
-              })
-              .replace(/^\n|\n$/gm, '') +
-            '\n```'
-        )
-      }
+    const { text: controlledText } = createSnippet(snippet, {
+      formControlMode: 'controlled',
+      language: 'typescriptreact',
+    })
+    const { text: uncontrolledText } = createSnippet(snippet, {
+      formControlMode: 'uncontrolled',
+      language: 'typescriptreact',
+    })
+    if (uncontrolledText !== controlledText) {
+      markdown.push(`#### Controlled`)
+      markdown.push('```\n' + controlledText + '\n```')
+      markdown.push(`#### Uncontrolled`)
+      markdown.push('```\n' + uncontrolledText + '\n```')
     } else {
-      markdown.push('```\n' + snippet.body.replace(/^\n|\n$/gm, '') + '\n```')
+      markdown.push('```\n' + controlledText + '\n```')
     }
   }
 

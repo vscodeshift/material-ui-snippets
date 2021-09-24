@@ -1,11 +1,15 @@
 import * as vscode from 'vscode'
-import loadSnippets, { SnippetOptions } from './snippets'
+import loadSnippets from './snippets/index'
 import shallowEqual from 'shallowequal'
 import getExistingImports from './getExistingImports'
-import getSnippetImports from './getSnippetImports'
+import createSnippet from './createSnippet'
+import Path from 'path'
+import readPkgUp from 'read-pkg-up'
+import { InputSnippetOptions } from './snippets'
 
 class MaterialUICompletionItem extends vscode.CompletionItem {
-  imports: string[] | undefined
+  components?: string[]
+  icons?: string[]
 }
 
 export async function activate(
@@ -25,27 +29,47 @@ export async function activate(
 
   const snippets = await loadSnippets()
 
-  function getAdditionalTextEdits({
-    imports,
-  }: {
-    imports: string[] | undefined
-  }): vscode.TextEdit[] {
-    const document = vscode.window.activeTextEditor?.document
-    if (!document || !imports) return []
+  async function getMuiVersion(
+    document: vscode.TextDocument
+  ): Promise<4 | 5 | null> {
+    const deps = (
+      await readPkgUp({
+        cwd: Path.dirname(document.fileName),
+      })
+    )?.packageJson?.dependencies
+    if (!deps) return null
+    if (Object.keys(deps).some((d) => d.startsWith('@mui/'))) return 5
+    if (Object.keys(deps).some((d) => d.startsWith('@material-ui/'))) return 4
+    return null
+  }
 
-    let existingImports: Set<string> | null
+  async function getAdditionalTextEdits({
+    components = [],
+    icons = [],
+  }: {
+    components?: string[]
+    icons?: string[]
+  }): Promise<vscode.TextEdit[]> {
+    const document = vscode.window.activeTextEditor?.document
+    if (!document || (!components.length && !icons.length)) return []
+
+    let existingComponents: Set<string>
+    let existingIcons: Set<string>
     let insertPosition: vscode.Position = new vscode.Position(0, 0)
     let coreInsertPosition: vscode.Position | null = null
     let iconsInsertPosition: vscode.Position | null = null
+    let muiVersion: 4 | 5 | null = null
     try {
       ;({
-        existingImports,
+        existingComponents,
+        existingIcons,
         insertPosition,
         coreInsertPosition,
         iconsInsertPosition,
+        muiVersion = (await getMuiVersion(document)) || 4,
       } = getExistingImports(document))
     } catch (error) {
-      existingImports = null
+      return []
     }
     let importPaths = config.get('importPaths') || 'auto'
     if (importPaths === 'auto') {
@@ -53,77 +77,61 @@ export async function activate(
         coreInsertPosition || iconsInsertPosition ? 'top level' : 'second level'
     }
 
-    const additionalTextEdits: vscode.TextEdit[] = []
-    const finalExistingImports = existingImports
-    if (finalExistingImports) {
-      if (importPaths === 'second level') {
-        additionalTextEdits.push(
-          vscode.TextEdit.insert(
-            insertPosition,
-            imports
-              .filter((comp: string) => !finalExistingImports.has(comp))
-              .map((comp: string) =>
-                comp.endsWith('Icon')
-                  ? `import ${comp} from '@material-ui/icons/${comp.substring(
-                      0,
-                      comp.length - 4
-                    )}'`
-                  : `import ${comp} from '@material-ui/core/${comp}'`
-              )
-              .join('\n') + '\n'
-          )
-        )
-      } else {
-        const coreImports = imports.filter(
-          (comp: string) =>
-            !comp.endsWith('Icon') && !finalExistingImports.has(comp)
-        )
-        const iconsImports = imports
-          .filter(
-            (comp: string) =>
-              comp.endsWith('Icon') && !finalExistingImports.has(comp)
-          )
-          .map(
-            (comp: string) => `${comp.substring(0, comp.length - 4)} as ${comp}`
-          )
+    const corePath = muiVersion === 4 ? '@material-ui/core' : '@mui/material'
+    const iconsPath =
+      muiVersion === 4 ? '@material-ui/icons' : '@mui/icons-material'
 
-        if (coreImports.length) {
-          if (coreInsertPosition) {
-            additionalTextEdits.push(
-              vscode.TextEdit.insert(
-                coreInsertPosition,
-                ', ' + coreImports.join(', ')
-              )
+    const additionalTextEdits: vscode.TextEdit[] = []
+    if (importPaths === 'second level') {
+      additionalTextEdits.push(
+        vscode.TextEdit.insert(
+          insertPosition,
+          [
+            ...components
+              .filter((c) => !existingComponents.has(c))
+              .map((c) => `import ${c} from '${corePath}/${c}'`),
+            ...icons
+              .filter((i) => !existingIcons.has(i))
+              .map((i) => `import ${i} from '${iconsPath}/${i}'`),
+          ].join('\n') + '\n'
+        )
+      )
+    } else {
+      const coreImports = components.filter((c) => !existingComponents.has(c))
+      const iconsImports = icons.filter((i) => !existingIcons.has(i))
+
+      if (coreImports.length) {
+        if (coreInsertPosition) {
+          additionalTextEdits.push(
+            vscode.TextEdit.insert(
+              coreInsertPosition,
+              ', ' + coreImports.join(', ')
             )
-          } else {
-            additionalTextEdits.push(
-              vscode.TextEdit.insert(
-                insertPosition,
-                `import { ${coreImports.join(
-                  ', '
-                )} } from '@material-ui/core'\n`
-              )
+          )
+        } else {
+          additionalTextEdits.push(
+            vscode.TextEdit.insert(
+              insertPosition,
+              `import { ${coreImports.join(', ')} } from '${corePath}'\n`
             )
-          }
+          )
         }
-        if (iconsImports.length) {
-          if (iconsInsertPosition) {
-            additionalTextEdits.push(
-              vscode.TextEdit.insert(
-                iconsInsertPosition,
-                ', ' + iconsImports.join(', ')
-              )
+      }
+      if (iconsImports.length) {
+        if (iconsInsertPosition) {
+          additionalTextEdits.push(
+            vscode.TextEdit.insert(
+              iconsInsertPosition,
+              ', ' + iconsImports.join(', ')
             )
-          } else {
-            additionalTextEdits.push(
-              vscode.TextEdit.insert(
-                insertPosition,
-                `import { ${iconsImports.join(
-                  ', '
-                )} } from '@material-ui/icons'\n`
-              )
+          )
+        } else {
+          additionalTextEdits.push(
+            vscode.TextEdit.insert(
+              insertPosition,
+              `import { ${iconsImports.join(', ')} } from '${iconsPath}'\n`
             )
-          }
+          )
         }
       }
     }
@@ -147,20 +155,17 @@ export async function activate(
             }>,
             token: vscode.CancellationToken
           ) => {
-            const body = (typeof snippet.body === 'function'
-              ? snippet.body({
-                  language: vscode.window.activeTextEditor?.document
-                    .languageId as any, // eslint-disable-line @typescript-eslint/no-explicit-any
-                  formControlMode:
-                    config.get('formControlMode') || 'controlled',
-                })
-              : snippet.body
-            ).replace(/^\n|\n$/gm, '')
+            const { text, components, icons } = createSnippet(snippet, {
+              language: vscode.window.activeTextEditor?.document
+                .languageId as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+              formControlMode: config.get('formControlMode') || 'controlled',
+            })
 
             if (token.isCancellationRequested) return
 
-            const additionalTextEdits = getAdditionalTextEdits({
-              imports: getSnippetImports(body),
+            const additionalTextEdits = await getAdditionalTextEdits({
+              components,
+              icons,
             })
 
             if (token.isCancellationRequested) return
@@ -168,7 +173,7 @@ export async function activate(
             const editor = vscode.window.activeTextEditor
             if (!editor) return
             await editor.insertSnippet(
-              new vscode.SnippetString(body),
+              new vscode.SnippetString(text),
               editor.selection
             )
             editor.edit((edit: vscode.TextEditorEdit) => {
@@ -183,11 +188,11 @@ export async function activate(
   }
 
   for (const language of ['javascript', 'javascriptreact', 'typescriptreact']) {
-    let lastOptions: SnippetOptions | null = null
+    let lastOptions: InputSnippetOptions | null = null
     let lastCompletionItems: MaterialUICompletionItem[]
 
     const getCompletionItems = (
-      options: SnippetOptions
+      options: InputSnippetOptions
     ): MaterialUICompletionItem[] => {
       if (shallowEqual(options, lastOptions)) {
         return lastCompletionItems
@@ -196,14 +201,12 @@ export async function activate(
       const result = []
       for (const snippet of Object.values(snippets)) {
         const { prefix, description } = snippet
-        const body = (typeof snippet.body === 'function'
-          ? snippet.body(options)
-          : snippet.body
-        ).replace(/^\n|\n$/gm, '')
+        const { text, components, icons } = createSnippet(snippet, options)
         const completion = new MaterialUICompletionItem(prefix)
-        completion.insertText = new vscode.SnippetString(body)
+        completion.insertText = new vscode.SnippetString(text)
         completion.documentation = new vscode.MarkdownString(description)
-        completion.imports = getSnippetImports(body)
+        completion.components = components
+        completion.icons = icons
         result.push(completion)
       }
       return (lastCompletionItems = result)
@@ -236,7 +239,7 @@ export async function activate(
           token: vscode.CancellationToken
           /* eslint-enable @typescript-eslint/no-unused-vars */
         ): Promise<MaterialUICompletionItem> {
-          item.additionalTextEdits = getAdditionalTextEdits(item)
+          item.additionalTextEdits = await getAdditionalTextEdits(item)
           return item
         },
       })

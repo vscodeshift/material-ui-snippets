@@ -2,13 +2,15 @@
   "Snippet Template": {
     "prefix": "snip",
     "body": [
-      "import snip from '../snip'",
+      "import * as React from 'react'",
+      "import { SnippetOptions } from './index'",
       "",
       "export const description = '$1'",
       "",
-      "export const body = snip`",
-      "$0",
-      "`"
+      "export const body = ({ $, Components: { $2 } }: SnippetOptions) => (",
+      "  $3",
+      ")",
+      ""
     ]
   }
 }
