@@ -3,6 +3,6 @@ import { SnippetOptions } from './index'
 
 export const description = 'Material-UI <CardMedia>'
 
-export const body = ({ Components: { CardMedia } }: SnippetOptions) => (
-  <CardMedia title="$" image="$" />
-)
+export const body = ({
+  Components: { CardMedia },
+}: SnippetOptions): React.ReactElement<any> => <CardMedia title="$" image="$" />

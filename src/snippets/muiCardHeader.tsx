@@ -4,9 +4,8 @@ import { SnippetOptions } from './index'
 export const description = 'Material-UI <CardHeader>'
 
 export const body = ({
-  $,
   Components: { CardHeader, Avatar, IconButton },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <CardHeader
     avatar__optional={
       <Avatar aria-label="$" __multiLineChildren $>

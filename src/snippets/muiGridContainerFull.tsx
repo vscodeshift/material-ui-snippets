@@ -11,7 +11,11 @@ import {
 
 export const description = 'Material-UI <Grid container> with all props'
 
-export const body = ({ $, Components: { Grid } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { Grid },
+}: SnippetOptions): React.ReactElement<any> => (
   <Grid
     container
     spacing__optional={$(1)}

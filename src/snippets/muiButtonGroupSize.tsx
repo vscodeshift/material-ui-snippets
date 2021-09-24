@@ -7,7 +7,7 @@ export const description = 'Material-UI <ButtonGroup> with size'
 export const body = ({
   $,
   Components: { ButtonGroup, Button },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <ButtonGroup
     variant={$(variants)}
     color={$(colors)}

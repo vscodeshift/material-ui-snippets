@@ -7,13 +7,20 @@ export const body = ({
   formControlMode,
   $,
   Components: { Switch },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <Switch
     value="$"
     {...(formControlMode === 'controlled'
-      ? { checked: $, onChange: $ }
-      : { defaultChecked: $ })}
-    inputProps={{ 'aria-label': '$' }}
+      ? {
+          checked: $,
+          onChange: $,
+        }
+      : {
+          defaultChecked: $,
+        })}
+    inputProps={{
+      'aria-label': '$',
+    }}
     $
   />
 )

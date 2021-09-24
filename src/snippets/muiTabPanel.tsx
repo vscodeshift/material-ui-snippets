@@ -3,7 +3,11 @@ import { SnippetOptions } from './index'
 
 export const description = 'Material-UI <TabPanel>'
 
-export const body = ({ $, Components: { TabPanel } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { TabPanel },
+}: SnippetOptions): React.ReactElement<any> => (
   <TabPanel
     value={$}
     index={$}

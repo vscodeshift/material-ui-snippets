@@ -38,8 +38,8 @@ export async function activate(
       })
     )?.packageJson?.dependencies
     if (!deps) return null
-    if (Object.keys(deps).some(d => d.startsWith('@mui/'))) return 5
-    if (Object.keys(deps).some(d => d.startsWith('@material-ui/'))) return 4
+    if (Object.keys(deps).some((d) => d.startsWith('@mui/'))) return 5
+    if (Object.keys(deps).some((d) => d.startsWith('@material-ui/'))) return 4
     return null
   }
 
@@ -88,17 +88,17 @@ export async function activate(
           insertPosition,
           [
             ...components
-              .filter(c => !existingComponents.has(c))
-              .map(c => `import ${c} from '${corePath}/${c}'`),
+              .filter((c) => !existingComponents.has(c))
+              .map((c) => `import ${c} from '${corePath}/${c}'`),
             ...icons
-              .filter(i => !existingIcons.has(i))
-              .map(i => `import ${i} from '${iconsPath}/${i}'`),
+              .filter((i) => !existingIcons.has(i))
+              .map((i) => `import ${i} from '${iconsPath}/${i}'`),
           ].join('\n') + '\n'
         )
       )
     } else {
-      const coreImports = components.filter(c => !existingComponents.has(c))
-      const iconsImports = icons.filter(i => !existingIcons.has(i))
+      const coreImports = components.filter((c) => !existingComponents.has(c))
+      const iconsImports = icons.filter((i) => !existingIcons.has(i))
 
       if (coreImports.length) {
         if (coreInsertPosition) {

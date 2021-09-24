@@ -4,9 +4,8 @@ import { SnippetOptions } from './index'
 export const description = 'Material-UI <GridListTileBar>'
 
 export const body = ({
-  $,
   Components: { GridListTileBar, IconButton },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <GridListTileBar
     title__optional="$"
     subtitle__optional="$"

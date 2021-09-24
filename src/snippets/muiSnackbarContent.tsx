@@ -6,4 +6,6 @@ export const description = 'Material-UI <SnackbarContent>'
 export const body = ({
   $,
   Components: { SnackbarContent },
-}: SnippetOptions) => <SnackbarContent message="$" action={$} />
+}: SnippetOptions): React.ReactElement<any> => (
+  <SnackbarContent message="$" action={$} />
+)

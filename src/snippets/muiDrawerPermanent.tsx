@@ -5,7 +5,11 @@ export const anchors = ['left', 'right', 'top', 'bottom']
 
 export const description = 'Material-UI permanent <Drawer>'
 
-export const body = ({ $, Components: { Drawer } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { Drawer },
+}: SnippetOptions): React.ReactElement<any> => (
   <Drawer variant="permanent" anchor={$(anchors)} $>
     $
   </Drawer>

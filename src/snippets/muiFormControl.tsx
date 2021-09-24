@@ -7,10 +7,8 @@ export const description = 'Material-UI <FormControl>'
 
 export const body = ({
   Components: { FormControl, FormLabel, FormHelperText },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <FormControl $>
-    <FormLabel>$</FormLabel>
-    $0
-    <FormHelperText>$</FormHelperText>
+    <FormLabel>$</FormLabel>$0<FormHelperText>$</FormHelperText>
   </FormControl>
 )

@@ -6,8 +6,13 @@ export const description = 'Material-UI <GridList> subheader'
 export const body = ({
   $,
   Components: { GridListTile, ListSubheader },
-}: SnippetOptions) => (
-  <GridListTile cols={$(2)} style={{ height: 'auto' }}>
+}: SnippetOptions): React.ReactElement<any> => (
+  <GridListTile
+    cols={$(2)}
+    style={{
+      height: 'auto',
+    }}
+  >
     <ListSubheader component="div">$</ListSubheader>
   </GridListTile>
 )

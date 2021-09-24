@@ -1,16 +1,14 @@
 import * as React from 'react'
 import { SnippetOptions } from './index'
-import {
-  directions,
-  wraps,
-  alignItems,
-  alignContents,
-  justifies,
-} from './muiGridContainer'
+import { directions, wraps } from './muiGridContainer'
 
 export const description = 'Material-UI <Grid container> with centering'
 
-export const body = ({ $, Components: { Grid } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { Grid },
+}: SnippetOptions): React.ReactElement<any> => (
   <Grid
     container
     spacing={$(1)}

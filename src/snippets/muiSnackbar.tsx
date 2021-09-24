@@ -7,7 +7,7 @@ export const body = ({
   $,
   Components: { Snackbar, IconButton },
   Icons: { Close },
-}: SnippetOptions) => {
+}: SnippetOptions): React.ReactElement<any> => {
   const $onClose = $()
   return (
     <Snackbar

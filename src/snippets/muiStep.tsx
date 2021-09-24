@@ -6,7 +6,7 @@ export const description = 'Material-UI <Step>'
 export const body = ({
   $,
   Components: { Step, StepLabel },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <Step __key={$} completed={$} $ __multiLineChildren>
     <StepLabel>$</StepLabel>
   </Step>

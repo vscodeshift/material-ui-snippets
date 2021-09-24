@@ -10,7 +10,7 @@ export const body = ({
   formControlMode,
   $,
   Components: { FormControlLabel, Switch },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <FormControlLabel
     label="$"
     labelPlacement={$(labelPlacements)}
@@ -18,8 +18,13 @@ export const body = ({
       <Switch
         value="$"
         {...(formControlMode === 'controlled'
-          ? { checked: $, onChange: $ }
-          : { defaultChecked: $ })}
+          ? {
+              checked: $,
+              onChange: $,
+            }
+          : {
+              defaultChecked: $,
+            })}
         __multiLine
         $
       />

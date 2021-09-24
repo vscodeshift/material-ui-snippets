@@ -3,7 +3,11 @@ import { SnippetOptions } from './index'
 
 export const description = 'Material-UI <MenuItem>'
 
-export const body = ({ $, Components: { MenuItem } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { MenuItem },
+}: SnippetOptions): React.ReactElement<any> => (
   <MenuItem onClick={$} $>
     $
   </MenuItem>

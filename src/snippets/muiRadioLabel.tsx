@@ -5,6 +5,6 @@ export const description = 'Material-UI <Radio> with <FormControlLabel>'
 
 export const body = ({
   Components: { FormControlLabel, Radio },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <FormControlLabel value="$" label="$" control={<Radio $ />} />
 )

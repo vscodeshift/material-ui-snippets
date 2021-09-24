@@ -7,9 +7,15 @@ export const body = ({
   forPreview,
   $,
   Components: { Dialog },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <Dialog
-    {...(forPreview && { disablePortal: true, style: { position: 'initial' } })}
+    {...(forPreview && {
+      disablePortal: true,
+
+      style: {
+        position: 'initial',
+      },
+    })}
     open={forPreview ? true : $}
     onClose={$}
     aria-labelledby={forPreview ? 'muiDialogTitle' : '$'}

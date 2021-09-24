@@ -7,7 +7,7 @@ export const description = 'Material-UI vertical <ButtonGroup>'
 export const body = ({
   $,
   Components: { ButtonGroup, Button },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <ButtonGroup
     orientation="vertical"
     variant={$(variants)}

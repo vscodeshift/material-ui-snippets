@@ -6,7 +6,7 @@ export const description = 'Material-UI <FormControl> with <RadioGroup>'
 export const body = ({
   $,
   Components: { FormControl, FormLabel, RadioGroup, FormHelperText },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <FormControl component__raw='${:"fieldset"}' $>
     <FormLabel component__raw='${:"legend"}'>$</FormLabel>
     <RadioGroup aria-label="$" name="$" value={$} onChange={$}>

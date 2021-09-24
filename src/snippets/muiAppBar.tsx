@@ -17,7 +17,7 @@ export const body = ({
   forPreview,
   $,
   Components: { AppBar, Toolbar, Typography },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <AppBar
     position={forPreview ? 'relative' : $(positions)}
     color={$(colors)}

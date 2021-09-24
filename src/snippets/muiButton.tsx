@@ -7,7 +7,11 @@ export const sizes = ['small', 'medium', 'large']
 
 export const description = 'Material-UI <Button>'
 
-export const body = ({ $, Components: { Button } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { Button },
+}: SnippetOptions): React.ReactElement<any> => (
   <Button variant={$(variants)} color={$(colors)} __oneLineProps $>
     $
   </Button>

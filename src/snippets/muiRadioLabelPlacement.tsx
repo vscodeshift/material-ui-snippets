@@ -9,7 +9,7 @@ export const description =
 export const body = ({
   $,
   Components: { FormControlLabel, Radio },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <FormControlLabel
     value="$"
     label="$"

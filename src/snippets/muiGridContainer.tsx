@@ -33,7 +33,11 @@ export const wraps = ['nowrap', 'wrap', 'wrap-reverse']
 
 export const description = 'Material-UI <Grid container>'
 
-export const body = ({ $, Components: { Grid } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { Grid },
+}: SnippetOptions): React.ReactElement<any> => (
   <Grid container spacing={$} __multiLineChildren $>
     $
   </Grid>

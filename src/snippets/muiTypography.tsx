@@ -31,7 +31,11 @@ const colors = [
   'error',
 ]
 
-export const body = ({ $, Components: { Typography } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { Typography },
+}: SnippetOptions): React.ReactElement<any> => (
   <Typography variant={$(variants)} color__optional={$(colors)} __oneLine $>
     $TM_SELECTED_TEXT$0
   </Typography>

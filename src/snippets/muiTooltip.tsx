@@ -3,9 +3,10 @@ import { SnippetOptions } from './index'
 
 export const description = 'Material-UI <Tooltip>'
 
-export const body = ({ $, Components: { Tooltip } }: SnippetOptions) => (
+export const body = ({
+  Components: { Tooltip },
+}: SnippetOptions): React.ReactElement<any> => (
   <Tooltip title="$" $ __multiLineChildren>
-    {/* TODO */}
-    $TM_SELECTED_TEXT$0
+    {}$TM_SELECTED_TEXT$0
   </Tooltip>
 )

@@ -39,7 +39,7 @@ export default async function loadSnippets(): Promise<Record<string, Snippet>> {
       result: Record<string, any>,
       file: { path: string; exports: any }
     ) => {
-      if (file.path === __filename) return result
+      if (/index\.(js|ts)$/.test(file.path)) return result
       const filename = path.basename(file.path)
       const filenameNoExt = filename.replace(/\.[^.]+$/, '')
       const { prefix = filenameNoExt, description, body } = file.exports

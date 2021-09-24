@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-rest-params */
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default function once<F extends Function>(fn: F): F {
   let called = false
   let result: any

@@ -15,13 +15,16 @@ export const body = ({
     DialogActions,
     Button,
   },
-}: SnippetOptions) => {
+}: SnippetOptions): React.ReactElement<any> => {
   const titleId = forPreview ? 'muiDialogTitle' : $()
   return (
     <Dialog
       {...(forPreview && {
         disablePortal: true,
-        style: { position: 'initial' },
+
+        style: {
+          position: 'initial',
+        },
       })}
       open={forPreview ? true : $}
       onClose={$}

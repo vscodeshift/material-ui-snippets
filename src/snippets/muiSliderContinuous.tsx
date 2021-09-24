@@ -7,11 +7,16 @@ export const body = ({
   formControlMode,
   $,
   Components: { Slider },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <Slider
     {...(formControlMode === 'controlled'
-      ? { value: $, onChange: $ }
-      : { defaultValue: $ })}
+      ? {
+          value: $,
+          onChange: $,
+        }
+      : {
+          defaultValue: $,
+        })}
     aria-labelledby="$"
     min={$(0)}
     max={$(100)}

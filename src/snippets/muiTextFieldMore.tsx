@@ -8,7 +8,7 @@ export const body = ({
   formControlMode,
   $,
   Components: { TextField },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <TextField
     id="$"
     label="$"
@@ -17,8 +17,13 @@ export const body = ({
     margin__optional={$(margins)}
     sizes__optional={$(sizes)}
     {...(formControlMode === 'controlled'
-      ? { value: $, onChange: $ }
-      : { defaultValue: $ })}
+      ? {
+          value: $,
+          onChange: $,
+        }
+      : {
+          defaultValue: $,
+        })}
     $
   />
 )

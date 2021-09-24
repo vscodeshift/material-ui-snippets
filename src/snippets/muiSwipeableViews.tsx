@@ -3,7 +3,11 @@ import { SnippetOptions } from './index'
 
 export const description = 'Material-UI <SwipeableViews>'
 
-export const body = ({ $, Components: { SwipeableViews } }: SnippetOptions) => (
+export const body = ({
+  $,
+
+  Components: { SwipeableViews },
+}: SnippetOptions): React.ReactElement<any> => (
   <SwipeableViews
     axis__raw="{theme.direction === 'rtl' ? 'x-reverse' : 'x'}"
     index={$}

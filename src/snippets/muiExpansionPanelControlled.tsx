@@ -12,7 +12,7 @@ export const body = ({
     Typography,
   },
   Icons: { ExpandMore },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <ExpansionPanel expanded={$} onChange={$}>
     <ExpansionPanelSummary
       expandIcon={<ExpandMore />}

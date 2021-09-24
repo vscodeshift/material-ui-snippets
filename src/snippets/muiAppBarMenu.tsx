@@ -9,7 +9,7 @@ export const body = ({
   $,
   Components: { AppBar, Toolbar, IconButton, Typography },
   Icons: { Menu },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <AppBar
     position={forPreview ? 'relative' : $(positions)}
     color={$(colors)}

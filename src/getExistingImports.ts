@@ -2,9 +2,7 @@ import * as vscode from 'vscode'
 import jscodeshift, { ImportDeclaration, ASTPath } from 'jscodeshift'
 import chooseJSCodeshiftParser from 'jscodeshift-choose-parser'
 
-export default function getExistingImports(
-  document: vscode.TextDocument
-): {
+export default function getExistingImports(document: vscode.TextDocument): {
   existingComponents: Set<string>
   existingIcons: Set<string>
   insertPosition: vscode.Position
@@ -72,9 +70,10 @@ export default function getExistingImports(
           }
         }
       } else {
-        const match = /^(@material-ui\/core|@material-ui\/icons|@mui\/material|@mui\/icons-material)\/([^/]+)/.exec(
-          source
-        )
+        const match =
+          /^(@material-ui\/core|@material-ui\/icons|@mui\/material|@mui\/icons-material)\/([^/]+)/.exec(
+            source
+          )
         if (match) {
           if (
             match[1] === '@material-ui/icons' ||

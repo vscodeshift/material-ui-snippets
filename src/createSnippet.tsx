@@ -92,6 +92,7 @@ function compileSnippet(
     return `$${getStopNumber(placeholder)}`
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function Placeholder(props: PlaceholderProps): null {
     return null
   }
@@ -145,7 +146,7 @@ function compileSnippet(
   }
 
   function formatArray(array: any[]): string {
-    return `[${array.map(el => formatJson(el)).join(', ')}]`
+    return `[${array.map((el) => formatJson(el)).join(', ')}]`
   }
 
   function formatObjectKey(key: string): string {
@@ -229,6 +230,7 @@ function compileSnippet(
     if (__optional) {
       return `\${${stop++}:${escape(
         formatElement(
+          // eslint-disable-next-line react/no-children-prop
           React.createElement(type, {
             ...props,
             children,
@@ -272,15 +274,15 @@ function compileSnippet(
       __oneLine ||
       __oneLineProps ||
       (!__multiLine &&
-        !formattedProps.some(p => p.includes('\n')) &&
+        !formattedProps.some((p) => p.includes('\n')) &&
         propsLength + name.length < 70)
     const childrenOneLine =
       __oneLine ||
       (!__multiLineChildren &&
         !__oneLineProps &&
         propsOneLine &&
-        !formattedProps.some(p => p.includes('\n')) &&
-        !formattedChildren.some(c => c.includes('\n')) &&
+        !formattedProps.some((p) => p.includes('\n')) &&
+        !formattedChildren.some((c) => c.includes('\n')) &&
         propsLength + childrenLength + name.length * 2 < 70)
 
     for (const formatted of formattedProps) {
@@ -333,6 +335,7 @@ function compileSnippet(
 
   const $ = new Proxy(createPlaceholder, {
     get(target: any, name: string) {
+      // eslint-disable-next-line react/display-name
       return (
         value: any
       ): React.ReactElement<PlaceholderProps, typeof Placeholder> => (

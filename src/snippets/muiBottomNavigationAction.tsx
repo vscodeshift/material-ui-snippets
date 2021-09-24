@@ -6,4 +6,6 @@ export const description = 'Material-UI <BottomNavigationAction>'
 export const body = ({
   Components: { BottomNavigationAction },
   $,
-}: SnippetOptions) => <BottomNavigationAction label="$" value={$} icon={$} $ />
+}: SnippetOptions): React.ReactElement<any> => (
+  <BottomNavigationAction label="$" value={$} icon={$} $ />
+)

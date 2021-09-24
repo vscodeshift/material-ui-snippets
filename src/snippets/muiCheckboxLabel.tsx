@@ -7,7 +7,7 @@ export const body = ({
   formControlMode,
   $,
   Components: { FormControlLabel, Checkbox },
-}: SnippetOptions) => (
+}: SnippetOptions): React.ReactElement<any> => (
   <FormControlLabel
     label="$"
     control={
@@ -15,8 +15,13 @@ export const body = ({
         __multiLine
         value="$"
         {...(formControlMode === 'controlled'
-          ? { checked: $, onChange: $ }
-          : { defaultChecked: $ })}
+          ? {
+              checked: $,
+              onChange: $,
+            }
+          : {
+              defaultChecked: $,
+            })}
         color={$('primary')}
       />
     }
