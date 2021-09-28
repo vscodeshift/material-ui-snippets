@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import jscodeshift, { ImportDeclaration, ASTPath } from 'jscodeshift'
-import chooseJSCodeshiftParser from 'jscodeshift-choose-parser'
+import { getParserSync } from 'babel-parse-wild-code'
 
 export default function getExistingImports(document: vscode.TextDocument): {
   existingComponents: Set<string>
@@ -11,7 +11,7 @@ export default function getExistingImports(document: vscode.TextDocument): {
   muiVersion: 4 | 5 | null
 } {
   const text = document.getText()
-  const parser = chooseJSCodeshiftParser(document.uri.fsPath)
+  const parser = getParserSync(document.uri.fsPath, { tokens: true })
   const j = parser ? jscodeshift.withParser(parser) : jscodeshift
 
   const components: Set<string> = new Set()
