@@ -21,7 +21,7 @@ or use the commands to insert snippets instead of suggestions.
 
 # Using MUI v5?
 
-For MUI v5 you'll need the beta version of [`material-ui-snippets`](https://github.com/vscodeshift/material-ui-snippets/tree/beta). The current production release is for v4. Once MUI v5 is officially released, I'll officially release the next major version of `material-ui-snippets`.
+For MUI v5 you'll need [`mui-snippets`](https://github.com/vscodeshift/mui-snippets) instead. This extension is for Material-UI v4.
 
 # Features
 
