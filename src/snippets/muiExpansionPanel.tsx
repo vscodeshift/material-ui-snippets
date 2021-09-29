@@ -11,11 +11,11 @@ export const body = ({
     ExpansionPanelDetails,
     Typography,
   },
-  Icons: { ExpandMoreIcon },
+  Icons: { ExpandMore },
 }: SnippetOptions): React.ReactElement<any> => (
   <ExpansionPanel>
     <ExpansionPanelSummary
-      expandIcon={<ExpandMoreIcon />}
+      expandIcon={<ExpandMore />}
       aria-label={$('Expand')}
       aria-controls="${id}-content"
       id="${id}-header"
